@@ -1,2 +1,66 @@
-data/.DS_Store
-docs/.DS_Store
+.DS_Store
+# =========================
+# Quarto / Knitr / Jupyter
+# =========================
+
+*_files/
+*_cache/
+*_freeze/
+
+# Quarto intermediate
+.quarto/
+
+# =========================
+# Python (optional)
+# =========================
+
+.venv/
+venv/
+env/
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+
+# =========================
+# R (if ever used)
+# =========================
+
+.Rhistory
+.RData
+.Rproj.user/
+
+# =========================
+# OS / Editor junk
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# macOS
+.AppleDouble
+.LSOverride
+
+# =========================
+# Logs
+# =========================
+
+*.log
+
+# =========================
+# Temporary files
+# =========================
+
+*.tmp
+*.temp
+
+# =========================
+# IMPORTANT: Keep docs/
+# =========================
+
+# Do NOT ignore docs/
+# This is required for GitHub Pages deployment
+/.quarto/
+
