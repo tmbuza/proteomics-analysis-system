@@ -1,0 +1,25 @@
+# Protein Identifier Cleaning and Annotation
+
+Protein identifiers must be cleaned and mapped before enrichment or network analysis.
+
+## Common Identifiers
+
+Proteomics tables may contain:
+
+```text
+UniProt accession
+UniProt protein name
+gene symbol
+Ensembl gene ID
+RefSeq accession
+protein description
+```
+
+## Why Identifier Cleaning Matters
+
+Incorrect or inconsistent identifiers can affect:
+
+- GO enrichment
+- pathway enrichment
+- STRING network mapping
+- candidate protein prioritization

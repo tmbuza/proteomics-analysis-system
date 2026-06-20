@@ -1,0 +1,33 @@
+# Functional Enrichment and GO Annotation
+
+GO functional annotation is a central part of proteomics interpretation.
+
+## GO Domains
+
+Gene Ontology includes:
+
+```text
+Biological Process
+Molecular Function
+Cellular Component
+```
+
+## Enrichment Workflow
+
+```text
+significant protein list
+        ↓
+identifier mapping
+        ↓
+background definition
+        ↓
+GO enrichment
+        ↓
+pathway enrichment
+        ↓
+biological interpretation
+```
+
+## Important Principle
+
+Functional enrichment should be interpreted in relation to the original biological question, not as a standalone list of terms.

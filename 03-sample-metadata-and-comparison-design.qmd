@@ -1,0 +1,29 @@
+# Sample Metadata and Comparison Design
+
+Proteomics interpretation depends on knowing which samples belong to which biological groups.
+
+## Sample Metadata
+
+A minimal metadata table should describe:
+
+```text
+sample_id
+condition
+group
+replicate
+batch
+comparison
+```
+
+## Comparison Design
+
+Before interpreting differential proteins, define the biological comparison clearly.
+
+Examples:
+
+```text
+treated_vs_control
+disease_vs_healthy
+timepoint_24h_vs_0h
+resistant_vs_sensitive
+```

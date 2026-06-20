@@ -1,0 +1,25 @@
+# CDI Proteomics Analysis System
+
+**Results-First Edition**
+
+This guide introduces a practical system for interpreting proteomics results after receiving processed output tables from a proteomics facility, collaborator, or vendor.
+
+The focus is on moving from differential protein abundance results to biological interpretation.
+
+```text
+Proteomics result tables
+        ↓
+Differential abundance results
+        ↓
+Protein filtering and ranking
+        ↓
+Identifier cleaning and annotation
+        ↓
+GO and pathway enrichment
+        ↓
+STRING network analysis
+        ↓
+Biological interpretation
+        ↓
+Reproducible report
+```

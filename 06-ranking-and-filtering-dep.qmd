@@ -1,0 +1,23 @@
+# Ranking and Filtering Differentially Abundant Proteins
+
+This chapter turns a large differential result table into prioritized protein lists.
+
+## Core Outputs
+
+```text
+all differential proteins
+significant DEP
+top upregulated proteins
+top downregulated proteins
+ranked protein list
+```
+
+## Ranking Strategy
+
+Proteins can be ranked by:
+
+- adjusted p-value
+- absolute log2 fold-change
+- direction of change
+- biological relevance
+- presence in known pathways or protein families

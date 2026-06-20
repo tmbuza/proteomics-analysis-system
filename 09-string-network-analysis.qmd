@@ -1,0 +1,24 @@
+# STRING Network Analysis
+
+STRING can be used to explore protein-protein association networks among differentially abundant proteins.
+
+## Network Analysis Goals
+
+STRING analysis can help identify:
+
+- connected protein modules
+- biological processes represented by protein clusters
+- hub proteins
+- pathway-level structure
+- candidate proteins for follow-up
+
+## Input Lists
+
+Recommended inputs:
+
+```text
+all significant DEP
+upregulated DEP
+downregulated DEP
+top ranked proteins
+```

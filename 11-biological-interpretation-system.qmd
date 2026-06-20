@@ -1,0 +1,35 @@
+# Biological Interpretation System
+
+This chapter turns tables, figures, GO terms, pathways, and networks into a biological story.
+
+## Interpretation Questions
+
+Ask:
+
+```text
+Which proteins changed?
+In which direction?
+How strong is the change?
+Are proteins functionally related?
+Which GO terms or pathways are enriched?
+Do networks reveal protein modules?
+How do the findings answer the biological question?
+```
+
+## From Results to Insight
+
+```text
+DEP table
+        ↓
+ranked proteins
+        ↓
+GO terms
+        ↓
+pathways
+        ↓
+network modules
+        ↓
+biological themes
+        ↓
+reportable findings
+```

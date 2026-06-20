@@ -1,0 +1,464 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "CDI Proteomics Analysis System",
+    "section": "",
+    "text": "CDI Proteomics Analysis System\nResults-First Edition\nThis guide introduces a practical system for interpreting proteomics results after receiving processed output tables from a proteomics facility, collaborator, or vendor.\nThe focus is on moving from differential protein abundance results to biological interpretation.\nProteomics result tables\n        ↓\nDifferential abundance results\n        ↓\nProtein filtering and ranking\n        ↓\nIdentifier cleaning and annotation\n        ↓\nGO and pathway enrichment\n        ↓\nSTRING network analysis\n        ↓\nBiological interpretation\n        ↓\nReproducible report",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>CDI Proteomics Analysis System</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface-and-overview.html",
+    "href": "00-preface-and-overview.html",
+    "title": "Preface and Overview",
+    "section": "",
+    "text": "Results-First Approach\nProteomics was one of the first omics fields I worked with, especially through protein-level interpretation and GO functional annotation.\nThis system is both a return to that foundation and a refreshed, reproducible guide for modern proteomics result interpretation.\nMany researchers do not begin proteomics analysis from raw mass spectrometry files. They often receive processed result files that include protein abundance tables, log2 fold-changes, p-values, and adjusted p-values.\nThis guide begins from that practical starting point.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preface and Overview</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface-and-overview.html#results-first-approach",
+    "href": "00-preface-and-overview.html#results-first-approach",
+    "title": "Preface and Overview",
+    "section": "",
+    "text": "Raw mass spectrometry files\n        ↓\nProcessed by facility / vendor / collaborator\n        ↓\nProtein abundance table\n        ↓\nDifferential protein abundance table\n        ↓\nInterpretation system",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preface and Overview</span>"
+    ]
+  },
+  {
+    "objectID": "00-preface-and-overview.html#system-goal",
+    "href": "00-preface-and-overview.html#system-goal",
+    "title": "Preface and Overview",
+    "section": "System Goal",
+    "text": "System Goal\nThe goal is to move from thousands of differentially abundant proteins to clear biological themes, candidate proteins, pathways, networks, and a reproducible report.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Preface and Overview</span>"
+    ]
+  },
+  {
+    "objectID": "01-proteomics-results-landscape.html",
+    "href": "01-proteomics-results-landscape.html",
+    "title": "Proteomics Results Landscape",
+    "section": "",
+    "text": "Common Files\nThis chapter introduces common proteomics result types and how they fit into downstream analysis.\nProteomics projects may produce:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Proteomics Results Landscape</span>"
+    ]
+  },
+  {
+    "objectID": "01-proteomics-results-landscape.html#common-files",
+    "href": "01-proteomics-results-landscape.html#common-files",
+    "title": "Proteomics Results Landscape",
+    "section": "",
+    "text": "raw mass spectrometry files\npeptide-level tables\nprotein-level abundance tables\ndifferential abundance result tables\nsample metadata\nquality control summaries\nannotation files",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Proteomics Results Landscape</span>"
+    ]
+  },
+  {
+    "objectID": "01-proteomics-results-landscape.html#results-first-entry-point",
+    "href": "01-proteomics-results-landscape.html#results-first-entry-point",
+    "title": "Proteomics Results Landscape",
+    "section": "Results-First Entry Point",
+    "text": "Results-First Entry Point\nThis system begins with the files most researchers commonly receive after core facility processing:\nprotein_id\ngene_symbol\nprotein_name\nlog2FC\npvalue\npadj\ncomparison",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Proteomics Results Landscape</span>"
+    ]
+  },
+  {
+    "objectID": "02-understanding-proteomics-output-files.html",
+    "href": "02-understanding-proteomics-output-files.html",
+    "title": "Understanding Proteomics Output Files",
+    "section": "",
+    "text": "Protein Abundance Table\nThis chapter explains the key result files used in downstream proteomics interpretation.\nThe abundance table contains quantified protein-level values across samples.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Understanding Proteomics Output Files</span>"
+    ]
+  },
+  {
+    "objectID": "02-understanding-proteomics-output-files.html#differential-result-table",
+    "href": "02-understanding-proteomics-output-files.html#differential-result-table",
+    "title": "Understanding Proteomics Output Files",
+    "section": "Differential Result Table",
+    "text": "Differential Result Table\nThe differential result table summarizes changes between conditions.\nCommon columns include:\nprotein_id\ngene_symbol\nprotein_name\nlog2FC\npvalue\npadj\ncomparison",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Understanding Proteomics Output Files</span>"
+    ]
+  },
+  {
+    "objectID": "02-understanding-proteomics-output-files.html#key-interpretation-columns",
+    "href": "02-understanding-proteomics-output-files.html#key-interpretation-columns",
+    "title": "Understanding Proteomics Output Files",
+    "section": "Key Interpretation Columns",
+    "text": "Key Interpretation Columns\n\nlog2FC: direction and magnitude of change\npvalue: statistical evidence before multiple testing correction\npadj: adjusted p-value or false discovery rate\nprotein_id: protein identifier\ngene_symbol: mapped gene symbol",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Understanding Proteomics Output Files</span>"
+    ]
+  },
+  {
+    "objectID": "03-sample-metadata-and-comparison-design.html",
+    "href": "03-sample-metadata-and-comparison-design.html",
+    "title": "Sample Metadata and Comparison Design",
+    "section": "",
+    "text": "Sample Metadata\nProteomics interpretation depends on knowing which samples belong to which biological groups.\nA minimal metadata table should describe:",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sample Metadata and Comparison Design</span>"
+    ]
+  },
+  {
+    "objectID": "03-sample-metadata-and-comparison-design.html#sample-metadata",
+    "href": "03-sample-metadata-and-comparison-design.html#sample-metadata",
+    "title": "Sample Metadata and Comparison Design",
+    "section": "",
+    "text": "sample_id\ncondition\ngroup\nreplicate\nbatch\ncomparison",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sample Metadata and Comparison Design</span>"
+    ]
+  },
+  {
+    "objectID": "03-sample-metadata-and-comparison-design.html#comparison-design",
+    "href": "03-sample-metadata-and-comparison-design.html#comparison-design",
+    "title": "Sample Metadata and Comparison Design",
+    "section": "Comparison Design",
+    "text": "Comparison Design\nBefore interpreting differential proteins, define the biological comparison clearly.\nExamples:\ntreated_vs_control\ndisease_vs_healthy\ntimepoint_24h_vs_0h\nresistant_vs_sensitive",
+    "crumbs": [
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Sample Metadata and Comparison Design</span>"
+    ]
+  },
+  {
+    "objectID": "04-quality-control-of-result-tables.html",
+    "href": "04-quality-control-of-result-tables.html",
+    "title": "Quality Control of Result Tables",
+    "section": "",
+    "text": "Table-Level Checks\nThis chapter checks whether the received result tables are suitable for interpretation.\nRecommended checks include:",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quality Control of Result Tables</span>"
+    ]
+  },
+  {
+    "objectID": "04-quality-control-of-result-tables.html#table-level-checks",
+    "href": "04-quality-control-of-result-tables.html#table-level-checks",
+    "title": "Quality Control of Result Tables",
+    "section": "",
+    "text": "required columns are present\nprotein identifiers are not missing\nlog2FC values are numeric\np-values and adjusted p-values are numeric\nduplicate protein IDs are handled\ncomparison labels are clear",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quality Control of Result Tables</span>"
+    ]
+  },
+  {
+    "objectID": "04-quality-control-of-result-tables.html#qc-principle",
+    "href": "04-quality-control-of-result-tables.html#qc-principle",
+    "title": "Quality Control of Result Tables",
+    "section": "QC Principle",
+    "text": "QC Principle\nBefore interpreting biology, confirm that the result table is internally consistent.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Quality Control of Result Tables</span>"
+    ]
+  },
+  {
+    "objectID": "05-differential-protein-abundance-results.html",
+    "href": "05-differential-protein-abundance-results.html",
+    "title": "Differential Protein Abundance Results",
+    "section": "",
+    "text": "Basic Result Interpretation\nDifferential protein abundance analysis identifies proteins that differ between biological conditions.",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential Protein Abundance Results</span>"
+    ]
+  },
+  {
+    "objectID": "05-differential-protein-abundance-results.html#basic-result-interpretation",
+    "href": "05-differential-protein-abundance-results.html#basic-result-interpretation",
+    "title": "Differential Protein Abundance Results",
+    "section": "",
+    "text": "positive log2FC  → higher in numerator condition\nnegative log2FC  → lower in numerator condition\nsmall padj       → stronger statistical evidence",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential Protein Abundance Results</span>"
+    ]
+  },
+  {
+    "objectID": "05-differential-protein-abundance-results.html#significant-differentially-abundant-proteins",
+    "href": "05-differential-protein-abundance-results.html#significant-differentially-abundant-proteins",
+    "title": "Differential Protein Abundance Results",
+    "section": "Significant Differentially Abundant Proteins",
+    "text": "Significant Differentially Abundant Proteins\nA common starting threshold is:\npadj &lt; 0.05\nOptional effect-size filtering may include:\nabs(log2FC) &gt;= 1",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Differential Protein Abundance Results</span>"
+    ]
+  },
+  {
+    "objectID": "06-ranking-and-filtering-dep.html",
+    "href": "06-ranking-and-filtering-dep.html",
+    "title": "Ranking and Filtering Differentially Abundant Proteins",
+    "section": "",
+    "text": "Core Outputs\nThis chapter turns a large differential result table into prioritized protein lists.",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ranking and Filtering Differentially Abundant Proteins</span>"
+    ]
+  },
+  {
+    "objectID": "06-ranking-and-filtering-dep.html#core-outputs",
+    "href": "06-ranking-and-filtering-dep.html#core-outputs",
+    "title": "Ranking and Filtering Differentially Abundant Proteins",
+    "section": "",
+    "text": "all differential proteins\nsignificant DEP\ntop upregulated proteins\ntop downregulated proteins\nranked protein list",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ranking and Filtering Differentially Abundant Proteins</span>"
+    ]
+  },
+  {
+    "objectID": "06-ranking-and-filtering-dep.html#ranking-strategy",
+    "href": "06-ranking-and-filtering-dep.html#ranking-strategy",
+    "title": "Ranking and Filtering Differentially Abundant Proteins",
+    "section": "Ranking Strategy",
+    "text": "Ranking Strategy\nProteins can be ranked by:\n\nadjusted p-value\nabsolute log2 fold-change\ndirection of change\nbiological relevance\npresence in known pathways or protein families",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Ranking and Filtering Differentially Abundant Proteins</span>"
+    ]
+  },
+  {
+    "objectID": "07-protein-identifier-cleaning-and-annotation.html",
+    "href": "07-protein-identifier-cleaning-and-annotation.html",
+    "title": "Protein Identifier Cleaning and Annotation",
+    "section": "",
+    "text": "Common Identifiers\nProtein identifiers must be cleaned and mapped before enrichment or network analysis.\nProteomics tables may contain:",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Protein Identifier Cleaning and Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "07-protein-identifier-cleaning-and-annotation.html#common-identifiers",
+    "href": "07-protein-identifier-cleaning-and-annotation.html#common-identifiers",
+    "title": "Protein Identifier Cleaning and Annotation",
+    "section": "",
+    "text": "UniProt accession\nUniProt protein name\ngene symbol\nEnsembl gene ID\nRefSeq accession\nprotein description",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Protein Identifier Cleaning and Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "07-protein-identifier-cleaning-and-annotation.html#why-identifier-cleaning-matters",
+    "href": "07-protein-identifier-cleaning-and-annotation.html#why-identifier-cleaning-matters",
+    "title": "Protein Identifier Cleaning and Annotation",
+    "section": "Why Identifier Cleaning Matters",
+    "text": "Why Identifier Cleaning Matters\nIncorrect or inconsistent identifiers can affect:\n\nGO enrichment\npathway enrichment\nSTRING network mapping\ncandidate protein prioritization",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Protein Identifier Cleaning and Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "08-functional-enrichment-and-go-annotation.html",
+    "href": "08-functional-enrichment-and-go-annotation.html",
+    "title": "Functional Enrichment and GO Annotation",
+    "section": "",
+    "text": "GO Domains\nGO functional annotation is a central part of proteomics interpretation.\nGene Ontology includes:",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functional Enrichment and GO Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "08-functional-enrichment-and-go-annotation.html#go-domains",
+    "href": "08-functional-enrichment-and-go-annotation.html#go-domains",
+    "title": "Functional Enrichment and GO Annotation",
+    "section": "",
+    "text": "Biological Process\nMolecular Function\nCellular Component",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functional Enrichment and GO Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "08-functional-enrichment-and-go-annotation.html#enrichment-workflow",
+    "href": "08-functional-enrichment-and-go-annotation.html#enrichment-workflow",
+    "title": "Functional Enrichment and GO Annotation",
+    "section": "Enrichment Workflow",
+    "text": "Enrichment Workflow\nsignificant protein list\n        ↓\nidentifier mapping\n        ↓\nbackground definition\n        ↓\nGO enrichment\n        ↓\npathway enrichment\n        ↓\nbiological interpretation",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functional Enrichment and GO Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "08-functional-enrichment-and-go-annotation.html#important-principle",
+    "href": "08-functional-enrichment-and-go-annotation.html#important-principle",
+    "title": "Functional Enrichment and GO Annotation",
+    "section": "Important Principle",
+    "text": "Important Principle\nFunctional enrichment should be interpreted in relation to the original biological question, not as a standalone list of terms.",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Functional Enrichment and GO Annotation</span>"
+    ]
+  },
+  {
+    "objectID": "09-string-network-analysis.html",
+    "href": "09-string-network-analysis.html",
+    "title": "STRING Network Analysis",
+    "section": "",
+    "text": "Network Analysis Goals\nSTRING can be used to explore protein-protein association networks among differentially abundant proteins.\nSTRING analysis can help identify:",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>STRING Network Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "09-string-network-analysis.html#network-analysis-goals",
+    "href": "09-string-network-analysis.html#network-analysis-goals",
+    "title": "STRING Network Analysis",
+    "section": "",
+    "text": "connected protein modules\nbiological processes represented by protein clusters\nhub proteins\npathway-level structure\ncandidate proteins for follow-up",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>STRING Network Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "09-string-network-analysis.html#input-lists",
+    "href": "09-string-network-analysis.html#input-lists",
+    "title": "STRING Network Analysis",
+    "section": "Input Lists",
+    "text": "Input Lists\nRecommended inputs:\nall significant DEP\nupregulated DEP\ndownregulated DEP\ntop ranked proteins",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>STRING Network Analysis</span>"
+    ]
+  },
+  {
+    "objectID": "10-visualizing-proteomics-results.html",
+    "href": "10-visualizing-proteomics-results.html",
+    "title": "Visualizing Proteomics Results",
+    "section": "",
+    "text": "Core Figures\nVisualizations help summarize differential abundance and interpretation results.\nRecommended figures include:",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Visualizing Proteomics Results</span>"
+    ]
+  },
+  {
+    "objectID": "10-visualizing-proteomics-results.html#core-figures",
+    "href": "10-visualizing-proteomics-results.html#core-figures",
+    "title": "Visualizing Proteomics Results",
+    "section": "",
+    "text": "volcano plot\ntop proteins barplot\nheatmap\nGO enrichment dotplot\npathway enrichment plot\nSTRING network figure",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Visualizing Proteomics Results</span>"
+    ]
+  },
+  {
+    "objectID": "10-visualizing-proteomics-results.html#visualization-principle",
+    "href": "10-visualizing-proteomics-results.html#visualization-principle",
+    "title": "Visualizing Proteomics Results",
+    "section": "Visualization Principle",
+    "text": "Visualization Principle\nFigures should support interpretation, not only decorate the report.",
+    "crumbs": [
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Visualizing Proteomics Results</span>"
+    ]
+  },
+  {
+    "objectID": "11-biological-interpretation-system.html",
+    "href": "11-biological-interpretation-system.html",
+    "title": "Biological Interpretation System",
+    "section": "",
+    "text": "Interpretation Questions\nThis chapter turns tables, figures, GO terms, pathways, and networks into a biological story.\nAsk:",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Biological Interpretation System</span>"
+    ]
+  },
+  {
+    "objectID": "11-biological-interpretation-system.html#interpretation-questions",
+    "href": "11-biological-interpretation-system.html#interpretation-questions",
+    "title": "Biological Interpretation System",
+    "section": "",
+    "text": "Which proteins changed?\nIn which direction?\nHow strong is the change?\nAre proteins functionally related?\nWhich GO terms or pathways are enriched?\nDo networks reveal protein modules?\nHow do the findings answer the biological question?",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Biological Interpretation System</span>"
+    ]
+  },
+  {
+    "objectID": "11-biological-interpretation-system.html#from-results-to-insight",
+    "href": "11-biological-interpretation-system.html#from-results-to-insight",
+    "title": "Biological Interpretation System",
+    "section": "From Results to Insight",
+    "text": "From Results to Insight\nDEP table\n        ↓\nranked proteins\n        ↓\nGO terms\n        ↓\npathways\n        ↓\nnetwork modules\n        ↓\nbiological themes\n        ↓\nreportable findings",
+    "crumbs": [
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Biological Interpretation System</span>"
+    ]
+  },
+  {
+    "objectID": "12-reproducible-proteomics-report.html",
+    "href": "12-reproducible-proteomics-report.html",
+    "title": "Reproducible Proteomics Report",
+    "section": "",
+    "text": "Report Sections\nThe final output of the system is a reproducible report.\nA practical proteomics interpretation report may include:",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Reproducible Proteomics Report</span>"
+    ]
+  },
+  {
+    "objectID": "12-reproducible-proteomics-report.html#report-sections",
+    "href": "12-reproducible-proteomics-report.html#report-sections",
+    "title": "Reproducible Proteomics Report",
+    "section": "",
+    "text": "study objective\nsample metadata\ncomparison design\ndata inputs\nquality control\ndifferential abundance summary\ntop proteins\nGO enrichment\npathway enrichment\nSTRING network analysis\nbiological interpretation\nlimitations\nnext steps",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Reproducible Proteomics Report</span>"
+    ]
+  },
+  {
+    "objectID": "12-reproducible-proteomics-report.html#report-outputs",
+    "href": "12-reproducible-proteomics-report.html#report-outputs",
+    "title": "Reproducible Proteomics Report",
+    "section": "Report Outputs",
+    "text": "Report Outputs\nHTML report\ntables\nfigures\nreusable input lists\nanalysis log",
+    "crumbs": [
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Reproducible Proteomics Report</span>"
+    ]
+  },
+  {
+    "objectID": "13-raw-data-expansion-roadmap.html",
+    "href": "13-raw-data-expansion-roadmap.html",
+    "title": "Raw Data Expansion Roadmap",
+    "section": "",
+    "text": "Future Expansion\nThis Results-First Edition begins from processed proteomics results.\nA future Raw Data Edition can expand backward into raw mass spectrometry processing.",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Raw Data Expansion Roadmap</span>"
+    ]
+  },
+  {
+    "objectID": "13-raw-data-expansion-roadmap.html#future-expansion",
+    "href": "13-raw-data-expansion-roadmap.html#future-expansion",
+    "title": "Raw Data Expansion Roadmap",
+    "section": "",
+    "text": "RAW files\n        ↓\nspectral processing\n        ↓\npeptide identification\n        ↓\nprotein inference\n        ↓\nprotein quantification\n        ↓\ndifferential abundance analysis\n        ↓\nresults-first interpretation workflow",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Raw Data Expansion Roadmap</span>"
+    ]
+  },
+  {
+    "objectID": "13-raw-data-expansion-roadmap.html#possible-future-topics",
+    "href": "13-raw-data-expansion-roadmap.html#possible-future-topics",
+    "title": "Raw Data Expansion Roadmap",
+    "section": "Possible Future Topics",
+    "text": "Possible Future Topics\n\nMaxQuant\nFragPipe\nDIA-NN\nSpectronaut-style outputs\npeptide-spectrum matches\nprotein inference\nlabel-free quantification\nTMT/iTRAQ workflows",
+    "crumbs": [
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Raw Data Expansion Roadmap</span>"
+    ]
+  },
+  {
+    "objectID": "999-appendix.html",
+    "href": "999-appendix.html",
+    "title": "Appendix A — Appendix",
+    "section": "",
+    "text": "This appendix will contain reusable commands, templates, input table examples, and troubleshooting notes.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Appendix</span>"
+    ]
+  },
+  {
+    "objectID": "999-references.html",
+    "href": "999-references.html",
+    "title": "Appendix B — References",
+    "section": "",
+    "text": "References will be managed through library/references.bib.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>B</span>  <span class='chapter-title'>References</span>"
+    ]
+  }
+]

@@ -1,0 +1,42 @@
+project:
+  type: book
+  output-dir: docs
+
+bibliography: library/references.bib
+date: last-modified
+date-format: "MMM YYYY"
+
+book:
+  title: "CDI Proteomics Analysis System"
+  subtitle: "Results-First Edition: From Differential Protein Abundance Tables to Biological Interpretation"
+
+  chapters:
+    - index.qmd
+    - 00-preface-and-overview.qmd
+    - 01-proteomics-results-landscape.qmd
+    - 02-understanding-proteomics-output-files.qmd
+    - 03-sample-metadata-and-comparison-design.qmd
+    - 04-quality-control-of-result-tables.qmd
+    - 05-differential-protein-abundance-results.qmd
+    - 06-ranking-and-filtering-dep.qmd
+    - 07-protein-identifier-cleaning-and-annotation.qmd
+    - 08-functional-enrichment-and-go-annotation.qmd
+    - 09-string-network-analysis.qmd
+    - 10-visualizing-proteomics-results.qmd
+    - 11-biological-interpretation-system.qmd
+    - 12-reproducible-proteomics-report.qmd
+    - 13-raw-data-expansion-roadmap.qmd
+
+  appendices:
+    - 999-appendix.qmd
+    - 999-references.qmd
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    number-sections: false
+    smooth-scroll: true
+    code-fold: true
+    code-tools: true

@@ -1,0 +1,3 @@
+# Appendix
+
+This appendix will contain reusable commands, templates, input table examples, and troubleshooting notes.

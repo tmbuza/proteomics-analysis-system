@@ -1,0 +1,7 @@
+sample_id,condition,group,replicate,batch
+S1,control,control,1,batch1
+S2,control,control,2,batch1
+S3,control,control,3,batch1
+S4,treated,treated,1,batch1
+S5,treated,treated,2,batch1
+S6,treated,treated,3,batch1

@@ -1,0 +1,25 @@
+# Differential Protein Abundance Results
+
+Differential protein abundance analysis identifies proteins that differ between biological conditions.
+
+## Basic Result Interpretation
+
+```text
+positive log2FC  → higher in numerator condition
+negative log2FC  → lower in numerator condition
+small padj       → stronger statistical evidence
+```
+
+## Significant Differentially Abundant Proteins
+
+A common starting threshold is:
+
+```text
+padj < 0.05
+```
+
+Optional effect-size filtering may include:
+
+```text
+abs(log2FC) >= 1
+```

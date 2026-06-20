@@ -1,0 +1,29 @@
+# Proteomics Results Landscape
+
+This chapter introduces common proteomics result types and how they fit into downstream analysis.
+
+## Common Files
+
+Proteomics projects may produce:
+
+- raw mass spectrometry files
+- peptide-level tables
+- protein-level abundance tables
+- differential abundance result tables
+- sample metadata
+- quality control summaries
+- annotation files
+
+## Results-First Entry Point
+
+This system begins with the files most researchers commonly receive after core facility processing:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2FC
+pvalue
+padj
+comparison
+```

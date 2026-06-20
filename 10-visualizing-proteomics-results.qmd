@@ -1,0 +1,20 @@
+# Visualizing Proteomics Results
+
+Visualizations help summarize differential abundance and interpretation results.
+
+## Core Figures
+
+Recommended figures include:
+
+```text
+volcano plot
+top proteins barplot
+heatmap
+GO enrichment dotplot
+pathway enrichment plot
+STRING network figure
+```
+
+## Visualization Principle
+
+Figures should support interpretation, not only decorate the report.

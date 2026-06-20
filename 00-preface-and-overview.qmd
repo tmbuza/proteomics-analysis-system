@@ -1,0 +1,27 @@
+# Preface and Overview
+
+Proteomics was one of the first omics fields I worked with, especially through protein-level interpretation and GO functional annotation.
+
+This system is both a return to that foundation and a refreshed, reproducible guide for modern proteomics result interpretation.
+
+## Results-First Approach
+
+Many researchers do not begin proteomics analysis from raw mass spectrometry files. They often receive processed result files that include protein abundance tables, log2 fold-changes, p-values, and adjusted p-values.
+
+This guide begins from that practical starting point.
+
+```text
+Raw mass spectrometry files
+        ↓
+Processed by facility / vendor / collaborator
+        ↓
+Protein abundance table
+        ↓
+Differential protein abundance table
+        ↓
+Interpretation system
+```
+
+## System Goal
+
+The goal is to move from thousands of differentially abundant proteins to clear biological themes, candidate proteins, pathways, networks, and a reproducible report.

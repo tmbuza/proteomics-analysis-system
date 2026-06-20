@@ -1,0 +1,18 @@
+# Quality Control of Result Tables
+
+This chapter checks whether the received result tables are suitable for interpretation.
+
+## Table-Level Checks
+
+Recommended checks include:
+
+- required columns are present
+- protein identifiers are not missing
+- log2FC values are numeric
+- p-values and adjusted p-values are numeric
+- duplicate protein IDs are handled
+- comparison labels are clear
+
+## QC Principle
+
+Before interpreting biology, confirm that the result table is internally consistent.

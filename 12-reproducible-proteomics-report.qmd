@@ -1,0 +1,33 @@
+# Reproducible Proteomics Report
+
+The final output of the system is a reproducible report.
+
+## Report Sections
+
+A practical proteomics interpretation report may include:
+
+```text
+study objective
+sample metadata
+comparison design
+data inputs
+quality control
+differential abundance summary
+top proteins
+GO enrichment
+pathway enrichment
+STRING network analysis
+biological interpretation
+limitations
+next steps
+```
+
+## Report Outputs
+
+```text
+HTML report
+tables
+figures
+reusable input lists
+analysis log
+```

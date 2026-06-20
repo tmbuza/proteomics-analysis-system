@@ -1,0 +1,34 @@
+# Raw Data Expansion Roadmap
+
+This Results-First Edition begins from processed proteomics results.
+
+A future Raw Data Edition can expand backward into raw mass spectrometry processing.
+
+## Future Expansion
+
+```text
+RAW files
+        ↓
+spectral processing
+        ↓
+peptide identification
+        ↓
+protein inference
+        ↓
+protein quantification
+        ↓
+differential abundance analysis
+        ↓
+results-first interpretation workflow
+```
+
+## Possible Future Topics
+
+- MaxQuant
+- FragPipe
+- DIA-NN
+- Spectronaut-style outputs
+- peptide-spectrum matches
+- protein inference
+- label-free quantification
+- TMT/iTRAQ workflows
