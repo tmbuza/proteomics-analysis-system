@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Biological Interpretation System – CDI Proteomics Analysis System</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./12-reproducible-proteomics-report.html" rel="next">
+<link href="./10-visualizing-proteomics-results.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="assets/css/cdi.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html">Part IV: Visualization, Interpretation, and Reporting</a></li><li class="breadcrumb-item"><a href="./11-biological-interpretation-system.html"><span class="chapter-title">Biological Interpretation System</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">CDI Proteomics Analysis System</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./999-references.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">References</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting Point</a></li>
+  <li><a href="#why-an-interpretation-system-is-needed" id="toc-why-an-interpretation-system-is-needed" class="nav-link" data-scroll-target="#why-an-interpretation-system-is-needed">Why an Interpretation System Is Needed</a></li>
+  <li><a href="#evidence-layers" id="toc-evidence-layers" class="nav-link" data-scroll-target="#evidence-layers">Evidence Layers</a></li>
+  <li><a href="#layer-1-differential-abundance-summary" id="toc-layer-1-differential-abundance-summary" class="nav-link" data-scroll-target="#layer-1-differential-abundance-summary">Layer 1: Differential Abundance Summary</a></li>
+  <li><a href="#layer-2-ranked-protein-review" id="toc-layer-2-ranked-protein-review" class="nav-link" data-scroll-target="#layer-2-ranked-protein-review">Layer 2: Ranked Protein Review</a></li>
+  <li><a href="#layer-3-identifier-and-annotation-readiness" id="toc-layer-3-identifier-and-annotation-readiness" class="nav-link" data-scroll-target="#layer-3-identifier-and-annotation-readiness">Layer 3: Identifier and Annotation Readiness</a></li>
+  <li><a href="#layer-4-functional-enrichment-readiness" id="toc-layer-4-functional-enrichment-readiness" class="nav-link" data-scroll-target="#layer-4-functional-enrichment-readiness">Layer 4: Functional Enrichment Readiness</a></li>
+  <li><a href="#layer-5-string-network-readiness" id="toc-layer-5-string-network-readiness" class="nav-link" data-scroll-target="#layer-5-string-network-readiness">Layer 5: STRING Network Readiness</a></li>
+  <li><a href="#layer-6-visual-summary" id="toc-layer-6-visual-summary" class="nav-link" data-scroll-target="#layer-6-visual-summary">Layer 6: Visual Summary</a></li>
+  <li><a href="#interpretation-script" id="toc-interpretation-script" class="nav-link" data-scroll-target="#interpretation-script">Interpretation Script</a></li>
+  <li><a href="#running-the-script" id="toc-running-the-script" class="nav-link" data-scroll-target="#running-the-script">Running the Script</a></li>
+  <li><a href="#output-file" id="toc-output-file" class="nav-link" data-scroll-target="#output-file">Output File</a></li>
+  <li><a href="#interpretation-summary-structure" id="toc-interpretation-summary-structure" class="nav-link" data-scroll-target="#interpretation-summary-structure">Interpretation Summary Structure</a></li>
+  <li><a href="#evidence-based-interpretation" id="toc-evidence-based-interpretation" class="nav-link" data-scroll-target="#evidence-based-interpretation">Evidence-Based Interpretation</a></li>
+  <li><a href="#avoiding-overinterpretation" id="toc-avoiding-overinterpretation" class="nav-link" data-scroll-target="#avoiding-overinterpretation">Avoiding Overinterpretation</a></li>
+  <li><a href="#manual-interpretation-questions" id="toc-manual-interpretation-questions" class="nav-link" data-scroll-target="#manual-interpretation-questions">Manual Interpretation Questions</a></li>
+  <li><a href="#recommended-interpretation-language" id="toc-recommended-interpretation-language" class="nav-link" data-scroll-target="#recommended-interpretation-language">Recommended Interpretation Language</a></li>
+  <li><a href="#limitations-to-record" id="toc-limitations-to-record" class="nav-link" data-scroll-target="#limitations-to-record">Limitations to Record</a></li>
+  <li><a href="#relationship-to-the-final-report" id="toc-relationship-to-the-final-report" class="nav-link" data-scroll-target="#relationship-to-the-final-report">Relationship to the Final Report</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html">Part IV: Visualization, Interpretation, and Reporting</a></li><li class="breadcrumb-item"><a href="./11-biological-interpretation-system.html"><span class="chapter-title">Biological Interpretation System</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-title">Biological Interpretation System</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">Jun 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>After filtering, ranking, identifier cleaning, enrichment preparation, STRING input preparation, and visualization, the next step is biological interpretation.</p>
+<p>This chapter brings the outputs together into a structured interpretation system.</p>
+<p>The goal is not only to list significant proteins. The goal is to explain what the proteomics results suggest biologically, while clearly separating evidence from interpretation.</p>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting Point</h2>
+<p>This chapter uses outputs from earlier workflow steps:</p>
+<pre class="text"><code>results/differential-summary.tsv
+results/ranking-summary.tsv
+results/identifier-cleaning-summary.tsv
+results/enrichment-input-summary.tsv
+results/string-network-summary.tsv
+results/top-significant-proteins-for-plot.tsv
+results/ranked-significant-proteins.tsv</code></pre>
+<p>It also refers to figures created in Chapter 10:</p>
+<pre class="text"><code>results/figures/volcano-plot.png
+results/figures/top-significant-proteins.png
+results/figures/regulation-summary.png</code></pre>
+</section>
+<section id="why-an-interpretation-system-is-needed" class="level2">
+<h2 class="anchored" data-anchor-id="why-an-interpretation-system-is-needed">Why an Interpretation System Is Needed</h2>
+<p>Proteomics analysis can generate many files.</p>
+<p>Without a structured interpretation system, the final result can become a collection of tables and plots without a clear biological message.</p>
+<p>A good interpretation system asks:</p>
+<pre class="text"><code>What changed?
+        ↓
+How strong was the change?
+        ↓
+Which proteins changed most?
+        ↓
+Which biological functions are suggested?
+        ↓
+Are proteins connected in networks?
+        ↓
+Does the result support the study question?
+        ↓
+What are the limitations?</code></pre>
+<p>This chapter provides a reproducible structure for answering those questions.</p>
+</section>
+<section id="evidence-layers" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-layers">Evidence Layers</h2>
+<p>The biological interpretation should be built from multiple layers of evidence.</p>
+<pre class="text"><code>Differential abundance results
+        ↓
+Ranked proteins
+        ↓
+Identifier cleaning
+        ↓
+Functional enrichment inputs
+        ↓
+STRING network inputs
+        ↓
+Visualization
+        ↓
+Interpretation summary</code></pre>
+<p>Each layer contributes something different.</p>
+</section>
+<section id="layer-1-differential-abundance-summary" class="level2">
+<h2 class="anchored" data-anchor-id="layer-1-differential-abundance-summary">Layer 1: Differential Abundance Summary</h2>
+<p>The differential abundance summary answers:</p>
+<pre class="text"><code>How many proteins were tested?
+How many passed the significance thresholds?
+How many were upregulated?
+How many were downregulated?
+What thresholds were used?</code></pre>
+<p>The relevant file is:</p>
+<pre class="text"><code>results/differential-summary.tsv</code></pre>
+<p>This is the first checkpoint for interpretation.</p>
+</section>
+<section id="layer-2-ranked-protein-review" class="level2">
+<h2 class="anchored" data-anchor-id="layer-2-ranked-protein-review">Layer 2: Ranked Protein Review</h2>
+<p>The ranked protein tables answer:</p>
+<pre class="text"><code>Which proteins should be reviewed first?
+Which proteins had the strongest statistical support?
+Which proteins had the largest abundance changes?
+Are top proteins biologically plausible?</code></pre>
+<p>The key file is:</p>
+<pre class="text"><code>results/ranked-significant-proteins.tsv</code></pre>
+<p>A smaller plot-ready table is:</p>
+<pre class="text"><code>results/top-significant-proteins-for-plot.tsv</code></pre>
+</section>
+<section id="layer-3-identifier-and-annotation-readiness" class="level2">
+<h2 class="anchored" data-anchor-id="layer-3-identifier-and-annotation-readiness">Layer 3: Identifier and Annotation Readiness</h2>
+<p>The identifier-cleaning summary answers:</p>
+<pre class="text"><code>How many identifiers were usable?
+How many gene symbols were available?
+Were there possible contaminants?
+Were there reverse or decoy entries?
+Were protein groups present?</code></pre>
+<p>The relevant file is:</p>
+<pre class="text"><code>results/identifier-cleaning-summary.tsv</code></pre>
+<p>Interpretation should be cautious when many identifiers are missing or ambiguous.</p>
+</section>
+<section id="layer-4-functional-enrichment-readiness" class="level2">
+<h2 class="anchored" data-anchor-id="layer-4-functional-enrichment-readiness">Layer 4: Functional Enrichment Readiness</h2>
+<p>The enrichment input summary answers:</p>
+<pre class="text"><code>How many identifiers are available for enrichment?
+Are there enough upregulated proteins?
+Are there enough downregulated proteins?
+Should enrichment be run separately by direction?</code></pre>
+<p>The relevant file is:</p>
+<pre class="text"><code>results/enrichment-input-summary.tsv</code></pre>
+<p>This chapter does not claim enrichment results unless enrichment has actually been run.</p>
+<p>Instead, it documents whether the dataset is ready for enrichment analysis.</p>
+</section>
+<section id="layer-5-string-network-readiness" class="level2">
+<h2 class="anchored" data-anchor-id="layer-5-string-network-readiness">Layer 5: STRING Network Readiness</h2>
+<p>The STRING summary answers:</p>
+<pre class="text"><code>How many identifiers are ready for STRING?
+Are there separate upregulated and downregulated lists?
+Is the network input large enough to be informative?</code></pre>
+<p>The relevant file is:</p>
+<pre class="text"><code>results/string-network-summary.tsv</code></pre>
+<p>STRING interpretation should only be written after network analysis has been performed and exported.</p>
+</section>
+<section id="layer-6-visual-summary" class="level2">
+<h2 class="anchored" data-anchor-id="layer-6-visual-summary">Layer 6: Visual Summary</h2>
+<p>The visual summary helps communicate the results.</p>
+<p>Useful figures include:</p>
+<pre class="text"><code>volcano-plot.png
+top-significant-proteins.png
+regulation-summary.png</code></pre>
+<p>These figures support interpretation but should not replace careful biological reasoning.</p>
+</section>
+<section id="interpretation-script" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-script">Interpretation Script</h2>
+<p>The executable script is saved as:</p>
+<pre class="text"><code>scripts/R/11-build-biological-interpretation-summary.R</code></pre>
+<p>The script gathers available workflow summaries and creates a draft interpretation summary.</p>
+<p>The guide shows how to run the script. The full executable code is maintained in <code>scripts/R/</code>.</p>
+</section>
+<section id="running-the-script" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script">Running the Script</h2>
+<p>From the project root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/11-build-biological-interpretation-summary.R <span class="dt">\</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  results <span class="dt">\</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  results/biological-interpretation-summary.md</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The arguments are:</p>
+<pre class="text"><code>1st argument → results directory
+2nd argument → output markdown summary</code></pre>
+</section>
+<section id="output-file" class="level2">
+<h2 class="anchored" data-anchor-id="output-file">Output File</h2>
+<p>The script creates:</p>
+<pre class="text"><code>results/biological-interpretation-summary.md</code></pre>
+<p>This file is a structured markdown summary that can be reviewed, edited, and included in the final report.</p>
+</section>
+<section id="interpretation-summary-structure" class="level2">
+<h2 class="anchored" data-anchor-id="interpretation-summary-structure">Interpretation Summary Structure</h2>
+<p>The generated summary includes sections for:</p>
+<pre class="text"><code>Analysis overview
+Differential abundance summary
+Top-ranked proteins
+Identifier readiness
+Functional enrichment readiness
+STRING network readiness
+Available figures
+Interpretation notes
+Limitations
+Next steps</code></pre>
+<p>This creates a reusable bridge between computational outputs and final reporting.</p>
+</section>
+<section id="evidence-based-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-based-interpretation">Evidence-Based Interpretation</h2>
+<p>A useful biological interpretation should distinguish between:</p>
+<pre class="text"><code>observed results
+        vs
+biological interpretation
+        vs
+hypothesis or mechanism</code></pre>
+<p>For example:</p>
+<pre class="text"><code>Observed result:
+Several proteins show higher abundance in treated samples.
+
+Biological interpretation:
+The top proteins may suggest altered mitochondrial or metabolic activity.
+
+Hypothesis:
+The treatment may affect energy metabolism.</code></pre>
+<p>Only the first statement is directly observed from the table. The later statements require supporting evidence.</p>
+</section>
+<section id="avoiding-overinterpretation" class="level2">
+<h2 class="anchored" data-anchor-id="avoiding-overinterpretation">Avoiding Overinterpretation</h2>
+<p>Proteomics results should not be overclaimed.</p>
+<p>Avoid statements like:</p>
+<pre class="text"><code>This proves that the pathway is activated.</code></pre>
+<p>Prefer cautious statements:</p>
+<pre class="text"><code>The differentially abundant proteins suggest involvement of this pathway.</code></pre>
+<p>or:</p>
+<pre class="text"><code>These results are consistent with changes in this biological process.</code></pre>
+</section>
+<section id="manual-interpretation-questions" class="level2">
+<h2 class="anchored" data-anchor-id="manual-interpretation-questions">Manual Interpretation Questions</h2>
+<p>After reviewing the generated summary, ask:</p>
+<pre class="text"><code>Are the top proteins biologically coherent?
+Do upregulated and downregulated proteins suggest different themes?
+Are the findings consistent with the study design?
+Are there possible technical explanations?
+Are contaminants or protein groups affecting interpretation?
+Do enrichment and STRING results support the same biological story?</code></pre>
+<p>These questions help convert results into a defensible interpretation.</p>
+</section>
+<section id="recommended-interpretation-language" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-interpretation-language">Recommended Interpretation Language</h2>
+<p>Useful wording includes:</p>
+<pre class="text"><code>The results suggest...
+The protein list is consistent with...
+The top-ranked proteins include...
+The enrichment-ready inputs indicate...
+The STRING-ready identifiers support follow-up network analysis...
+The interpretation should be treated cautiously because...</code></pre>
+<p>This style is appropriate for early reports, exploratory analyses, and client-facing summaries.</p>
+</section>
+<section id="limitations-to-record" class="level2">
+<h2 class="anchored" data-anchor-id="limitations-to-record">Limitations to Record</h2>
+<p>A transparent interpretation should record limitations such as:</p>
+<pre class="text"><code>small sample size
+missing identifiers
+limited annotation coverage
+protein groups instead of single proteins
+lack of raw-data reprocessing
+unknown batch effects
+threshold-dependent protein selection
+lack of validation experiment</code></pre>
+<p>Limitations improve trust in the report.</p>
+</section>
+<section id="relationship-to-the-final-report" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-the-final-report">Relationship to the Final Report</h2>
+<p>The output from this chapter becomes part of the final reproducible report.</p>
+<pre class="text"><code>biological-interpretation-summary.md
+        ↓
+reproducible proteomics report</code></pre>
+<p>The final report can include:</p>
+<pre class="text"><code>methods summary
+tables
+figures
+interpretation notes
+limitations
+next steps</code></pre>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The next chapter creates a reproducible proteomics report.</p>
+<pre class="text"><code>Structured interpretation
+        ↓
+Report-ready summary
+        ↓
+Reproducible proteomics report
+        ↓
+Reusable analysis system</code></pre>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./10-visualizing-proteomics-results.html" class="pagination-link" aria-label="Visualizing Proteomics Results">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Visualizing Proteomics Results</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./12-reproducible-proteomics-report.html" class="pagination-link" aria-label="Reproducible Proteomics Report">
+        <span class="nav-page-text"><span class="chapter-title">Reproducible Proteomics Report</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
