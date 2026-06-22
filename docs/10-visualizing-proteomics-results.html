@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Visualizing Proteomics Results – CDI Proteomics Analysis System</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -118,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html"><span class="chapter-title">Visualizing Proteomics Results</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html">Part IV: Visualization, Interpretation, and Reporting</a></li><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html"><span class="chapter-title">Visualizing Proteomics Results</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">CDI Proteomics Analysis System</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,80 +157,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-proteomics-results-landscape.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Results Landscape</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-understanding-proteomics-output-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Understanding Proteomics Output Files</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-differential-protein-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Visualizing Proteomics Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
@@ -249,17 +308,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#core-figures" id="toc-core-figures" class="nav-link active" data-scroll-target="#core-figures">Core Figures</a></li>
-  <li><a href="#visualization-principle" id="toc-visualization-principle" class="nav-link" data-scroll-target="#visualization-principle">Visualization Principle</a></li>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting Point</a></li>
+  <li><a href="#why-visualization-matters" id="toc-why-visualization-matters" class="nav-link" data-scroll-target="#why-visualization-matters">Why Visualization Matters</a></li>
+  <li><a href="#core-plots" id="toc-core-plots" class="nav-link" data-scroll-target="#core-plots">Core Plots</a></li>
+  <li><a href="#expected-input" id="toc-expected-input" class="nav-link" data-scroll-target="#expected-input">Expected Input</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files">Output Files</a></li>
+  <li><a href="#visualization-script" id="toc-visualization-script" class="nav-link" data-scroll-target="#visualization-script">Visualization Script</a></li>
+  <li><a href="#running-the-script" id="toc-running-the-script" class="nav-link" data-scroll-target="#running-the-script">Running the Script</a></li>
+  <li><a href="#volcano-plot" id="toc-volcano-plot" class="nav-link" data-scroll-target="#volcano-plot">Volcano Plot</a></li>
+  <li><a href="#volcano-plot-data" id="toc-volcano-plot-data" class="nav-link" data-scroll-target="#volcano-plot-data">Volcano Plot Data</a></li>
+  <li><a href="#top-significant-proteins-plot" id="toc-top-significant-proteins-plot" class="nav-link" data-scroll-target="#top-significant-proteins-plot">Top Significant Proteins Plot</a></li>
+  <li><a href="#regulation-summary-plot" id="toc-regulation-summary-plot" class="nav-link" data-scroll-target="#regulation-summary-plot">Regulation Summary Plot</a></li>
+  <li><a href="#labeling-proteins" id="toc-labeling-proteins" class="nav-link" data-scroll-target="#labeling-proteins">Labeling Proteins</a></li>
+  <li><a href="#visualization-is-not-interpretation" id="toc-visualization-is-not-interpretation" class="nav-link" data-scroll-target="#visualization-is-not-interpretation">Visualization Is Not Interpretation</a></li>
+  <li><a href="#suggested-manual-review" id="toc-suggested-manual-review" class="nav-link" data-scroll-target="#suggested-manual-review">Suggested Manual Review</a></li>
+  <li><a href="#figure-use-in-reports" id="toc-figure-use-in-reports" class="nav-link" data-scroll-target="#figure-use-in-reports">Figure Use in Reports</a></li>
+  <li><a href="#relationship-to-final-interpretation" id="toc-relationship-to-final-interpretation" class="nav-link" data-scroll-target="#relationship-to-final-interpretation">Relationship to Final Interpretation</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html">Part IV: Visualization, Interpretation, and Reporting</a></li><li class="breadcrumb-item"><a href="./10-visualizing-proteomics-results.html"><span class="chapter-title">Visualizing Proteomics Results</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Visualizing Proteomics Results</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-title">Visualizing Proteomics Results</span></h1>
 </div>
 
 
@@ -282,23 +356,205 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Visualizations help summarize differential abundance and interpretation results.</p>
-<section id="core-figures" class="level2">
-<h2 class="anchored" data-anchor-id="core-figures">Core Figures</h2>
-<p>Recommended figures include:</p>
-<pre class="text"><code>volcano plot
-top proteins barplot
-heatmap
-GO enrichment dotplot
-pathway enrichment plot
-STRING network figure</code></pre>
+<p>After filtering, ranking, identifier cleaning, enrichment input preparation, and STRING input preparation, the next step is visualization.</p>
+<p>Visualization helps communicate the main proteomics results clearly.</p>
+<p>In this results-first workflow, the goal is not to create every possible plot. The goal is to create a small set of reproducible figures that support interpretation and reporting.</p>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting Point</h2>
+<p>This chapter uses outputs created in earlier chapters:</p>
+<pre class="text"><code>results/differential-proteins.tsv
+results/ranked-significant-proteins.tsv
+results/differential-summary.tsv</code></pre>
+<p>The main input is:</p>
+<pre class="text"><code>results/differential-proteins.tsv</code></pre>
+<p>This file was generated by Chapter 05:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/05-filter-differential-proteins.R <span class="dt">\</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  data/example/example-proteomics-results.csv <span class="dt">\</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  results <span class="dt">\</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  1 <span class="dt">\</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  0.05</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
-<section id="visualization-principle" class="level2">
-<h2 class="anchored" data-anchor-id="visualization-principle">Visualization Principle</h2>
-<p>Figures should support interpretation, not only decorate the report.</p>
+<section id="why-visualization-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-visualization-matters">Why Visualization Matters</h2>
+<p>Tables are important, but figures make patterns easier to see.</p>
+<p>Visualization helps answer:</p>
+<pre class="text"><code>How many proteins changed?
+        ↓
+How strong were the changes?
+        ↓
+Which proteins are most significant?
+        ↓
+Are changes mostly upregulated or downregulated?
+        ↓
+Which proteins should be highlighted in the report?</code></pre>
+<p>Visualization also helps detect unexpected patterns before final interpretation.</p>
+</section>
+<section id="core-plots" class="level2">
+<h2 class="anchored" data-anchor-id="core-plots">Core Plots</h2>
+<p>This chapter creates three practical visualization outputs:</p>
+<pre class="text"><code>volcano plot
+top significant proteins plot
+regulation summary plot</code></pre>
+<p>These are common, easy to explain, and useful for reports.</p>
+</section>
+<section id="expected-input" class="level2">
+<h2 class="anchored" data-anchor-id="expected-input">Expected Input</h2>
+<p>The expected input file is:</p>
+<pre class="text"><code>results/differential-proteins.tsv</code></pre>
+<p>This table should contain:</p>
+<pre class="text"><code>log2fc_numeric
+adjusted_p_value_numeric
+is_significant
+regulation</code></pre>
+<p>The script can also detect common alternative column names when needed.</p>
+</section>
+<section id="output-files" class="level2">
+<h2 class="anchored" data-anchor-id="output-files">Output Files</h2>
+<p>The visualization script creates:</p>
+<pre class="text"><code>results/figures/
+├── volcano-plot.png
+├── top-significant-proteins.png
+└── regulation-summary.png</code></pre>
+<p>It also creates plot-ready tables:</p>
+<pre class="text"><code>results/
+├── volcano-plot-data.tsv
+├── top-significant-proteins-for-plot.tsv
+└── visualization-summary.tsv</code></pre>
+</section>
+<section id="visualization-script" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-script">Visualization Script</h2>
+<p>The executable script is saved as:</p>
+<pre class="text"><code>scripts/R/10-visualize-proteomics-results.R</code></pre>
+<p>The guide shows how to run the script. The full executable code is maintained in <code>scripts/R/</code>.</p>
+</section>
+<section id="running-the-script" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script">Running the Script</h2>
+<p>From the project root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/10-visualize-proteomics-results.R <span class="dt">\</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  results/differential-proteins.tsv <span class="dt">\</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  results <span class="dt">\</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  10</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The arguments are:</p>
+<pre class="text"><code>1st argument → differential proteins table
+2nd argument → output directory
+3rd argument → number of top proteins to label or display</code></pre>
+<p>In this example:</p>
+<pre class="text"><code>top_n = 10</code></pre>
+</section>
+<section id="volcano-plot" class="level2">
+<h2 class="anchored" data-anchor-id="volcano-plot">Volcano Plot</h2>
+<p>The volcano plot is saved as:</p>
+<pre class="text"><code>results/figures/volcano-plot.png</code></pre>
+<p>A volcano plot shows:</p>
+<pre class="text"><code>x-axis → log2 fold change
+y-axis → -log10 adjusted p-value</code></pre>
+<p>Proteins with large fold changes and small adjusted p-values appear farther from the origin.</p>
+<p>The plot helps show whether the result contains:</p>
+<pre class="text"><code>strong upregulated proteins
+strong downregulated proteins
+many weak changes
+few strong changes</code></pre>
+</section>
+<section id="volcano-plot-data" class="level2">
+<h2 class="anchored" data-anchor-id="volcano-plot-data">Volcano Plot Data</h2>
+<p>The volcano plot data is saved as:</p>
+<pre class="text"><code>results/volcano-plot-data.tsv</code></pre>
+<p>This file includes:</p>
+<pre class="text"><code>log2fc_numeric
+adjusted_p_value_numeric
+minus_log10_adjusted_p_value
+regulation
+is_significant</code></pre>
+<p>Saving plot-ready data improves reproducibility because the figure can be regenerated or reviewed later.</p>
+</section>
+<section id="top-significant-proteins-plot" class="level2">
+<h2 class="anchored" data-anchor-id="top-significant-proteins-plot">Top Significant Proteins Plot</h2>
+<p>The top protein plot is saved as:</p>
+<pre class="text"><code>results/figures/top-significant-proteins.png</code></pre>
+<p>This figure shows the highest-priority significant proteins based on adjusted p-value and absolute fold change.</p>
+<p>It is useful for quick biological review.</p>
+<p>The associated table is:</p>
+<pre class="text"><code>results/top-significant-proteins-for-plot.tsv</code></pre>
+</section>
+<section id="regulation-summary-plot" class="level2">
+<h2 class="anchored" data-anchor-id="regulation-summary-plot">Regulation Summary Plot</h2>
+<p>The regulation summary plot is saved as:</p>
+<pre class="text"><code>results/figures/regulation-summary.png</code></pre>
+<p>This plot summarizes the number of proteins classified as:</p>
+<pre class="text"><code>upregulated
+downregulated
+not_significant</code></pre>
+<p>It provides a simple overview of the filtering outcome.</p>
+</section>
+<section id="labeling-proteins" class="level2">
+<h2 class="anchored" data-anchor-id="labeling-proteins">Labeling Proteins</h2>
+<p>Protein labels are useful, but too many labels can make a plot unreadable.</p>
+<p>This workflow uses a simple approach:</p>
+<pre class="text"><code>label only the top N significant proteins</code></pre>
+<p>The default is:</p>
+<pre class="text"><code>top_n = 10</code></pre>
+<p>For larger datasets, the number can be adjusted.</p>
+</section>
+<section id="visualization-is-not-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="visualization-is-not-interpretation">Visualization Is Not Interpretation</h2>
+<p>Figures help communicate results, but they do not replace biological interpretation.</p>
+<p>For example, a volcano plot can show that a protein changed strongly.</p>
+<p>It cannot explain:</p>
+<pre class="text"><code>why the protein changed
+which pathway is affected
+whether the change is mechanistic
+whether the protein is part of a network</code></pre>
+<p>Those questions are addressed in the biological interpretation chapter.</p>
+</section>
+<section id="suggested-manual-review" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-manual-review">Suggested Manual Review</h2>
+<p>After generating figures, inspect:</p>
+<pre class="text"><code>Are the axes correct?
+Are p-values transformed correctly?
+Are labels readable?
+Are upregulated and downregulated proteins clear?
+Are there unexpected outliers?
+Are there too few or too many significant proteins?</code></pre>
+<p>A figure should be biologically useful, not just visually attractive.</p>
+</section>
+<section id="figure-use-in-reports" class="level2">
+<h2 class="anchored" data-anchor-id="figure-use-in-reports">Figure Use in Reports</h2>
+<p>The figures from this chapter can be used in:</p>
+<pre class="text"><code>summary reports
+client reports
+manuscript drafts
+presentations
+internal QC notes</code></pre>
+<p>The recommended report-ready figure set is:</p>
+<pre class="text"><code>volcano-plot.png
+top-significant-proteins.png
+regulation-summary.png</code></pre>
+</section>
+<section id="relationship-to-final-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-final-interpretation">Relationship to Final Interpretation</h2>
+<p>Visualization supports the final interpretation system by making key results visible.</p>
+<pre class="text"><code>Differential results
+        ↓
+Filtered and ranked proteins
+        ↓
+Visual summaries
+        ↓
+Biological interpretation
+        ↓
+Reproducible report</code></pre>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The next chapter focuses on biological interpretation.</p>
+<p>After visualization, the workflow brings together:</p>
+<pre class="text"><code>significant proteins
+ranked proteins
+cleaned identifiers
+enrichment inputs
+STRING inputs
+figures</code></pre>
+<p>into an interpretation-ready structure.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -354,13 +610,14 @@ STRING network figure</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -372,57 +629,6 @@ STRING network figure</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -440,6 +646,8 @@ STRING network figure</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -764,28 +972,7 @@ STRING network figure</code></pre>
         <span class="nav-page-text"><span class="chapter-title">Biological Interpretation System</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Visualizing Proteomics Results</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Visualizations help summarize differential abundance and interpretation results.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Core Figures</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Recommended figures include:</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">volcano plot</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">top proteins barplot</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">heatmap</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">GO enrichment dotplot</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">pathway enrichment plot</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">STRING network figure</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Visualization Principle</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>Figures should support interpretation, not only decorate the report.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

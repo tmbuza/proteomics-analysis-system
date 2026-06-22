@@ -1,0 +1,8 @@
+column_name	column_type	missing_values	missing_percent	unique_values
+protein_id	character	0	0	5
+gene_symbol	character	0	0	5
+protein_name	character	0	0	5
+log2fc	numeric	0	0	5
+p_value	numeric	0	0	5
+adjusted_p_value	numeric	0	0	5
+comparison	character	0	0	1

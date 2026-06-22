@@ -1,15 +1,119 @@
 # Raw Data Expansion Roadmap
 
-This Results-First Edition begins from processed proteomics results.
+This guide has focused on a results-first proteomics workflow.
 
-A future Raw Data Edition can expand backward into raw mass spectrometry processing.
+The starting point was a processed proteomics result table, not raw mass spectrometry files.
 
-## Future Expansion
+This chapter explains how the system can be expanded in the future to support raw data processing, from mass spectrometry files to protein-level differential abundance results.
+
+## Current Scope
+
+The current edition starts here:
 
 ```text
-RAW files
+processed proteomics result table
         ↓
-spectral processing
+table inspection
+        ↓
+metadata and comparison design
+        ↓
+differential abundance understanding
+        ↓
+quality control
+        ↓
+filtering and ranking
+        ↓
+identifier cleaning
+        ↓
+functional enrichment preparation
+        ↓
+STRING preparation
+        ↓
+visualization
+        ↓
+biological interpretation
+        ↓
+reproducible report
+```
+
+This workflow is useful when the analyst receives result tables from:
+
+```text
+proteomics core facility
+collaborator
+vendor
+published supplementary data
+previous internal analysis
+```
+
+## Future Scope
+
+A raw-data edition would begin earlier.
+
+```text
+raw mass spectrometry files
+        ↓
+raw-data organization
+        ↓
+metadata validation
+        ↓
+database search or DIA processing
+        ↓
+peptide-spectrum matching
+        ↓
+protein inference
+        ↓
+protein quantification
+        ↓
+normalization
+        ↓
+differential abundance analysis
+        ↓
+results-first workflow
+```
+
+The current system can become the downstream interpretation layer of a larger proteomics workflow.
+
+## Raw Proteomics Data Types
+
+Raw proteomics workflows may include several file types.
+
+Examples include:
+
+```text
+.raw
+.mzML
+.mzXML
+.mgf
+.tsv
+.txt
+.csv
+```
+
+Vendor-specific raw files may need conversion before open workflows can use them.
+
+For example:
+
+```text
+Thermo .raw
+        ↓
+mzML
+        ↓
+search or quantification workflow
+```
+
+## Common Processing Stages
+
+A raw-data proteomics system may include the following stages.
+
+```text
+raw data inventory
+        ↓
+file conversion
+        ↓
+database preparation
+        ↓
+search engine execution
         ↓
 peptide identification
         ↓
@@ -17,18 +121,311 @@ protein inference
         ↓
 protein quantification
         ↓
-differential abundance analysis
+quality control
         ↓
-results-first interpretation workflow
+statistical analysis
+        ↓
+differential protein abundance table
 ```
 
-## Possible Future Topics
+The final output from this upstream workflow would feed directly into the current Results-First Edition.
 
-- MaxQuant
-- FragPipe
-- DIA-NN
-- Spectronaut-style outputs
-- peptide-spectrum matches
-- protein inference
-- label-free quantification
-- TMT/iTRAQ workflows
+## Possible Software Tools
+
+A future raw-data expansion could support tools such as:
+
+```text
+MaxQuant
+Proteome Discoverer
+FragPipe
+MSFragger
+DIA-NN
+OpenMS
+MSstats
+limma
+DEP
+Perseus-style tables
+```
+
+The system does not need to support all tools at once.
+
+A practical expansion should begin with one clear workflow and one example dataset.
+
+## Data-Independent and Data-Dependent Acquisition
+
+Raw proteomics processing depends on the acquisition strategy.
+
+Common strategies include:
+
+```text
+DDA
+DIA
+TMT or other labeling workflows
+label-free quantification
+spectral-library workflows
+library-free workflows
+```
+
+Each approach has different processing requirements.
+
+For that reason, raw-data expansion should be modular rather than one-size-fits-all.
+
+## Proposed Raw-Data Module Structure
+
+A future raw-data module could use this structure:
+
+```text
+raw-proteomics-processing/
+├── 01-raw-data-organization.qmd
+├── 02-mass-spec-metadata.qmd
+├── 03-file-conversion.qmd
+├── 04-database-and-search-setup.qmd
+├── 05-peptide-identification.qmd
+├── 06-protein-inference.qmd
+├── 07-protein-quantification.qmd
+├── 08-normalization-and-qc.qmd
+├── 09-differential-abundance-analysis.qmd
+└── 10-handoff-to-results-first-workflow.qmd
+```
+
+The handoff output would be a table compatible with this guide.
+
+## Handoff Table
+
+The most important connection between raw processing and results-first interpretation is a standardized handoff table.
+
+A minimal handoff table should contain:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+Additional useful columns include:
+
+```text
+sample intensities
+group means
+peptide counts
+unique peptide counts
+protein coverage
+missingness statistics
+contaminant flags
+protein group information
+normalization method
+statistical model
+```
+
+The goal is to make upstream processing and downstream interpretation communicate clearly.
+
+## Raw-Data QC Expansion
+
+A raw-data edition should add QC before differential abundance analysis.
+
+Possible QC outputs include:
+
+```text
+raw file inventory
+sample metadata validation
+MS run summary
+identification rate
+peptide counts
+protein counts
+missing value profile
+intensity distributions
+PCA or clustering
+batch effect checks
+contaminant review
+normalization diagnostics
+```
+
+These QC steps are upstream of the current result-table QC chapter.
+
+## Reproducibility Requirements
+
+A raw-data workflow should record:
+
+```text
+software versions
+database version
+FASTA file
+search parameters
+enzyme specificity
+missed cleavages
+fixed modifications
+variable modifications
+FDR thresholds
+quantification method
+normalization method
+statistical model
+contrast definitions
+```
+
+These details are essential for reproducibility.
+
+## Containerization and Environment Control
+
+Raw proteomics processing is more software-sensitive than result-table interpretation.
+
+A future edition should consider:
+
+```text
+conda environments
+Docker or Apptainer containers
+version-pinned tools
+workflow managers
+checksums
+locked reference databases
+```
+
+This would make the workflow easier to rerun later.
+
+## Possible Workflow Managers
+
+For larger datasets, raw processing may benefit from a workflow manager.
+
+Possible options include:
+
+```text
+Nextflow
+Snakemake
+WDL/Cromwell
+bash-based staged workflows
+```
+
+For CDI-style teaching systems, a staged bash workflow may be easiest at first.
+
+A scalable production workflow could later be implemented in Nextflow or Snakemake.
+
+## Recommended Expansion Strategy
+
+A practical expansion strategy is:
+
+```text
+start with one raw-data type
+        ↓
+choose one processing tool
+        ↓
+use one small public dataset
+        ↓
+produce a standardized differential abundance table
+        ↓
+handoff to the current results-first workflow
+```
+
+This keeps the expansion manageable.
+
+## Phase 1: Results-First Edition
+
+The current guide completes Phase 1.
+
+```text
+processed tables
+        ↓
+interpretation-ready outputs
+        ↓
+reproducible report
+```
+
+This is valuable because many real projects begin with processed output tables.
+
+## Phase 2: Quantification Table Edition
+
+The next expansion could start from a protein quantification matrix.
+
+```text
+protein intensity matrix
+        ↓
+sample metadata
+        ↓
+normalization and QC
+        ↓
+statistical modeling
+        ↓
+differential abundance table
+        ↓
+results-first workflow
+```
+
+This would sit between raw processing and the current guide.
+
+## Phase 3: Raw Mass Spectrometry Edition
+
+The full expansion would start from raw files.
+
+```text
+raw mass spectrometry files
+        ↓
+identification and quantification
+        ↓
+protein abundance matrix
+        ↓
+differential abundance analysis
+        ↓
+results-first workflow
+```
+
+This would make the proteomics system end-to-end.
+
+## Relationship to CDI Systems
+
+This roadmap follows the same CDI system logic:
+
+```text
+clear inputs
+        ↓
+structured workflow
+        ↓
+reproducible outputs
+        ↓
+interpretation
+        ↓
+reporting
+```
+
+The Results-First Edition is the interpretation layer.
+
+The raw-data edition would add upstream processing.
+
+## Final Workflow Summary
+
+The completed Results-First Edition can be summarized as:
+
+```text
+Proteomics result tables
+        ↓
+Sample metadata and comparison design
+        ↓
+Differential abundance result understanding
+        ↓
+Result-table quality control
+        ↓
+Filtering and ranking
+        ↓
+Identifier cleaning and annotation preparation
+        ↓
+Functional enrichment preparation
+        ↓
+STRING network preparation
+        ↓
+Visualization
+        ↓
+Biological interpretation
+        ↓
+Reproducible report
+```
+
+## Final Note
+
+This guide provides a practical foundation for proteomics interpretation when processed result tables are already available.
+
+That is a common real-world situation.
+
+The raw-data expansion can be added later without weakening the current system.
+
+Instead, the current system becomes the stable downstream layer that future raw-data workflows can hand off to.

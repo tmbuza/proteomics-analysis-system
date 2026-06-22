@@ -1,3 +1,529 @@
 # Appendix
 
-This appendix will contain reusable commands, templates, input table examples, and troubleshooting notes.
+This appendix collects reusable reference material for the CDI Proteomics Analysis System.
+
+It supports the main chapters by summarizing:
+
+```text
+project structure
+input files
+script commands
+output files
+column definitions
+recommended workflow order
+troubleshooting notes
+```
+
+## Recommended Project Structure
+
+```text
+proteomics-analysis-system/
+├── _quarto.yml
+├── index.qmd
+├── 00-preface-and-overview.qmd
+├── 01-proteomics-result-tables.qmd
+├── 02-sample-metadata-and-comparison-design.qmd
+├── 03-understanding-differential-abundance-results.qmd
+├── 04-quality-control-of-result-tables.qmd
+├── 05-filtering-differential-proteins.qmd
+├── 06-ranking-and-filtering-dep.qmd
+├── 07-protein-identifier-cleaning-and-annotation.qmd
+├── 08-functional-enrichment-and-go-annotation.qmd
+├── 09-string-network-analysis.qmd
+├── 10-visualizing-proteomics-results.qmd
+├── 11-biological-interpretation-system.qmd
+├── 12-reproducible-proteomics-report.qmd
+├── 13-raw-data-expansion-roadmap.qmd
+├── 999-appendix.qmd
+├── 999-references.qmd
+├── data/
+├── results/
+├── reports/
+└── scripts/
+```
+
+## Data Directory
+
+```text
+data/
+├── example/
+│   ├── example-proteomics-results.csv
+│   ├── example-sample-metadata.csv
+│   └── example-comparison-design.csv
+├── input/
+│   ├── proteomics-results.csv
+│   ├── sample-metadata.csv
+│   └── comparison-design.csv
+└── metadata/
+```
+
+Use `data/example/` for teaching and demonstration files.
+
+Use `data/input/` for real project inputs.
+
+## Scripts Directory
+
+```text
+scripts/
+└── R/
+    ├── 01-inspect-proteomics-table.R
+    ├── 02-validate-sample-metadata-and-comparison-design.R
+    ├── 04-qc-result-table.R
+    ├── 05-filter-differential-proteins.R
+    ├── 06-rank-and-filter-dep.R
+    ├── 07-clean-protein-identifiers.R
+    ├── 08-prepare-functional-enrichment-inputs.R
+    ├── 09-prepare-string-network-input.R
+    ├── 10-visualize-proteomics-results.R
+    ├── 11-build-biological-interpretation-summary.R
+    └── 12-build-reproducible-proteomics-report.R
+```
+
+Chapter 03 is conceptual and does not require a script.
+
+Chapter 13 is a roadmap and does not require a script.
+
+## Complete Workflow Command Summary
+
+```bash
+Rscript scripts/R/01-inspect-proteomics-table.R \
+  data/example/example-proteomics-results.csv \
+  results
+
+Rscript scripts/R/02-validate-sample-metadata-and-comparison-design.R \
+  data/example/example-proteomics-results.csv \
+  data/example/example-sample-metadata.csv \
+  data/example/example-comparison-design.csv \
+  results
+
+Rscript scripts/R/04-qc-result-table.R \
+  data/example/example-proteomics-results.csv \
+  results
+
+Rscript scripts/R/05-filter-differential-proteins.R \
+  data/example/example-proteomics-results.csv \
+  results \
+  1 \
+  0.05
+
+Rscript scripts/R/06-rank-and-filter-dep.R \
+  results/differential-proteins.tsv \
+  results \
+  10
+
+Rscript scripts/R/07-clean-protein-identifiers.R \
+  results/ranked-significant-proteins.tsv \
+  results
+
+Rscript scripts/R/08-prepare-functional-enrichment-inputs.R \
+  results/cleaned-protein-identifiers.tsv \
+  results
+
+Rscript scripts/R/09-prepare-string-network-input.R \
+  results/string-network-input.tsv \
+  results
+
+Rscript scripts/R/10-visualize-proteomics-results.R \
+  results/differential-proteins.tsv \
+  results \
+  10
+
+Rscript scripts/R/11-build-biological-interpretation-summary.R \
+  results \
+  results/biological-interpretation-summary.md
+
+Rscript scripts/R/12-build-reproducible-proteomics-report.R \
+  results \
+  reports
+```
+
+## Chapter-to-Script Map
+
+```text
+01-proteomics-result-tables.qmd
+  → scripts/R/01-inspect-proteomics-table.R
+
+02-sample-metadata-and-comparison-design.qmd
+  → scripts/R/02-validate-sample-metadata-and-comparison-design.R
+
+03-understanding-differential-abundance-results.qmd
+  → conceptual chapter; no script
+
+04-quality-control-of-result-tables.qmd
+  → scripts/R/04-qc-result-table.R
+
+05-filtering-differential-proteins.qmd
+  → scripts/R/05-filter-differential-proteins.R
+
+06-ranking-and-filtering-dep.qmd
+  → scripts/R/06-rank-and-filter-dep.R
+
+07-protein-identifier-cleaning-and-annotation.qmd
+  → scripts/R/07-clean-protein-identifiers.R
+
+08-functional-enrichment-and-go-annotation.qmd
+  → scripts/R/08-prepare-functional-enrichment-inputs.R
+
+09-string-network-analysis.qmd
+  → scripts/R/09-prepare-string-network-input.R
+
+10-visualizing-proteomics-results.qmd
+  → scripts/R/10-visualize-proteomics-results.R
+
+11-biological-interpretation-system.qmd
+  → scripts/R/11-build-biological-interpretation-summary.R
+
+12-reproducible-proteomics-report.qmd
+  → scripts/R/12-build-reproducible-proteomics-report.R
+
+13-raw-data-expansion-roadmap.qmd
+  → roadmap chapter; no script
+```
+
+## Main Output Inventory
+
+```text
+results/
+├── table-inspection-summary.txt
+├── table-column-summary.tsv
+├── table-missing-values.tsv
+├── table-detected-columns.tsv
+├── metadata-validation-summary.tsv
+├── condition-sample-counts.tsv
+├── comparison-design-validated.tsv
+├── result-table-qc-summary.tsv
+├── result-table-column-qc.tsv
+├── result-table-duplicate-proteins.tsv
+├── result-table-problem-rows.tsv
+├── result-table-qc-report.txt
+├── differential-proteins.tsv
+├── significant-proteins.tsv
+├── upregulated-proteins.tsv
+├── downregulated-proteins.tsv
+├── differential-summary.tsv
+├── ranked-proteins.tsv
+├── ranked-significant-proteins.tsv
+├── top-upregulated-proteins.tsv
+├── top-downregulated-proteins.tsv
+├── ranking-summary.tsv
+├── cleaned-protein-identifiers.tsv
+├── annotation-ready-protein-list.tsv
+├── annotation-ready-gene-list.tsv
+├── string-network-input.tsv
+├── identifier-cleaning-summary.tsv
+├── enrichment-input-all-genes.tsv
+├── enrichment-input-upregulated-genes.tsv
+├── enrichment-input-downregulated-genes.tsv
+├── enrichment-input-all-proteins.tsv
+├── enrichment-input-upregulated-proteins.tsv
+├── enrichment-input-downregulated-proteins.tsv
+├── enrichment-input-summary.tsv
+├── string-input-all.tsv
+├── string-input-upregulated.tsv
+├── string-input-downregulated.tsv
+├── string-upload-list-all.txt
+├── string-upload-list-upregulated.txt
+├── string-upload-list-downregulated.txt
+├── string-network-summary.tsv
+├── volcano-plot-data.tsv
+├── top-significant-proteins-for-plot.tsv
+├── visualization-summary.tsv
+├── biological-interpretation-summary.md
+└── figures/
+    ├── volcano-plot.png
+    ├── top-significant-proteins.png
+    └── regulation-summary.png
+```
+
+Final report outputs:
+
+```text
+reports/
+├── proteomics-report.qmd
+└── proteomics-report.html
+```
+
+## Minimal Required Result Table Columns
+
+The recommended minimal result table columns are:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+The most essential columns are:
+
+```text
+protein_id
+log2fc
+adjusted_p_value
+comparison
+```
+
+## Column Glossary
+
+`protein_id`
+
+A stable protein identifier or accession.
+
+`gene_symbol`
+
+A readable gene name or gene symbol.
+
+`protein_name`
+
+A descriptive protein label.
+
+`log2fc`
+
+Log2 fold change between two conditions.
+
+`p_value`
+
+Raw statistical p-value.
+
+`adjusted_p_value`
+
+Multiple-testing-adjusted p-value or false discovery rate.
+
+`comparison`
+
+The contrast being tested, such as `treated_vs_control`.
+
+`regulation`
+
+Direction class assigned after filtering, such as `upregulated`, `downregulated`, or `not_significant`.
+
+`rank`
+
+Protein priority rank based on adjusted p-value and absolute log2 fold change.
+
+## Threshold Glossary
+
+Common threshold examples:
+
+```text
+adjusted_p_value <= 0.05
+absolute log2fc >= 1
+```
+
+`adjusted_p_value <= 0.05` means the protein passes the selected multiple-testing-adjusted significance threshold.
+
+`absolute log2fc >= 1` means the protein changes by at least approximately two-fold in either direction.
+
+Thresholds should be selected based on the study design and analysis goal.
+
+## Direction Interpretation
+
+For a comparison such as:
+
+```text
+treated_vs_control
+```
+
+where:
+
+```text
+numerator condition   = treated
+denominator condition = control
+```
+
+then:
+
+```text
+positive log2fc → higher abundance in treated
+negative log2fc → lower abundance in treated
+```
+
+This direction should always be defined by the comparison design file.
+
+## Example Input Files
+
+Example proteomics result table:
+
+```csv
+protein_id,gene_symbol,protein_name,log2fc,p_value,adjusted_p_value,comparison
+P12345,GENE1,Example protein 1,2.31,0.00001,0.0004,treated_vs_control
+Q67890,GENE2,Example protein 2,-1.84,0.00008,0.0021,treated_vs_control
+A11111,GENE3,Example protein 3,0.72,0.041,0.1200,treated_vs_control
+B22222,GENE4,Example protein 4,-2.45,0.0002,0.0045,treated_vs_control
+C33333,GENE5,Example protein 5,1.15,0.0030,0.0300,treated_vs_control
+```
+
+Example sample metadata:
+
+```csv
+sample_id,condition,replicate_type,batch
+control_1,control,biological,batch_1
+control_2,control,biological,batch_1
+control_3,control,biological,batch_1
+treated_1,treated,biological,batch_1
+treated_2,treated,biological,batch_1
+treated_3,treated,biological,batch_1
+```
+
+Example comparison design:
+
+```csv
+comparison,numerator_condition,denominator_condition,positive_log2fc_interpretation,design_type
+treated_vs_control,treated,control,higher abundance in treated,unpaired
+```
+
+## Environment
+
+The recommended environment is:
+
+```text
+cdi-proteomics
+```
+
+Core R packages include:
+
+```text
+readr
+dplyr
+stringr
+tibble
+ggplot2
+```
+
+The guide uses tidyverse-style R workflows for readability and reproducibility.
+
+## Suggested Conda Setup
+
+```bash
+conda env create -f environment.yml
+conda activate cdi-proteomics
+```
+
+Check R:
+
+```bash
+R --version
+```
+
+Check Quarto:
+
+```bash
+quarto --version
+```
+
+## Troubleshooting
+
+### Input file not found
+
+Example error:
+
+```text
+Error: Input file not found: results/cleaned-protein-identifiers.tsv
+```
+
+This usually means an earlier chapter was not run yet.
+
+For this example, run Chapter 07 first:
+
+```bash
+Rscript scripts/R/07-clean-protein-identifiers.R \
+  results/ranked-significant-proteins.tsv \
+  results
+```
+
+Then rerun the next step.
+
+### No significant proteins
+
+If no proteins pass the thresholds, outputs such as:
+
+```text
+ranked-significant-proteins.tsv
+```
+
+may be empty.
+
+Check the input table, adjusted p-values, log2fc values, thresholds, and comparison direction.
+
+Do not force significance. Report that no proteins passed the selected thresholds.
+
+### Missing gene symbols
+
+If gene-symbol outputs are empty, the result table may not contain gene symbols.
+
+Use protein identifiers for downstream steps or perform organism-specific identifier mapping.
+
+### STRING upload list is empty
+
+If the STRING upload list is empty, check:
+
+```text
+results/string-network-input.tsv
+results/cleaned-protein-identifiers.tsv
+results/ranked-significant-proteins.tsv
+```
+
+The most common cause is that no significant proteins were available after filtering.
+
+### Quarto report did not render
+
+If the report `.qmd` is created but HTML is not rendered, run:
+
+```bash
+quarto render reports/proteomics-report.qmd
+```
+
+Check that Quarto is installed and available in the active environment.
+
+## Recommended Completion Checklist
+
+Before publishing or sharing a report, confirm:
+
+```text
+result table inspected
+sample metadata validated
+comparison design validated
+QC outputs reviewed
+filtering thresholds documented
+ranked proteins generated
+identifiers cleaned
+enrichment inputs prepared
+STRING inputs prepared
+figures generated
+biological interpretation summary created
+HTML report rendered
+limitations documented
+```
+
+## Appendix Summary
+
+The main workflow is:
+
+```text
+inputs
+  ↓
+QC
+  ↓
+filtering
+  ↓
+ranking
+  ↓
+identifier cleaning
+  ↓
+functional enrichment preparation
+  ↓
+STRING preparation
+  ↓
+visualization
+  ↓
+biological interpretation
+  ↓
+reproducible report
+```
+
+## References Used in This Guide
+
+This guide uses standard proteomics, functional annotation, network analysis, and differential analysis concepts supported by commonly used resources and methods [@cox2008maxquant; @tyanova2016maxquant; @aleksander2023go; @szklarczyk2023string; @ritchie2015limma].

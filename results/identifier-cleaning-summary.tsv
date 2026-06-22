@@ -1,0 +1,10 @@
+metric	value
+input_file	results/ranked-significant-proteins.tsv
+input_rows	4
+unique_cleaned_protein_identifiers	4
+gene_symbols_available	4
+multi_identifier_rows	0
+possible_contaminant_rows	0
+possible_reverse_or_decoy_rows	0
+annotation_ready_protein_ids	4
+annotation_ready_gene_symbols	4

@@ -1,25 +1,17 @@
-# CDI Proteomics Analysis System
+---
+title: ""
+engine: knitr
+format:
+  html:
+    body-classes: front-page
+---
 
-**Results-First Edition**
+# {-}
 
-This guide introduces a practical system for interpreting proteomics results after receiving processed output tables from a proteomics facility, collaborator, or vendor.
+<div style="text-align: center; margin-top: 1.5em;">
+  <img src="assets/images/cover/proteomics-analysis-system-cover.png" width="75%" />
+</div>
 
-The focus is on moving from differential protein abundance results to biological interpretation.
-
-```text
-Proteomics result tables
-        ↓
-Differential abundance results
-        ↓
-Protein filtering and ranking
-        ↓
-Identifier cleaning and annotation
-        ↓
-GO and pathway enrichment
-        ↓
-STRING network analysis
-        ↓
-Biological interpretation
-        ↓
-Reproducible report
-```
+<div style="text-align: center; font-style: normal; margin-top: 1em;">
+  Proteomics System · Updated `r format(Sys.Date(), "%b %Y")`
+</div>

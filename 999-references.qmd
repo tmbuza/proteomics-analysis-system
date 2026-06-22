@@ -1,3 +1,4 @@
 # References
 
-References will be managed through `library/references.bib`.
+::: {#refs}
+:::

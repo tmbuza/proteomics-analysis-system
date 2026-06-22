@@ -1,0 +1,471 @@
+# Proteomics Result Tables
+
+The Proteomics Analysis System begins with processed result tables.
+
+These tables may come from a proteomics core facility, collaborator, vendor, or internal analysis platform. They usually represent the output of upstream mass spectrometry processing, protein identification, protein quantification, and statistical comparison.
+
+In this results-first guide, the first task is to understand what the table contains before performing filtering, annotation, enrichment analysis, network analysis, or biological interpretation.
+
+## Why Table Inspection Matters
+
+Proteomics result tables are not always standardized.
+
+Different software tools, facilities, and collaborators may use different names for similar columns. For example, a protein identifier column may be called `Protein_ID`, `Accession`, `Protein.Group`, `Majority protein IDs`, `UniProt`, or `Protein Accession`.
+
+A fold-change column may appear as:
+
+```text
+log2FC
+log2_fold_change
+Log2 ratio
+Difference
+Ratio
+Fold Change
+```
+
+Similarly, statistical columns may appear as:
+
+```text
+p_value
+P.Value
+p.val
+adjusted_p_value
+adj.P.Val
+q_value
+FDR
+```
+
+Before analysis begins, the analyst must identify which columns represent:
+
+- protein identifiers
+- gene names or symbols
+- protein descriptions
+- abundance or intensity values
+- fold-change values
+- p-values
+- adjusted p-values or false discovery rates
+- peptide counts or protein-level evidence
+- sample or condition-specific measurements
+
+This step prevents downstream errors.
+
+A good proteomics interpretation depends on knowing exactly which columns are being used for filtering, ranking, annotation, and biological interpretation.
+
+## System Design Principle
+
+Main chapters in this guide define reusable workflows.
+
+Scripts are designed to be dataset-agnostic.
+
+A dedicated case study later in the guide will run the same scripts end-to-end on a real processed proteomics table.
+
+```text
+Reusable chapter
+        ↓
+Dataset-agnostic script
+        ↓
+Standard outputs
+        ↓
+Case study application
+        ↓
+End-to-end demonstration
+```
+
+This keeps the Proteomics Analysis System reusable across different projects, organisms, facilities, and proteomics platforms.
+
+## Example Input for the Guide
+
+This chapter uses a small example proteomics result table to demonstrate the workflow.
+
+The example file should be placed in:
+
+```text
+data/example/example-proteomics-results.csv
+```
+
+The example table is included so the guide can be run immediately, even before a real project table or case-study dataset is added.
+
+A real project table can later be placed in:
+
+```text
+data/input/proteomics-results.csv
+```
+
+Recommended structure:
+
+```text
+data/
+├── example/
+│   └── example-proteomics-results.tsv
+├── input/
+│   └── proteomics-results.tsv
+└── results/
+
+scripts/
+└── R/
+    └── 01-inspect-proteomics-table.R
+```
+
+The example table can be populated throughout the guide. Each chapter can reuse the same example input and gradually produce additional outputs.
+
+```text
+data/example/example-proteomics-results.csv
+        ↓
+01 table inspection
+        ↓
+02 differential abundance filtering
+        ↓
+03 protein ranking
+        ↓
+04 identifier cleaning
+        ↓
+05 GO and pathway enrichment input
+        ↓
+06 STRING network input
+        ↓
+07 biological interpretation
+        ↓
+08 reproducible report
+```
+
+For the later case study, the same scripts can be applied to a real processed proteomics table using case-study-specific input and output folders.
+
+## Common Table Types
+
+Processed proteomics outputs may appear in several forms.
+
+## Protein Quantification Table
+
+A protein quantification table usually contains one row per protein or protein group and multiple abundance columns.
+
+Example structure:
+
+```text
+Protein_ID    Gene_Name    Protein_Name    Sample_1    Sample_2    Sample_3
+P12345        ABCD1        Protein ABCD1   123456      145002      132880
+Q99999        XYZ2         Protein XYZ2    89012       91022       87500
+```
+
+This type of table is useful for quality control, exploratory analysis, normalization checks, clustering, and visualization.
+
+## Differential Abundance Table
+
+A differential abundance table contains statistical comparison results.
+
+Example structure:
+
+```text
+Protein_ID    Gene_Name    log2FC    p_value    adjusted_p_value
+P12345        ABCD1        1.42      0.0008     0.012
+Q99999        XYZ2        -0.91      0.031      0.080
+```
+
+This is the main input for filtering, ranking, enrichment analysis, and interpretation.
+
+## Annotation-Enriched Table
+
+Some outputs already include functional annotations.
+
+Example structure:
+
+```text
+Protein_ID    Gene_Name    Protein_Name    GO_Terms    Pathway    log2FC    adjusted_p_value
+P12345        ABCD1        Protein ABCD1   GO:...      KEGG...    1.42      0.012
+```
+
+This can speed up interpretation, but the annotations should still be checked for completeness and consistency.
+
+## Required Minimum Columns
+
+For this results-first workflow, the ideal minimum input table contains:
+
+```text
+Protein_ID
+Gene_Name
+Protein_Name
+log2FC
+p_value
+adjusted_p_value
+```
+
+However, real datasets may not contain all of these columns.
+
+At minimum, the system needs:
+
+```text
+Protein identifier
+Fold-change or direction column
+Statistical significance column
+```
+
+If gene names are missing, they can often be mapped later using UniProt, organism-specific annotation packages, or identifier conversion tools.
+
+## Recommended Project Structure
+
+For this guide, input data can be organized as follows:
+
+```text
+data/
+├── example/
+│   └── example-proteomics-results.tsv
+├── input/
+│   └── proteomics-results.tsv
+├── metadata/
+├── processed/
+└── results/
+
+scripts/
+└── R/
+    └── 01-inspect-proteomics-table.R
+
+results/
+├── table-inspection-summary.txt
+├── table-column-summary.tsv
+├── table-missing-values.tsv
+└── table-detected-columns.tsv
+```
+
+The guide explains the workflow, while the executable code is kept in `scripts/R/`.
+
+This keeps the chapter readable and keeps the analysis reproducible.
+
+## Modern R Tooling
+
+The R scripts in this guide use a modern tidyverse-oriented workflow.
+
+Core packages include:
+
+```r
+library(readr)
+library(dplyr)
+library(stringr)
+library(tibble)
+```
+
+This keeps the scripts readable, reproducible, and easier to extend in later chapters.
+
+The first script uses:
+
+```text
+readr   → input and output tables
+dplyr   → table summaries and transformations
+stringr → column-pattern detection
+tibble  → clean structured outputs
+```
+
+## Table Inspection Script
+
+The executable script is saved as:
+
+```text
+scripts/R/01-inspect-proteomics-table.R
+```
+
+The script reads a processed proteomics result table and reports:
+
+- number of rows and columns
+- column names
+- column classes
+- missing value counts
+- missing value percentages
+- guessed identifier columns
+- guessed gene-name columns
+- guessed protein-description columns
+- guessed fold-change columns
+- guessed p-value columns
+- guessed adjusted p-value or FDR columns
+- a preview of the first rows
+
+The full script is maintained separately in the `scripts/R/` directory so it can be reused by the main chapters and the later case study.
+
+## Running the Script on the Example Input
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/01-inspect-proteomics-table.R \
+  data/example/example-proteomics-results.csv \
+  results
+```
+
+The expected outputs are:
+
+```text
+results/
+├── table-inspection-summary.txt
+├── table-column-summary.tsv
+├── table-missing-values.tsv
+└── table-detected-columns.tsv
+```
+
+## Running the Script on a Real Project Input
+
+When working with a real processed proteomics result table, place the file in:
+
+```text
+data/input/proteomics-results.csv
+```
+
+Then run:
+
+```bash
+Rscript scripts/R/01-inspect-proteomics-table.R \
+  data/input/proteomics-results.csv \
+  results
+```
+
+The command is the same. Only the input file changes.
+
+## Output 1: Human-Readable Summary
+
+The `.txt` summary is designed for quick review.
+
+```text
+results/table-inspection-summary.txt
+```
+
+It contains a readable overview of the table, detected columns, generated output files, and a preview of the first rows.
+
+This file is useful during manual inspection and documentation.
+
+## Output 2: Column Summary
+
+The column summary is machine-readable.
+
+```text
+results/table-column-summary.tsv
+```
+
+It contains one row per column.
+
+Example structure:
+
+```text
+column_name    column_index    column_type    non_missing_values    missing_values    missing_percent
+Protein_ID     1               character      2500                  0                 0
+log2FC         4               numeric        2488                  12                0.48
+```
+
+This file can be used by later scripts to understand table structure.
+
+## Output 3: Missing Values
+
+The missing value table is also machine-readable.
+
+```text
+results/table-missing-values.tsv
+```
+
+It contains:
+
+```text
+column_name
+missing_values
+missing_percent
+```
+
+This helps identify columns that may need cleaning before filtering or interpretation.
+
+## Output 4: Detected Columns
+
+The detected column table stores candidate analysis columns.
+
+```text
+results/table-detected-columns.tsv
+```
+
+Example structure:
+
+```text
+category                    column_name
+protein_identifier           Protein_ID
+gene_name                    Gene_Name
+fold_change                  log2FC
+p_value                      p_value
+adjusted_p_value_or_fdr      adjusted_p_value
+```
+
+This file helps downstream scripts identify likely key columns.
+
+The analyst should still review the detected columns before relying on them for filtering.
+
+## Interpreting the Inspection Summary
+
+The inspection summary helps answer the first set of practical questions:
+
+```text
+Is the table readable?
+        ↓
+Are the expected columns present?
+        ↓
+Which columns represent identifiers?
+        ↓
+Which columns represent fold change?
+        ↓
+Which columns represent statistical significance?
+        ↓
+Are missing values present?
+        ↓
+Is the table ready for filtering?
+```
+
+If the required columns are clear, the analysis can proceed to differential abundance filtering.
+
+If the columns are unclear, the next step is to rename or standardize them.
+
+## Standardization Comes Next
+
+The next chapter will focus on differential abundance results.
+
+Before filtering proteins, the table should have standardized column names such as:
+
+```text
+protein_id
+gene_name
+protein_name
+log2fc
+p_value
+adjusted_p_value
+```
+
+Standard names make downstream scripts easier to reuse across proteomics projects.
+
+## Case Study Placement
+
+This chapter does not depend on a specific dataset.
+
+A later case study will apply the same script to a real processed proteomics table and run the workflow end-to-end.
+
+```text
+General system chapter
+        ↓
+Reusable inspection script
+        ↓
+Case study input table
+        ↓
+End-to-end outputs
+```
+
+For a case study, the same command structure can be used with case-study-specific paths.
+
+Example:
+
+```bash
+Rscript scripts/R/01-inspect-proteomics-table.R \
+  case-studies/results-first-proteomics/data/input/proteomics-results.csv \
+  case-studies/results-first-proteomics/results
+```
+
+## Looking Ahead
+
+The next step is to move from table inspection to differential abundance interpretation.
+
+```text
+Proteomics result table
+        ↓
+Column inspection
+        ↓
+Column standardization
+        ↓
+Differential abundance results
+```

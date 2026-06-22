@@ -1,35 +1,382 @@
 # Biological Interpretation System
 
-This chapter turns tables, figures, GO terms, pathways, and networks into a biological story.
+After filtering, ranking, identifier cleaning, enrichment preparation, STRING input preparation, and visualization, the next step is biological interpretation.
 
-## Interpretation Questions
+This chapter brings the outputs together into a structured interpretation system.
 
-Ask:
+The goal is not only to list significant proteins. The goal is to explain what the proteomics results suggest biologically, while clearly separating evidence from interpretation.
+
+## Starting Point
+
+This chapter uses outputs from earlier workflow steps:
 
 ```text
-Which proteins changed?
-In which direction?
-How strong is the change?
-Are proteins functionally related?
-Which GO terms or pathways are enriched?
-Do networks reveal protein modules?
-How do the findings answer the biological question?
+results/differential-summary.tsv
+results/ranking-summary.tsv
+results/identifier-cleaning-summary.tsv
+results/enrichment-input-summary.tsv
+results/string-network-summary.tsv
+results/top-significant-proteins-for-plot.tsv
+results/ranked-significant-proteins.tsv
 ```
 
-## From Results to Insight
+It also refers to figures created in Chapter 10:
 
 ```text
-DEP table
+results/figures/volcano-plot.png
+results/figures/top-significant-proteins.png
+results/figures/regulation-summary.png
+```
+
+## Why an Interpretation System Is Needed
+
+Proteomics analysis can generate many files.
+
+Without a structured interpretation system, the final result can become a collection of tables and plots without a clear biological message.
+
+A good interpretation system asks:
+
+```text
+What changed?
         ↓
-ranked proteins
+How strong was the change?
         ↓
-GO terms
+Which proteins changed most?
         ↓
-pathways
+Which biological functions are suggested?
         ↓
-network modules
+Are proteins connected in networks?
         ↓
-biological themes
+Does the result support the study question?
         ↓
-reportable findings
+What are the limitations?
+```
+
+This chapter provides a reproducible structure for answering those questions.
+
+## Evidence Layers
+
+The biological interpretation should be built from multiple layers of evidence.
+
+```text
+Differential abundance results
+        ↓
+Ranked proteins
+        ↓
+Identifier cleaning
+        ↓
+Functional enrichment inputs
+        ↓
+STRING network inputs
+        ↓
+Visualization
+        ↓
+Interpretation summary
+```
+
+Each layer contributes something different.
+
+## Layer 1: Differential Abundance Summary
+
+The differential abundance summary answers:
+
+```text
+How many proteins were tested?
+How many passed the significance thresholds?
+How many were upregulated?
+How many were downregulated?
+What thresholds were used?
+```
+
+The relevant file is:
+
+```text
+results/differential-summary.tsv
+```
+
+This is the first checkpoint for interpretation.
+
+## Layer 2: Ranked Protein Review
+
+The ranked protein tables answer:
+
+```text
+Which proteins should be reviewed first?
+Which proteins had the strongest statistical support?
+Which proteins had the largest abundance changes?
+Are top proteins biologically plausible?
+```
+
+The key file is:
+
+```text
+results/ranked-significant-proteins.tsv
+```
+
+A smaller plot-ready table is:
+
+```text
+results/top-significant-proteins-for-plot.tsv
+```
+
+## Layer 3: Identifier and Annotation Readiness
+
+The identifier-cleaning summary answers:
+
+```text
+How many identifiers were usable?
+How many gene symbols were available?
+Were there possible contaminants?
+Were there reverse or decoy entries?
+Were protein groups present?
+```
+
+The relevant file is:
+
+```text
+results/identifier-cleaning-summary.tsv
+```
+
+Interpretation should be cautious when many identifiers are missing or ambiguous.
+
+## Layer 4: Functional Enrichment Readiness
+
+The enrichment input summary answers:
+
+```text
+How many identifiers are available for enrichment?
+Are there enough upregulated proteins?
+Are there enough downregulated proteins?
+Should enrichment be run separately by direction?
+```
+
+The relevant file is:
+
+```text
+results/enrichment-input-summary.tsv
+```
+
+This chapter does not claim enrichment results unless enrichment has actually been run.
+
+Instead, it documents whether the dataset is ready for enrichment analysis.
+
+## Layer 5: STRING Network Readiness
+
+The STRING summary answers:
+
+```text
+How many identifiers are ready for STRING?
+Are there separate upregulated and downregulated lists?
+Is the network input large enough to be informative?
+```
+
+The relevant file is:
+
+```text
+results/string-network-summary.tsv
+```
+
+STRING interpretation should only be written after network analysis has been performed and exported.
+
+## Layer 6: Visual Summary
+
+The visual summary helps communicate the results.
+
+Useful figures include:
+
+```text
+volcano-plot.png
+top-significant-proteins.png
+regulation-summary.png
+```
+
+These figures support interpretation but should not replace careful biological reasoning.
+
+## Interpretation Script
+
+The executable script is saved as:
+
+```text
+scripts/R/11-build-biological-interpretation-summary.R
+```
+
+The script gathers available workflow summaries and creates a draft interpretation summary.
+
+The guide shows how to run the script. The full executable code is maintained in `scripts/R/`.
+
+## Running the Script
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/11-build-biological-interpretation-summary.R \
+  results \
+  results/biological-interpretation-summary.md
+```
+
+The arguments are:
+
+```text
+1st argument → results directory
+2nd argument → output markdown summary
+```
+
+## Output File
+
+The script creates:
+
+```text
+results/biological-interpretation-summary.md
+```
+
+This file is a structured markdown summary that can be reviewed, edited, and included in the final report.
+
+## Interpretation Summary Structure
+
+The generated summary includes sections for:
+
+```text
+Analysis overview
+Differential abundance summary
+Top-ranked proteins
+Identifier readiness
+Functional enrichment readiness
+STRING network readiness
+Available figures
+Interpretation notes
+Limitations
+Next steps
+```
+
+This creates a reusable bridge between computational outputs and final reporting.
+
+## Evidence-Based Interpretation
+
+A useful biological interpretation should distinguish between:
+
+```text
+observed results
+        vs
+biological interpretation
+        vs
+hypothesis or mechanism
+```
+
+For example:
+
+```text
+Observed result:
+Several proteins show higher abundance in treated samples.
+
+Biological interpretation:
+The top proteins may suggest altered mitochondrial or metabolic activity.
+
+Hypothesis:
+The treatment may affect energy metabolism.
+```
+
+Only the first statement is directly observed from the table. The later statements require supporting evidence.
+
+## Avoiding Overinterpretation
+
+Proteomics results should not be overclaimed.
+
+Avoid statements like:
+
+```text
+This proves that the pathway is activated.
+```
+
+Prefer cautious statements:
+
+```text
+The differentially abundant proteins suggest involvement of this pathway.
+```
+
+or:
+
+```text
+These results are consistent with changes in this biological process.
+```
+
+## Manual Interpretation Questions
+
+After reviewing the generated summary, ask:
+
+```text
+Are the top proteins biologically coherent?
+Do upregulated and downregulated proteins suggest different themes?
+Are the findings consistent with the study design?
+Are there possible technical explanations?
+Are contaminants or protein groups affecting interpretation?
+Do enrichment and STRING results support the same biological story?
+```
+
+These questions help convert results into a defensible interpretation.
+
+## Recommended Interpretation Language
+
+Useful wording includes:
+
+```text
+The results suggest...
+The protein list is consistent with...
+The top-ranked proteins include...
+The enrichment-ready inputs indicate...
+The STRING-ready identifiers support follow-up network analysis...
+The interpretation should be treated cautiously because...
+```
+
+This style is appropriate for early reports, exploratory analyses, and client-facing summaries.
+
+## Limitations to Record
+
+A transparent interpretation should record limitations such as:
+
+```text
+small sample size
+missing identifiers
+limited annotation coverage
+protein groups instead of single proteins
+lack of raw-data reprocessing
+unknown batch effects
+threshold-dependent protein selection
+lack of validation experiment
+```
+
+Limitations improve trust in the report.
+
+## Relationship to the Final Report
+
+The output from this chapter becomes part of the final reproducible report.
+
+```text
+biological-interpretation-summary.md
+        ↓
+reproducible proteomics report
+```
+
+The final report can include:
+
+```text
+methods summary
+tables
+figures
+interpretation notes
+limitations
+next steps
+```
+
+## Looking Ahead
+
+The next chapter creates a reproducible proteomics report.
+
+```text
+Structured interpretation
+        ↓
+Report-ready summary
+        ↓
+Reproducible proteomics report
+        ↓
+Reusable analysis system
 ```

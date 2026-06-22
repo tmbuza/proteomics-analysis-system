@@ -1,0 +1,13 @@
+metric	value
+input_file	results/cleaned-protein-identifiers.tsv
+total_cleaned_rows	4
+usable_rows	4
+gene_symbol_column	gene_symbol_clean
+protein_identifier_column	primary_protein_id
+regulation_column	regulation
+all_gene_identifiers	4
+upregulated_gene_identifiers	2
+downregulated_gene_identifiers	2
+all_protein_identifiers	4
+upregulated_protein_identifiers	2
+downregulated_protein_identifiers	2

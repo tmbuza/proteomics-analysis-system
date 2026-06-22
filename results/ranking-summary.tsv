@@ -1,0 +1,9 @@
+metric	value
+input_file	results/differential-proteins.tsv
+total_proteins_ranked	5
+significant_proteins_ranked	4
+top_n_requested	10
+top_upregulated_exported	2
+top_downregulated_exported	2
+log2fc_column	log2fc_numeric
+adjusted_p_value_column	adjusted_p_value_numeric

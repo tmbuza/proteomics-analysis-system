@@ -1,0 +1,9 @@
+category	column_name
+protein_identifier	protein_id
+gene_name	gene_symbol
+protein_description	protein_name
+fold_change	log2fc
+p_value	p_value
+adjusted_p_value_or_fdr	adjusted_p_value
+abundance_or_intensity	Not detected
+peptide_or_evidence	Not detected

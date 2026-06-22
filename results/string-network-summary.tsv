@@ -1,0 +1,12 @@
+metric	value
+input_file	results/string-network-input.tsv
+input_rows	4
+string_identifier_column	string_identifier
+regulation_column	regulation
+usable_unique_identifiers	4
+upregulated_identifiers	2
+downregulated_identifiers	2
+missing_or_empty_identifiers_removed	0
+upload_list_all_count	4
+upload_list_upregulated_count	2
+upload_list_downregulated_count	2

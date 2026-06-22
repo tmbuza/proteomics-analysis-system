@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>STRING Network Analysis – CDI Proteomics Analysis System</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -118,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./09-string-network-analysis.html"><span class="chapter-title">STRING Network Analysis</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html">Part III: Protein Annotation and Functional Interpretation</a></li><li class="breadcrumb-item"><a href="./09-string-network-analysis.html"><span class="chapter-title">STRING Network Analysis</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">CDI Proteomics Analysis System</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,80 +157,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-proteomics-results-landscape.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Results Landscape</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-understanding-proteomics-output-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Understanding Proteomics Output Files</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-differential-protein-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">STRING Network Analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
@@ -249,17 +308,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#network-analysis-goals" id="toc-network-analysis-goals" class="nav-link active" data-scroll-target="#network-analysis-goals">Network Analysis Goals</a></li>
-  <li><a href="#input-lists" id="toc-input-lists" class="nav-link" data-scroll-target="#input-lists">Input Lists</a></li>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting Point</a></li>
+  <li><a href="#why-string-analysis-matters" id="toc-why-string-analysis-matters" class="nav-link" data-scroll-target="#why-string-analysis-matters">Why STRING Analysis Matters</a></li>
+  <li><a href="#what-string-adds" id="toc-what-string-adds" class="nav-link" data-scroll-target="#what-string-adds">What STRING Adds</a></li>
+  <li><a href="#expected-input" id="toc-expected-input" class="nav-link" data-scroll-target="#expected-input">Expected Input</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files">Output Files</a></li>
+  <li><a href="#string-preparation-script" id="toc-string-preparation-script" class="nav-link" data-scroll-target="#string-preparation-script">STRING Preparation Script</a></li>
+  <li><a href="#running-the-script" id="toc-running-the-script" class="nav-link" data-scroll-target="#running-the-script">Running the Script</a></li>
+  <li><a href="#output-1-all-string-input" id="toc-output-1-all-string-input" class="nav-link" data-scroll-target="#output-1-all-string-input">Output 1: All STRING Input</a></li>
+  <li><a href="#output-2-upregulated-string-input" id="toc-output-2-upregulated-string-input" class="nav-link" data-scroll-target="#output-2-upregulated-string-input">Output 2: Upregulated STRING Input</a></li>
+  <li><a href="#output-3-downregulated-string-input" id="toc-output-3-downregulated-string-input" class="nav-link" data-scroll-target="#output-3-downregulated-string-input">Output 3: Downregulated STRING Input</a></li>
+  <li><a href="#output-4-upload-lists" id="toc-output-4-upload-lists" class="nav-link" data-scroll-target="#output-4-upload-lists">Output 4: Upload Lists</a></li>
+  <li><a href="#output-5-string-network-summary" id="toc-output-5-string-network-summary" class="nav-link" data-scroll-target="#output-5-string-network-summary">Output 5: STRING Network Summary</a></li>
+  <li><a href="#manual-string-workflow" id="toc-manual-string-workflow" class="nav-link" data-scroll-target="#manual-string-workflow">Manual STRING Workflow</a></li>
+  <li><a href="#recommended-string-settings-to-record" id="toc-recommended-string-settings-to-record" class="nav-link" data-scroll-target="#recommended-string-settings-to-record">Recommended STRING Settings to Record</a></li>
+  <li><a href="#interpreting-string-networks" id="toc-interpreting-string-networks" class="nav-link" data-scroll-target="#interpreting-string-networks">Interpreting STRING Networks</a></li>
+  <li><a href="#hub-proteins" id="toc-hub-proteins" class="nav-link" data-scroll-target="#hub-proteins">Hub Proteins</a></li>
+  <li><a href="#upregulated-and-downregulated-networks" id="toc-upregulated-and-downregulated-networks" class="nav-link" data-scroll-target="#upregulated-and-downregulated-networks">Upregulated and Downregulated Networks</a></li>
+  <li><a href="#relationship-to-visualization" id="toc-relationship-to-visualization" class="nav-link" data-scroll-target="#relationship-to-visualization">Relationship to Visualization</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html">Part III: Protein Annotation and Functional Interpretation</a></li><li class="breadcrumb-item"><a href="./09-string-network-analysis.html"><span class="chapter-title">STRING Network Analysis</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">STRING Network Analysis</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-title">STRING Network Analysis</span></h1>
 </div>
 
 
@@ -282,28 +358,216 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>STRING can be used to explore protein-protein association networks among differentially abundant proteins.</p>
-<section id="network-analysis-goals" class="level2">
-<h2 class="anchored" data-anchor-id="network-analysis-goals">Network Analysis Goals</h2>
-<p>STRING analysis can help identify:</p>
-<ul>
-<li>connected protein modules</li>
-<li>biological processes represented by protein clusters</li>
-<li>hub proteins</li>
-<li>pathway-level structure</li>
-<li>candidate proteins for follow-up</li>
-</ul>
+<p>After functional enrichment input preparation, the next step is STRING network analysis.</p>
+<p>Functional enrichment summarizes proteins into biological functions. STRING network analysis adds another layer by asking whether the proteins are connected through known or predicted protein-protein associations.</p>
+<p>In this results-first proteomics workflow, STRING analysis begins from cleaned identifiers and ranked differentially abundant proteins.</p>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting Point</h2>
+<p>This chapter uses the STRING input created in Chapter 07:</p>
+<pre class="text"><code>results/string-network-input.tsv</code></pre>
+<p>This file was generated by:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/07-clean-protein-identifiers.R <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  results/ranked-significant-proteins.tsv <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>It contains a practical identifier column:</p>
+<pre class="text"><code>string_identifier</code></pre>
+<p>along with supporting columns such as:</p>
+<pre class="text"><code>primary_protein_id
+gene_symbol_clean
+protein_id_original
+identifier_status
+regulation</code></pre>
 </section>
-<section id="input-lists" class="level2">
-<h2 class="anchored" data-anchor-id="input-lists">Input Lists</h2>
-<p>Recommended inputs:</p>
-<pre class="text"><code>all significant DEP
-upregulated DEP
-downregulated DEP
-top ranked proteins</code></pre>
+<section id="why-string-analysis-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-string-analysis-matters">Why STRING Analysis Matters</h2>
+<p>A protein list can be biologically meaningful even before network analysis, but network analysis helps answer an additional question:</p>
+<pre class="text"><code>Are these proteins functionally connected?</code></pre>
+<p>STRING can help reveal:</p>
+<pre class="text"><code>protein-protein association clusters
+functional modules
+hub proteins
+pathway-level organization
+shared biological processes</code></pre>
+<p>This is useful after differential abundance filtering and functional enrichment.</p>
+</section>
+<section id="what-string-adds" class="level2">
+<h2 class="anchored" data-anchor-id="what-string-adds">What STRING Adds</h2>
+<p>GO enrichment asks:</p>
+<pre class="text"><code>Which functions are overrepresented?</code></pre>
+<p>STRING analysis asks:</p>
+<pre class="text"><code>Do the proteins form a connected network?</code></pre>
+<p>Together, they support stronger biological interpretation.</p>
+<p>For example:</p>
+<pre class="text"><code>GO enrichment may suggest mitochondrial translation.
+STRING may show that several ribosomal or mitochondrial proteins form a connected module.</code></pre>
+</section>
+<section id="expected-input" class="level2">
+<h2 class="anchored" data-anchor-id="expected-input">Expected Input</h2>
+<p>The expected input is:</p>
+<pre class="text"><code>results/string-network-input.tsv</code></pre>
+<p>This table should contain:</p>
+<pre class="text"><code>string_identifier</code></pre>
+<p>The script also preserves useful columns when available:</p>
+<pre class="text"><code>rank
+primary_protein_id
+gene_symbol_clean
+regulation</code></pre>
+</section>
+<section id="output-files" class="level2">
+<h2 class="anchored" data-anchor-id="output-files">Output Files</h2>
+<p>The STRING preparation script creates:</p>
+<pre class="text"><code>results/
+├── string-input-all.tsv
+├── string-input-upregulated.tsv
+├── string-input-downregulated.tsv
+├── string-upload-list-all.txt
+├── string-upload-list-upregulated.txt
+├── string-upload-list-downregulated.txt
+└── string-network-summary.tsv</code></pre>
+<p>These outputs can be used for manual upload to STRING or as structured inputs for later automated API-based workflows.</p>
+</section>
+<section id="string-preparation-script" class="level2">
+<h2 class="anchored" data-anchor-id="string-preparation-script">STRING Preparation Script</h2>
+<p>The executable script is saved as:</p>
+<pre class="text"><code>scripts/R/09-prepare-string-network-input.R</code></pre>
+<p>The guide shows how to run the script. The full executable code is maintained in <code>scripts/R/</code>.</p>
+</section>
+<section id="running-the-script" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script">Running the Script</h2>
+<p>From the project root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/09-prepare-string-network-input.R <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  results/string-network-input.tsv <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The arguments are:</p>
+<pre class="text"><code>1st argument → STRING network input table
+2nd argument → output directory</code></pre>
+</section>
+<section id="output-1-all-string-input" class="level2">
+<h2 class="anchored" data-anchor-id="output-1-all-string-input">Output 1: All STRING Input</h2>
+<p>The all-protein STRING table is:</p>
+<pre class="text"><code>results/string-input-all.tsv</code></pre>
+<p>This file contains all usable STRING identifiers from the significant protein set.</p>
+<p>It preserves ranking and regulation columns when available.</p>
+</section>
+<section id="output-2-upregulated-string-input" class="level2">
+<h2 class="anchored" data-anchor-id="output-2-upregulated-string-input">Output 2: Upregulated STRING Input</h2>
+<p>The upregulated STRING table is:</p>
+<pre class="text"><code>results/string-input-upregulated.tsv</code></pre>
+<p>This file contains identifiers for proteins classified as upregulated.</p>
+<p>For the running example:</p>
+<pre class="text"><code>upregulated → higher abundance in treated</code></pre>
+</section>
+<section id="output-3-downregulated-string-input" class="level2">
+<h2 class="anchored" data-anchor-id="output-3-downregulated-string-input">Output 3: Downregulated STRING Input</h2>
+<p>The downregulated STRING table is:</p>
+<pre class="text"><code>results/string-input-downregulated.tsv</code></pre>
+<p>This file contains identifiers for proteins classified as downregulated.</p>
+<p>For the running example:</p>
+<pre class="text"><code>downregulated → lower abundance in treated</code></pre>
+</section>
+<section id="output-4-upload-lists" class="level2">
+<h2 class="anchored" data-anchor-id="output-4-upload-lists">Output 4: Upload Lists</h2>
+<p>The plain-text upload lists are:</p>
+<pre class="text"><code>results/string-upload-list-all.txt
+results/string-upload-list-upregulated.txt
+results/string-upload-list-downregulated.txt</code></pre>
+<p>These files contain one identifier per line.</p>
+<p>They are useful for manual upload to STRING or other network tools.</p>
+</section>
+<section id="output-5-string-network-summary" class="level2">
+<h2 class="anchored" data-anchor-id="output-5-string-network-summary">Output 5: STRING Network Summary</h2>
+<p>The summary file is:</p>
+<pre class="text"><code>results/string-network-summary.tsv</code></pre>
+<p>It records:</p>
+<pre class="text"><code>total identifiers
+upregulated identifiers
+downregulated identifiers
+unique identifiers
+missing identifiers removed</code></pre>
+<p>This summary is a checkpoint before network interpretation.</p>
+</section>
+<section id="manual-string-workflow" class="level2">
+<h2 class="anchored" data-anchor-id="manual-string-workflow">Manual STRING Workflow</h2>
+<p>A simple manual workflow is:</p>
+<pre class="text"><code>Open STRING
+        ↓
+Choose Multiple Proteins
+        ↓
+Paste identifiers from string-upload-list-all.txt
+        ↓
+Select organism
+        ↓
+Run network search
+        ↓
+Export network image and interaction table</code></pre>
+<p>The organism selection is important. The same gene symbol may mean different things in different organisms.</p>
+</section>
+<section id="recommended-string-settings-to-record" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-string-settings-to-record">Recommended STRING Settings to Record</h2>
+<p>For reproducibility, record:</p>
+<pre class="text"><code>organism
+identifier type
+minimum interaction score
+network edge meaning
+active interaction sources
+date accessed
+STRING version if available</code></pre>
+<p>A reproducible project should not only save the final image. It should also save the parameters used to generate the network.</p>
+</section>
+<section id="interpreting-string-networks" class="level2">
+<h2 class="anchored" data-anchor-id="interpreting-string-networks">Interpreting STRING Networks</h2>
+<p>When reviewing a STRING network, consider:</p>
+<pre class="text"><code>Are proteins connected more than expected?
+Are there visible clusters?
+Are upregulated and downregulated proteins separated?
+Are hub proteins present?
+Do clusters match GO enrichment themes?
+Are there isolated proteins?</code></pre>
+<p>Network patterns should be interpreted together with differential abundance and enrichment results.</p>
+</section>
+<section id="hub-proteins" class="level2">
+<h2 class="anchored" data-anchor-id="hub-proteins">Hub Proteins</h2>
+<p>Highly connected proteins can be biologically interesting, but they should be interpreted carefully.</p>
+<p>A hub protein may represent:</p>
+<pre class="text"><code>a true central biological regulator
+a well-studied protein with many known interactions
+a large protein complex component
+a database bias</code></pre>
+<p>Network centrality is useful, but it is not proof of mechanism.</p>
+</section>
+<section id="upregulated-and-downregulated-networks" class="level2">
+<h2 class="anchored" data-anchor-id="upregulated-and-downregulated-networks">Upregulated and Downregulated Networks</h2>
+<p>It can be useful to analyze:</p>
+<pre class="text"><code>all significant proteins
+upregulated proteins only
+downregulated proteins only</code></pre>
+<p>Separate networks may reveal direction-specific biology.</p>
+<p>For example:</p>
+<pre class="text"><code>upregulated network   → stress response module
+downregulated network → metabolic module</code></pre>
+</section>
+<section id="relationship-to-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-visualization">Relationship to Visualization</h2>
+<p>STRING network images can be included later in the visualization and final report chapters.</p>
+<p>The outputs from this chapter support:</p>
+<pre class="text"><code>network tables
+network upload lists
+network screenshots
+network interpretation summaries</code></pre>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The next chapter focuses on visualizing proteomics results.</p>
+<pre class="text"><code>STRING-ready identifiers
+        ↓
+STRING network input files
+        ↓
+Network analysis
+        ↓
+Visualization
+        ↓
+Biological interpretation</code></pre>
 
-
-<!-- -->
 
 </section>
 
@@ -359,13 +623,14 @@ top ranked proteins</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -377,57 +642,6 @@ top ranked proteins</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -445,6 +659,8 @@ top ranked proteins</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -769,32 +985,7 @@ top ranked proteins</code></pre>
         <span class="nav-page-text"><span class="chapter-title">Visualizing Proteomics Results</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># STRING Network Analysis</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>STRING can be used to explore protein-protein association networks among differentially abundant proteins.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Network Analysis Goals</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>STRING analysis can help identify:</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>connected protein modules</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>biological processes represented by protein clusters</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>hub proteins</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>pathway-level structure</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>candidate proteins for follow-up</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Input Lists</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>Recommended inputs:</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">all significant DEP</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">upregulated DEP</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">downregulated DEP</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">top ranked proteins</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

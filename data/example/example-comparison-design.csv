@@ -1,0 +1,2 @@
+comparison,numerator_condition,denominator_condition,positive_log2fc_interpretation,design_type
+treated_vs_control,treated,control,higher abundance in treated,unpaired

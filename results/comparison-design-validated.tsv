@@ -1,0 +1,2 @@
+comparison	numerator_condition	denominator_condition	positive_log2fc_interpretation	design_type	numerator_found_in_metadata	denominator_found_in_metadata	comparison_conditions_valid
+treated_vs_control	treated	control	higher abundance in treated	unpaired	TRUE	TRUE	TRUE

@@ -1,0 +1,5 @@
+protein_id	gene_symbol	protein_name	log2fc	p_value	adjusted_p_value	comparison	log2fc_numeric	adjusted_p_value_numeric	abs_log2fc	passes_padj	passes_log2fc	is_significant	regulation
+P12345	GENE1	Example protein 1	2.31	1e-5	4e-4	treated_vs_control	2.31	4e-4	2.31	TRUE	TRUE	TRUE	upregulated
+Q67890	GENE2	Example protein 2	-1.84	8e-5	0.0021	treated_vs_control	-1.84	0.0021	1.84	TRUE	TRUE	TRUE	downregulated
+B22222	GENE4	Example protein 4	-2.45	2e-4	0.0045	treated_vs_control	-2.45	0.0045	2.45	TRUE	TRUE	TRUE	downregulated
+C33333	GENE5	Example protein 5	1.15	0.003	0.03	treated_vs_control	1.15	0.03	1.15	TRUE	TRUE	TRUE	upregulated

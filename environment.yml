@@ -1,0 +1,42 @@
+name: cdi-proteomics
+
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+
+dependencies:
+  # Core command-line environment
+  - python
+  - pip
+  - quarto
+
+  # R base
+  - r-base
+
+  # Modern R data workflow
+  - r-tidyverse
+  - r-readr
+  - r-dplyr
+  - r-stringr
+  - r-tibble
+  - r-ggplot2
+  - r-janitor
+  - r-here
+  - r-optparse
+
+  # Reporting
+  - r-rmarkdown
+  - r-knitr
+  - r-yaml
+
+  # Tables and utilities
+  - r-readxl
+  - r-writexl
+  - r-openxlsx
+
+  # Notebook / Quarto support
+  - jupyter
+  - nbformat
+  - nbclient
+  - ipykernel

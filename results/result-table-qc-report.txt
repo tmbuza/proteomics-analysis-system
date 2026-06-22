@@ -1,0 +1,33 @@
+Proteomics Result Table QC Report
+=================================
+
+Input file: data/example/example-proteomics-results.csv
+Detected delimiter: ,
+Rows: 5
+Columns: 7
+
+Detected key columns:
+protein_id: protein_id
+log2fc: log2fc
+p_value: p_value
+adjusted_p_value: adjusted_p_value
+comparison: comparison
+
+QC checks:
+table_readable | PASS | data/example/example-proteomics-results.csv
+rows_present | PASS | Rows: 5
+columns_present | PASS | Columns: 7
+required_columns_present | PASS | protein_id=protein_id; log2fc=log2fc; p_value=p_value; adjusted_p_value=adjusted_p_value; comparison=comparison
+protein_identifiers_present | PASS | Missing protein IDs: 0
+duplicate_protein_identifiers_absent | PASS | Duplicated protein IDs: 0
+log2fc_numeric | PASS | Column: log2fc
+p_value_numeric | PASS | Column: p_value
+adjusted_p_value_numeric | PASS | Column: adjusted_p_value
+comparison_labels_present | PASS | Missing comparison labels: 0
+ready_for_filtering | PASS | All required QC checks passed.
+
+Output files:
+QC summary: results/result-table-qc-summary.tsv
+Column QC: results/result-table-column-qc.tsv
+Duplicate proteins: results/result-table-duplicate-proteins.tsv
+Problem rows: results/result-table-problem-rows.tsv

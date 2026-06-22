@@ -1,0 +1,416 @@
+# Differential Abundance Results
+
+After the proteomics result table has been inspected and the sample metadata/comparison design has been documented, the next step is to understand the differential abundance results.
+
+In a results-first proteomics workflow, differential abundance results are often already present in the table received from a proteomics facility, collaborator, or vendor.
+
+These results usually describe how protein abundance changes between two conditions.
+
+For example:
+
+```text
+treated_vs_control
+```
+
+may compare a treated condition against a control condition.
+
+The differential abundance table should tell the analyst:
+
+```text
+Which protein changed?
+        ↓
+In which comparison?
+        ↓
+In which direction?
+        ↓
+How large was the change?
+        ↓
+How statistically supported was the change?
+```
+
+This chapter focuses on understanding those result columns before formal quality control, filtering, ranking, enrichment analysis, and interpretation.
+
+## Starting Point
+
+This chapter builds on the example files introduced earlier:
+
+```text
+data/example/example-proteomics-results.csv
+data/example/example-sample-metadata.csv
+data/example/example-comparison-design.csv
+```
+
+The main result table is:
+
+```text
+data/example/example-proteomics-results.csv
+```
+
+A minimal differential abundance table may look like:
+
+```text
+protein_id,gene_symbol,protein_name,log2fc,p_value,adjusted_p_value,comparison
+P12345,GENE1,Example protein 1,2.31,0.00001,0.0004,treated_vs_control
+Q67890,GENE2,Example protein 2,-1.84,0.00008,0.0021,treated_vs_control
+A11111,GENE3,Example protein 3,0.72,0.041,0.1200,treated_vs_control
+```
+
+## What Differential Abundance Means
+
+Differential abundance refers to a measured difference in protein abundance between comparison groups.
+
+In this guide, the comparison is represented by:
+
+```text
+treated_vs_control
+```
+
+The comparison design defines:
+
+```text
+numerator condition   = treated
+denominator condition = control
+```
+
+Therefore:
+
+```text
+positive log2fc → higher abundance in treated
+negative log2fc → lower abundance in treated
+```
+
+or equivalently:
+
+```text
+negative log2fc → higher abundance in control
+```
+
+This interpretation depends on the comparison design and should never be guessed.
+
+## Core Differential Abundance Columns
+
+A practical results-first table should contain columns that identify the protein, describe the comparison, and report the magnitude and significance of change.
+
+Core columns include:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+Each column has a distinct role.
+
+## Protein Identifier
+
+The protein identifier column links each row to a protein or protein group.
+
+Example:
+
+```text
+protein_id
+P12345
+Q67890
+A11111
+```
+
+Depending on the source, this column may also be called:
+
+```text
+Accession
+UniProt
+UniProt_ID
+Protein_ID
+Majority protein IDs
+Protein.Group
+```
+
+Protein identifiers are important because they support downstream annotation, enrichment analysis, and STRING network analysis.
+
+## Gene Symbol
+
+The gene symbol column provides a readable biological label.
+
+Example:
+
+```text
+gene_symbol
+GENE1
+GENE2
+GENE3
+```
+
+Gene symbols are often easier to interpret than protein accessions, but they are not always unique across species or databases.
+
+For enrichment analysis, gene symbols may need to be mapped carefully to organism-specific identifiers.
+
+## Protein Name
+
+The protein name column provides a descriptive label.
+
+Example:
+
+```text
+protein_name
+Example protein 1
+Example protein 2
+Example protein 3
+```
+
+This column helps with interpretation and report writing.
+
+However, protein names can be long, inconsistent, or copied from different databases. They should support interpretation but should not replace stable identifiers.
+
+## Log2 Fold Change
+
+The `log2fc` column describes the direction and magnitude of protein abundance change.
+
+Example:
+
+```text
+log2fc
+ 2.31
+-1.84
+ 0.72
+```
+
+The sign shows direction.
+
+```text
+positive log2fc → higher in numerator condition
+negative log2fc → lower in numerator condition
+```
+
+The magnitude describes the size of the change.
+
+Examples:
+
+```text
+log2fc =  1  → approximately 2-fold higher
+log2fc = -1  → approximately 2-fold lower
+log2fc =  2  → approximately 4-fold higher
+log2fc = -2  → approximately 4-fold lower
+```
+
+Because log2 fold change is symmetric around zero, it is easier to compare increases and decreases.
+
+## Raw P-Value
+
+The `p_value` column reports the statistical evidence for a difference before multiple-testing correction.
+
+Example:
+
+```text
+p_value
+0.00001
+0.00008
+0.041
+```
+
+A small p-value suggests that the observed difference is unlikely under the statistical model used.
+
+However, proteomics experiments often test many proteins at the same time. Because of this, raw p-values should usually not be used alone to define significant proteins.
+
+## Adjusted P-Value
+
+The `adjusted_p_value` column accounts for multiple testing.
+
+Example:
+
+```text
+adjusted_p_value
+0.0004
+0.0021
+0.1200
+```
+
+This column may also be called:
+
+```text
+padj
+adj_p_value
+adj.P.Val
+q_value
+FDR
+```
+
+For most downstream filtering, the adjusted p-value or false discovery rate is preferred over the raw p-value.
+
+A common threshold is:
+
+```text
+adjusted_p_value <= 0.05
+```
+
+This threshold is not universal. It should be selected based on the study design, sample size, platform, and tolerance for false positives.
+
+## Comparison Label
+
+The `comparison` column links each result to the comparison being tested.
+
+Example:
+
+```text
+comparison
+treated_vs_control
+```
+
+This is especially important when a table contains multiple contrasts.
+
+For example:
+
+```text
+treated_vs_control
+disease_vs_healthy
+timepoint_2_vs_timepoint_1
+drug_A_vs_vehicle
+```
+
+If multiple comparisons are present, filtering and interpretation should usually be performed separately for each comparison.
+
+## Direction of Change
+
+Direction should be interpreted using both `log2fc` and the comparison design.
+
+For the example comparison:
+
+```text
+treated_vs_control
+```
+
+with treated as numerator and control as denominator:
+
+```text
+log2fc > 0 → higher abundance in treated
+log2fc < 0 → lower abundance in treated
+```
+
+This will later support labels such as:
+
+```text
+upregulated
+downregulated
+not_significant
+```
+
+However, the labels “upregulated” and “downregulated” should be used carefully. In proteomics, they usually mean higher or lower abundance in the numerator condition, not necessarily transcriptional regulation.
+
+## Differential Abundance Is Not Yet Biological Interpretation
+
+A differential abundance table is an analytical result, not a complete biological conclusion.
+
+For example:
+
+```text
+protein_id = P12345
+log2fc = 2.31
+adjusted_p_value = 0.0004
+```
+
+This tells us that the protein changed strongly and with statistical support.
+
+It does not yet explain:
+
+```text
+What pathway is involved?
+What process is affected?
+Is the protein part of a network?
+Does the change support the study hypothesis?
+Is the change biologically expected?
+```
+
+Those questions are addressed in later chapters through annotation, enrichment analysis, STRING network analysis, visualization, and biological interpretation.
+
+## Common Issues in Differential Abundance Tables
+
+Differential abundance tables may contain issues that need to be checked before filtering.
+
+Common issues include:
+
+- missing protein identifiers
+- duplicated protein identifiers
+- missing gene symbols
+- missing or non-numeric fold-change values
+- missing p-values or adjusted p-values
+- adjusted p-values reported under unclear column names
+- comparison labels that do not match the comparison design
+- fold-change direction that is not documented
+- mixed protein groups or multiple accessions in one row
+- contaminant or reverse-sequence entries
+- low-confidence protein identifications
+
+These issues are handled more formally in the next chapter on quality control of result tables.
+
+## Recommended Minimal Result Table
+
+For this results-first workflow, a recommended minimal table is:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+Additional useful columns may include:
+
+```text
+control_mean_intensity
+treated_mean_intensity
+peptide_count
+unique_peptides
+coverage
+functional_category
+```
+
+These additional columns can help with confidence assessment and interpretation, especially when reviewing individual proteins.
+
+## Relationship to Later Chapters
+
+This chapter explains what the differential abundance columns mean.
+
+The following chapters use these columns more actively.
+
+```text
+03 Differential abundance result columns
+        ↓
+04 Quality control of result tables
+        ↓
+05 Differential protein abundance filtering
+        ↓
+06 Ranking and filtering DEP
+        ↓
+07 Identifier cleaning and annotation
+```
+
+Chapter 05 will apply thresholds such as:
+
+```text
+absolute log2fc >= 1
+adjusted_p_value <= 0.05
+```
+
+Chapter 06 will rank proteins for interpretation.
+
+## Looking Ahead
+
+The next chapter focuses on quality control of proteomics result tables.
+
+Before filtering proteins, the result table should be checked for structural problems, missing values, duplicated identifiers, and column consistency.
+
+```text
+Differential abundance columns
+        ↓
+Quality control of result tables
+        ↓
+Filtering and ranking
+        ↓
+Biological interpretation
+```

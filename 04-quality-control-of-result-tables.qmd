@@ -1,18 +1,347 @@
 # Quality Control of Result Tables
 
-This chapter checks whether the received result tables are suitable for interpretation.
+After understanding the differential abundance columns, the next step is to perform quality control on the proteomics result table.
 
-## Table-Level Checks
+In a results-first proteomics workflow, the analyst often receives a processed table rather than raw mass spectrometry files. This means that quality control begins at the table level.
 
-Recommended checks include:
+The goal of this chapter is to check whether the result table is structurally ready for filtering, ranking, annotation, enrichment analysis, visualization, and biological interpretation.
 
-- required columns are present
-- protein identifiers are not missing
-- log2FC values are numeric
-- p-values and adjusted p-values are numeric
-- duplicate protein IDs are handled
-- comparison labels are clear
+## Starting Point
 
-## QC Principle
+This chapter uses the running example result table:
 
-Before interpreting biology, confirm that the result table is internally consistent.
+```text
+data/example/example-proteomics-results.csv
+```
+
+This file was introduced earlier and contains columns such as:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+Before applying thresholds, the table should be checked for common problems.
+
+## Why Result-Table QC Matters
+
+A differential abundance table may look simple, but small table-level issues can affect the entire downstream workflow.
+
+Common problems include:
+
+- missing protein identifiers
+- duplicated protein identifiers
+- missing gene symbols
+- missing fold-change values
+- non-numeric p-values
+- non-numeric adjusted p-values
+- missing comparison labels
+- inconsistent comparison labels
+- unexpected column names
+- empty rows
+- proteins without usable identifiers
+- values that cannot be used for filtering
+
+Quality control makes these issues visible before interpretation begins.
+
+## QC Questions
+
+This chapter asks practical questions:
+
+```text
+Is the table readable?
+        ↓
+Are required columns present?
+        ↓
+Are key columns complete?
+        ↓
+Are numeric columns actually numeric?
+        ↓
+Are protein identifiers duplicated?
+        ↓
+Are comparison labels present?
+        ↓
+Is the table ready for filtering?
+```
+
+These checks help prevent downstream errors.
+
+## Expected Input
+
+The expected example input is:
+
+```text
+data/example/example-proteomics-results.csv
+```
+
+For real project data, the equivalent input is:
+
+```text
+data/input/proteomics-results.csv
+```
+
+## Output Files
+
+The QC script creates:
+
+```text
+results/
+├── result-table-qc-summary.tsv
+├── result-table-column-qc.tsv
+├── result-table-duplicate-proteins.tsv
+├── result-table-problem-rows.tsv
+└── result-table-qc-report.txt
+```
+
+Each output serves a different purpose.
+
+```text
+result-table-qc-summary.tsv
+```
+
+records high-level QC checks.
+
+```text
+result-table-column-qc.tsv
+```
+
+summarizes missing values and data types by column.
+
+```text
+result-table-duplicate-proteins.tsv
+```
+
+lists duplicated protein identifiers, if any.
+
+```text
+result-table-problem-rows.tsv
+```
+
+captures rows with missing key values.
+
+```text
+result-table-qc-report.txt
+```
+
+provides a human-readable QC report.
+
+## QC Script
+
+The executable script is saved as:
+
+```text
+scripts/R/04-qc-result-table.R
+```
+
+The script checks:
+
+- whether required columns are present
+- whether protein identifiers are missing
+- whether protein identifiers are duplicated
+- whether log2 fold-change values are numeric
+- whether p-values are numeric
+- whether adjusted p-values are numeric
+- whether comparison labels are present
+- how many missing values occur in each column
+- whether the table appears ready for differential filtering
+
+The guide shows how to run the script. The full executable code is maintained in `scripts/R/`.
+
+## Running the Script on the Example Input
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/04-qc-result-table.R \
+  data/example/example-proteomics-results.csv \
+  results
+```
+
+The expected outputs are:
+
+```text
+results/
+├── result-table-qc-summary.tsv
+├── result-table-column-qc.tsv
+├── result-table-duplicate-proteins.tsv
+├── result-table-problem-rows.tsv
+└── result-table-qc-report.txt
+```
+
+## Running the Script on a Real Project Input
+
+For a real project table, run:
+
+```bash
+Rscript scripts/R/04-qc-result-table.R \
+  data/input/proteomics-results.csv \
+  results
+```
+
+Only the input file changes.
+
+## Required Columns
+
+For the current results-first workflow, the recommended required columns are:
+
+```text
+protein_id
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+The following columns are strongly recommended:
+
+```text
+gene_symbol
+protein_name
+```
+
+The script checks the required columns directly.
+
+If recommended columns are missing, the table may still be usable, but downstream interpretation will be weaker.
+
+## Column-Level QC
+
+The column QC output is:
+
+```text
+results/result-table-column-qc.tsv
+```
+
+This file reports:
+
+```text
+column_name
+column_type
+missing_values
+missing_percent
+unique_values
+```
+
+This helps identify columns with high missingness or unexpected data types.
+
+## Duplicate Protein Identifiers
+
+Duplicated identifiers can occur for several reasons:
+
+- the table contains protein groups
+- the same accession appears in multiple comparisons
+- the table includes multiple isoforms
+- the upstream software exported repeated rows
+- identifiers were not cleaned before export
+
+The duplicate output is:
+
+```text
+results/result-table-duplicate-proteins.tsv
+```
+
+If the file has zero rows, no duplicated protein identifiers were detected.
+
+If duplicates are present, the analyst should check whether they are expected.
+
+For multiple comparisons, duplicates may be acceptable if each protein appears once per comparison. For a single comparison, duplicated protein identifiers may need review.
+
+## Problem Rows
+
+The problem-row output is:
+
+```text
+results/result-table-problem-rows.tsv
+```
+
+This table contains rows with missing or unusable key values.
+
+Examples include:
+
+```text
+missing protein_id
+missing log2fc
+missing adjusted_p_value
+missing comparison
+```
+
+Rows with missing key values may need to be removed, repaired, or excluded before filtering.
+
+## Readiness for Filtering
+
+The QC summary includes an overall readiness flag.
+
+A table is considered ready for filtering when:
+
+```text
+required columns are present
+        +
+key numeric fields are usable
+        +
+protein identifiers are present
+        +
+comparison labels are present
+```
+
+This does not mean the biological analysis is complete.
+
+It only means that the table is structurally ready for the next computational step.
+
+## Example QC Interpretation
+
+For the small example table, the expected result is that the table passes basic QC.
+
+The output should confirm:
+
+```text
+required columns present
+no missing protein identifiers
+log2fc is numeric
+p_value is numeric
+adjusted_p_value is numeric
+comparison labels are present
+```
+
+This allows the workflow to continue to differential protein abundance filtering.
+
+## Why QC Comes Before Filtering
+
+Filtering should not be applied blindly.
+
+For example:
+
+```text
+adjusted_p_value <= 0.05
+```
+
+only makes sense if `adjusted_p_value` is numeric, complete enough to use, and correctly identified.
+
+Similarly:
+
+```text
+abs(log2fc) >= 1
+```
+
+only makes sense if `log2fc` is numeric and the comparison direction is known.
+
+QC protects the analysis from avoidable errors.
+
+## Looking Ahead
+
+The next chapter performs differential protein abundance filtering.
+
+After QC, the table can be filtered using statistical and biological thresholds.
+
+```text
+Result-table QC
+        ↓
+Differential protein abundance filtering
+        ↓
+Significant proteins
+        ↓
+Upregulated and downregulated protein sets
+```

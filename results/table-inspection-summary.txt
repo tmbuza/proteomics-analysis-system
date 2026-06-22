@@ -1,0 +1,42 @@
+Proteomics Table Inspection Summary
+====================================
+
+Input file: data/example/example-proteomics-results.csv
+Detected delimiter: ,
+Rows: 5
+Columns: 7
+
+Column names:
+protein_id, gene_symbol, protein_name, log2fc, p_value, adjusted_p_value, comparison
+
+Detected candidate columns:
+abundance_or_intensity: Not detected
+adjusted_p_value_or_fdr: adjusted_p_value
+fold_change: log2fc
+gene_name: gene_symbol
+p_value: p_value
+peptide_or_evidence: Not detected
+protein_description: protein_name
+protein_identifier: protein_id
+
+Output files:
+Column summary: results/table-column-summary.tsv
+Missing values: results/table-missing-values.tsv
+Detected columns: results/table-detected-columns.tsv
+
+Preview:
+# A tibble: 5 × 7
+  protein_id gene_symbol protein_name      log2fc p_value adjusted_p_value
+  <chr>      <chr>       <chr>              <dbl>   <dbl>            <dbl>
+1 P12345     GENE1       Example protein 1   2.31 0.00001           0.0004
+2 Q67890     GENE2       Example protein 2  -1.84 0.00008           0.0021
+3 A11111     GENE3       Example protein 3   0.72 0.041             0.12  
+4 B22222     GENE4       Example protein 4  -2.45 0.0002            0.0045
+5 C33333     GENE5       Example protein 5   1.15 0.003             0.03  
+  comparison        
+  <chr>             
+1 treated_vs_control
+2 treated_vs_control
+3 treated_vs_control
+4 treated_vs_control
+5 treated_vs_control

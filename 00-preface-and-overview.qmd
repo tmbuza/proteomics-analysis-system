@@ -1,27 +1,208 @@
 # Preface and Overview
 
-Proteomics was one of the first omics fields I worked with, especially through protein-level interpretation and GO functional annotation.
+Proteomics is one of the most powerful ways to study biological systems at the protein level. While genomics and transcriptomics describe genetic potential and gene expression, proteomics moves closer to biological function by measuring proteins, protein abundance, and changes in protein-level regulation.
 
-This system is both a return to that foundation and a refreshed, reproducible guide for modern proteomics result interpretation.
+In many research projects, however, the analyst does not begin with raw mass spectrometry files. Instead, proteomics results are often received as processed tables from a core facility, collaborator, service provider, or vendor.
 
-## Results-First Approach
-
-Many researchers do not begin proteomics analysis from raw mass spectrometry files. They often receive processed result files that include protein abundance tables, log2 fold-changes, p-values, and adjusted p-values.
+These tables may already contain protein identifiers, abundance values, fold changes, statistical test results, adjusted p-values, annotations, and sometimes functional descriptions.
 
 This guide begins from that practical starting point.
 
+The **Proteomics Analysis System** is a results-first workflow for moving from processed proteomics output tables to biological interpretation, functional annotation, pathway enrichment, protein interaction networks, figures, and reproducible reports.
+
+## Why a Results-First Proteomics System?
+
+Proteomics analysis can begin at many levels.
+
+Some workflows start with raw mass spectrometry data, database searching, peptide-spectrum matching, peptide quantification, and protein inference. These steps are important, but they are not always the starting point for researchers who receive processed proteomics results.
+
+In many practical settings, the immediate challenge is not raw data processing. The challenge is interpretation.
+
+Researchers often need to answer questions such as:
+
+- Which proteins are differentially abundant?
+- Which proteins pass statistical and biological filtering?
+- Are the protein identifiers clean and usable?
+- Which genes, pathways, or biological processes are enriched?
+- Are there meaningful protein interaction networks?
+- What biological story emerges from the results?
+- How can the analysis be reported reproducibly?
+
+This guide focuses on those questions.
+
+## Core Workflow
+
+The system begins with processed proteomics result tables and moves step-by-step toward biological interpretation.
+
 ```text
-Raw mass spectrometry files
+Proteomics result tables
         ↓
-Processed by facility / vendor / collaborator
+Differential abundance results
         ↓
-Protein abundance table
+Protein filtering and ranking
         ↓
-Differential protein abundance table
+Identifier cleaning and annotation
         ↓
-Interpretation system
+GO and pathway enrichment
+        ↓
+STRING network analysis
+        ↓
+Biological interpretation
+        ↓
+Reproducible report
 ```
 
-## System Goal
+Each step produces a clear output that supports the next step.
 
-The goal is to move from thousands of differentially abundant proteins to clear biological themes, candidate proteins, pathways, networks, and a reproducible report.
+The goal is not only to generate statistical tables, but to convert proteomics results into interpretable biological evidence.
+
+## What This Guide Covers
+
+This guide focuses on downstream proteomics interpretation after processed result tables are available.
+
+It covers:
+
+- understanding common proteomics result table structures
+- checking key columns such as protein IDs, gene names, fold changes, p-values, and adjusted p-values
+- identifying differentially abundant proteins
+- filtering proteins using statistical and biological criteria
+- ranking proteins for interpretation
+- cleaning and standardizing protein identifiers
+- mapping protein accessions to gene symbols and functional annotations
+- preparing input tables for enrichment analysis
+- performing Gene Ontology and pathway enrichment
+- preparing protein lists for STRING network analysis
+- interpreting enriched biological themes
+- summarizing proteomics findings in a reproducible report
+
+This results-first approach makes the guide useful for researchers who already have processed proteomics outputs and need a practical pathway toward interpretation.
+
+## What This Guide Does Not Cover Yet
+
+This first edition does not focus on raw mass spectrometry processing.
+
+The following topics are outside the scope of the initial version:
+
+- raw `.raw`, `.mzML`, or `.mzXML` file processing
+- database search engine configuration
+- peptide-spectrum matching
+- false discovery rate control at peptide-spectrum match level
+- peptide-to-protein inference
+- label-free quantification from raw spectra
+- TMT or iTRAQ reporter ion extraction from raw files
+- spectral library generation
+- DIA-NN, MaxQuant, Proteome Discoverer, FragPipe, or similar raw-processing workflows
+
+These topics are important and can be added later as an advanced extension of the Proteomics Analysis System.
+
+The first priority is to build a practical, reusable interpretation system for the type of proteomics result tables that many researchers already receive.
+
+## Expected Input
+
+The expected input is a processed proteomics result table.
+
+A typical table may contain columns such as:
+
+```text
+Protein_ID
+Gene_Name
+Protein_Name
+log2FC
+p_value
+adjusted_p_value
+condition_A_abundance
+condition_B_abundance
+```
+
+Other possible columns may include:
+
+```text
+Accession
+UniProt_ID
+Description
+Peptide_Count
+Unique_Peptides
+Coverage
+Intensity
+LFQ_Intensity
+Fold_Change
+q_value
+FDR
+```
+
+Different facilities and software platforms use different column names. Part of the system is therefore designed to standardize inputs before interpretation begins.
+
+## Expected Outputs
+
+By the end of the workflow, the analysis should produce a structured set of outputs.
+
+These may include:
+
+```text
+results/
+├── filtered-differential-proteins.tsv
+├── ranked-protein-table.tsv
+├── cleaned-identifier-table.tsv
+├── annotation-table.tsv
+├── go-enrichment-results.tsv
+├── pathway-enrichment-results.tsv
+├── string-network-input.tsv
+├── interpretation-summary.md
+└── proteomics-analysis-report.html
+```
+
+The exact output structure may evolve as the guide develops, but the principle remains the same: each step should create reusable files that make the analysis transparent, reproducible, and easy to review.
+
+## Biological Interpretation as the Final Goal
+
+Proteomics results are not complete when a p-value table is produced.
+
+The final goal is biological interpretation.
+
+A good proteomics interpretation should explain:
+
+- which proteins changed
+- how strongly they changed
+- whether the changes are statistically supported
+- what biological processes are represented
+- which pathways may be affected
+- whether proteins form meaningful interaction networks
+- how the findings connect to the study question
+
+This guide is designed to help move from statistical results to biological meaning.
+
+## Guide Philosophy
+
+The Proteomics Analysis System follows the same philosophy as other CDI omics systems:
+
+```text
+Input clarity
+        ↓
+Structured workflow
+        ↓
+Reproducible outputs
+        ↓
+Biological interpretation
+        ↓
+Reusable reporting
+```
+
+The system is intentionally practical.
+
+It is designed for real proteomics result tables, including tables that may have inconsistent column names, mixed identifiers, missing annotations, or unclear filtering criteria.
+
+Instead of treating those issues as obstacles, the guide treats them as part of the analysis workflow.
+
+## Looking Ahead
+
+The next chapter introduces the structure of proteomics result tables and explains how to inspect, validate, and prepare them for downstream analysis.
+
+Before enrichment analysis or network interpretation can begin, the analyst must understand what the table contains, which columns are reliable, and how proteins are represented.
+
+The next step is therefore:
+
+```text
+Proteomics result tables
+        ↓
+Table inspection and preparation
+```

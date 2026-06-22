@@ -1,23 +1,320 @@
-# Ranking and Filtering Differentially Abundant Proteins
+# Ranking and Filtering DEP
 
-This chapter turns a large differential result table into prioritized protein lists.
+After filtering differential protein abundance results, the next step is to rank the differentially abundant proteins.
 
-## Core Outputs
+Filtering answers:
 
 ```text
-all differential proteins
-significant DEP
-top upregulated proteins
-top downregulated proteins
-ranked protein list
+Which proteins pass the selected thresholds?
 ```
+
+Ranking answers:
+
+```text
+Which proteins should be reviewed first?
+```
+
+This chapter produces prioritized protein lists that can be used for biological interpretation, annotation, enrichment analysis, visualization, and reporting.
+
+In this guide, **DEP** refers to differentially expressed or differentially abundant proteins. For proteomics, the more precise term is usually **differentially abundant proteins**, but DEP is commonly used as shorthand.
+
+## Starting Point
+
+This chapter uses the output from Chapter 05:
+
+```text
+results/differential-proteins.tsv
+```
+
+This file contains all proteins from the original result table plus filtering columns such as:
+
+```text
+log2fc_numeric
+adjusted_p_value_numeric
+abs_log2fc
+passes_padj
+passes_log2fc
+is_significant
+regulation
+```
+
+Before running this chapter, Chapter 05 should have been completed:
+
+```bash
+Rscript scripts/R/05-filter-differential-proteins.R \
+  data/example/example-proteomics-results.csv \
+  results \
+  1 \
+  0.05
+```
+
+## Why Ranking Matters
+
+A significant protein list can still be too large for direct interpretation.
+
+Ranking helps identify proteins that are most important to inspect first.
+
+A good ranking system should consider both:
+
+```text
+statistical support
+        +
+effect size
+```
+
+A protein with a very small adjusted p-value but modest fold change may be important.
+
+A protein with a large fold change but weaker statistical support may also be worth reviewing.
+
+The ranking step makes this prioritization explicit.
 
 ## Ranking Strategy
 
-Proteins can be ranked by:
+This chapter ranks proteins using:
 
-- adjusted p-value
-- absolute log2 fold-change
-- direction of change
-- biological relevance
-- presence in known pathways or protein families
+```text
+adjusted_p_value_numeric ascending
+absolute log2fc descending
+```
+
+This means proteins are prioritized by:
+
+```text
+stronger statistical support first
+        ↓
+larger abundance change next
+```
+
+The ranking logic is simple, transparent, and reproducible.
+
+## Expected Input
+
+The expected input is:
+
+```text
+results/differential-proteins.tsv
+```
+
+This file is created by:
+
+```text
+scripts/R/05-filter-differential-proteins.R
+```
+
+## Output Files
+
+The ranking script creates:
+
+```text
+results/
+├── ranked-proteins.tsv
+├── ranked-significant-proteins.tsv
+├── top-upregulated-proteins.tsv
+├── top-downregulated-proteins.tsv
+└── ranking-summary.tsv
+```
+
+## Ranking Script
+
+The executable script is saved as:
+
+```text
+scripts/R/06-rank-and-filter-dep.R
+```
+
+The guide shows how to run the script. The full executable code is maintained in `scripts/R/`.
+
+## Running the Script
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/06-rank-and-filter-dep.R \
+  results/differential-proteins.tsv \
+  results \
+  10
+```
+
+The arguments are:
+
+```text
+1st argument → differential protein table from Chapter 05
+2nd argument → output directory
+3rd argument → number of top proteins to export per direction
+```
+
+In this example:
+
+```text
+top_n = 10
+```
+
+## Output 1: Ranked Proteins
+
+The full ranked protein table is:
+
+```text
+results/ranked-proteins.tsv
+```
+
+This file contains all proteins ranked by statistical support and effect size.
+
+It is useful for:
+
+- reviewing the full ordered result set
+- preparing volcano plots
+- identifying proteins near filtering thresholds
+- maintaining a complete record of prioritization
+
+## Output 2: Ranked Significant Proteins
+
+The ranked significant protein table is:
+
+```text
+results/ranked-significant-proteins.tsv
+```
+
+This file contains only proteins that passed the Chapter 05 filtering criteria.
+
+It is the main ranked list for downstream biological review.
+
+## Output 3: Top Upregulated Proteins
+
+The top upregulated protein table is:
+
+```text
+results/top-upregulated-proteins.tsv
+```
+
+This file contains the highest-priority significant proteins with positive log2 fold change.
+
+For the running example:
+
+```text
+positive log2fc → higher abundance in treated
+```
+
+## Output 4: Top Downregulated Proteins
+
+The top downregulated protein table is:
+
+```text
+results/top-downregulated-proteins.tsv
+```
+
+This file contains the highest-priority significant proteins with negative log2 fold change.
+
+For the running example:
+
+```text
+negative log2fc → lower abundance in treated
+```
+
+or equivalently:
+
+```text
+higher abundance in control
+```
+
+## Output 5: Ranking Summary
+
+The ranking summary file is:
+
+```text
+results/ranking-summary.tsv
+```
+
+It records:
+
+```text
+total proteins ranked
+significant proteins ranked
+top_n used
+number of top upregulated proteins
+number of top downregulated proteins
+```
+
+This file provides a small checkpoint before moving into annotation.
+
+## Ranking Is Not Interpretation
+
+Ranking helps prioritize proteins, but it does not explain biology by itself.
+
+For example, a top-ranked protein may be:
+
+```text
+strongly changed
+statistically supported
+highly abundant
+technically reliable
+```
+
+but it still needs biological context.
+
+Later chapters will ask:
+
+```text
+What is the protein?
+What gene does it map to?
+What biological process is it involved in?
+Is it part of an enriched pathway?
+Does it connect to other proteins in STRING?
+Does it support the study hypothesis?
+```
+
+## Suggested Manual Review
+
+After generating ranked tables, manually inspect the top proteins.
+
+Useful questions include:
+
+```text
+Are the top proteins expected?
+Are any proteins contaminants?
+Are any proteins poorly annotated?
+Are multiple members of the same pathway appearing?
+Are upregulated and downregulated proteins biologically coherent?
+Are protein groups or isoforms affecting interpretation?
+```
+
+This manual review is important before enrichment analysis.
+
+## Relationship to Annotation
+
+The ranked outputs become useful inputs for protein identifier cleaning and annotation.
+
+The most important downstream file is:
+
+```text
+results/ranked-significant-proteins.tsv
+```
+
+This file can be used to prepare:
+
+```text
+cleaned protein identifiers
+gene symbol lists
+UniProt accession lists
+GO enrichment input
+STRING network input
+```
+
+## Looking Ahead
+
+The next chapter focuses on protein identifier cleaning and annotation.
+
+After ranking, the workflow moves from statistical prioritization to biological identity.
+
+```text
+Ranked DEP
+        ↓
+Protein identifier cleaning
+        ↓
+Gene and protein annotation
+        ↓
+GO enrichment
+        ↓
+STRING network analysis
+        ↓
+Biological interpretation
+```

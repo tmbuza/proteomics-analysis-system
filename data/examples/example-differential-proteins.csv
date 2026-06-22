@@ -1,6 +1,0 @@
-protein_id,gene_symbol,protein_name,log2FC,pvalue,padj,comparison
-P12345,GENE1,Example protein 1,2.31,0.00001,0.0004,treated_vs_control
-Q67890,GENE2,Example protein 2,-1.84,0.00008,0.0021,treated_vs_control
-A11111,GENE3,Example protein 3,0.72,0.041,0.1200,treated_vs_control
-B22222,GENE4,Example protein 4,-2.45,0.0002,0.0045,treated_vs_control
-C33333,GENE5,Example protein 5,1.15,0.0030,0.0300,treated_vs_control

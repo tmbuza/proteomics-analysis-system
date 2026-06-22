@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Quality Control of Result Tables – CDI Proteomics Analysis System</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -65,18 +68,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./05-differential-protein-abundance-results.html" rel="next">
-<link href="./03-sample-metadata-and-comparison-design.html" rel="prev">
+<link href="./05-filtering-differential-proteins.html" rel="next">
+<link href="./03-understanding-differential-abundance-results.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -118,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./04-quality-control-of-result-tables.html"><span class="chapter-title">Quality Control of Result Tables</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-proteomics-result-tables.html">Part I: Proteomics Result Inputs</a></li><li class="breadcrumb-item"><a href="./04-quality-control-of-result-tables.html"><span class="chapter-title">Quality Control of Result Tables</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">CDI Proteomics Analysis System</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,80 +157,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-proteomics-results-landscape.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Results Landscape</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-understanding-proteomics-output-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Understanding Proteomics Output Files</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Quality Control of Result Tables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-differential-protein-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
@@ -249,17 +308,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#table-level-checks" id="toc-table-level-checks" class="nav-link active" data-scroll-target="#table-level-checks">Table-Level Checks</a></li>
-  <li><a href="#qc-principle" id="toc-qc-principle" class="nav-link" data-scroll-target="#qc-principle">QC Principle</a></li>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting Point</a></li>
+  <li><a href="#why-result-table-qc-matters" id="toc-why-result-table-qc-matters" class="nav-link" data-scroll-target="#why-result-table-qc-matters">Why Result-Table QC Matters</a></li>
+  <li><a href="#qc-questions" id="toc-qc-questions" class="nav-link" data-scroll-target="#qc-questions">QC Questions</a></li>
+  <li><a href="#expected-input" id="toc-expected-input" class="nav-link" data-scroll-target="#expected-input">Expected Input</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files">Output Files</a></li>
+  <li><a href="#qc-script" id="toc-qc-script" class="nav-link" data-scroll-target="#qc-script">QC Script</a></li>
+  <li><a href="#running-the-script-on-the-example-input" id="toc-running-the-script-on-the-example-input" class="nav-link" data-scroll-target="#running-the-script-on-the-example-input">Running the Script on the Example Input</a></li>
+  <li><a href="#running-the-script-on-a-real-project-input" id="toc-running-the-script-on-a-real-project-input" class="nav-link" data-scroll-target="#running-the-script-on-a-real-project-input">Running the Script on a Real Project Input</a></li>
+  <li><a href="#required-columns" id="toc-required-columns" class="nav-link" data-scroll-target="#required-columns">Required Columns</a></li>
+  <li><a href="#column-level-qc" id="toc-column-level-qc" class="nav-link" data-scroll-target="#column-level-qc">Column-Level QC</a></li>
+  <li><a href="#duplicate-protein-identifiers" id="toc-duplicate-protein-identifiers" class="nav-link" data-scroll-target="#duplicate-protein-identifiers">Duplicate Protein Identifiers</a></li>
+  <li><a href="#problem-rows" id="toc-problem-rows" class="nav-link" data-scroll-target="#problem-rows">Problem Rows</a></li>
+  <li><a href="#readiness-for-filtering" id="toc-readiness-for-filtering" class="nav-link" data-scroll-target="#readiness-for-filtering">Readiness for Filtering</a></li>
+  <li><a href="#example-qc-interpretation" id="toc-example-qc-interpretation" class="nav-link" data-scroll-target="#example-qc-interpretation">Example QC Interpretation</a></li>
+  <li><a href="#why-qc-comes-before-filtering" id="toc-why-qc-comes-before-filtering" class="nav-link" data-scroll-target="#why-qc-comes-before-filtering">Why QC Comes Before Filtering</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-proteomics-result-tables.html">Part I: Proteomics Result Inputs</a></li><li class="breadcrumb-item"><a href="./04-quality-control-of-result-tables.html"><span class="chapter-title">Quality Control of Result Tables</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Quality Control of Result Tables</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-title">Quality Control of Result Tables</span></h1>
 </div>
 
 
@@ -282,25 +355,232 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This chapter checks whether the received result tables are suitable for interpretation.</p>
-<section id="table-level-checks" class="level2">
-<h2 class="anchored" data-anchor-id="table-level-checks">Table-Level Checks</h2>
-<p>Recommended checks include:</p>
-<ul>
-<li>required columns are present</li>
-<li>protein identifiers are not missing</li>
-<li>log2FC values are numeric</li>
-<li>p-values and adjusted p-values are numeric</li>
-<li>duplicate protein IDs are handled</li>
-<li>comparison labels are clear</li>
-</ul>
+<p>After understanding the differential abundance columns, the next step is to perform quality control on the proteomics result table.</p>
+<p>In a results-first proteomics workflow, the analyst often receives a processed table rather than raw mass spectrometry files. This means that quality control begins at the table level.</p>
+<p>The goal of this chapter is to check whether the result table is structurally ready for filtering, ranking, annotation, enrichment analysis, visualization, and biological interpretation.</p>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting Point</h2>
+<p>This chapter uses the running example result table:</p>
+<pre class="text"><code>data/example/example-proteomics-results.csv</code></pre>
+<p>This file was introduced earlier and contains columns such as:</p>
+<pre class="text"><code>protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison</code></pre>
+<p>Before applying thresholds, the table should be checked for common problems.</p>
 </section>
-<section id="qc-principle" class="level2">
-<h2 class="anchored" data-anchor-id="qc-principle">QC Principle</h2>
-<p>Before interpreting biology, confirm that the result table is internally consistent.</p>
+<section id="why-result-table-qc-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-result-table-qc-matters">Why Result-Table QC Matters</h2>
+<p>A differential abundance table may look simple, but small table-level issues can affect the entire downstream workflow.</p>
+<p>Common problems include:</p>
+<ul>
+<li>missing protein identifiers</li>
+<li>duplicated protein identifiers</li>
+<li>missing gene symbols</li>
+<li>missing fold-change values</li>
+<li>non-numeric p-values</li>
+<li>non-numeric adjusted p-values</li>
+<li>missing comparison labels</li>
+<li>inconsistent comparison labels</li>
+<li>unexpected column names</li>
+<li>empty rows</li>
+<li>proteins without usable identifiers</li>
+<li>values that cannot be used for filtering</li>
+</ul>
+<p>Quality control makes these issues visible before interpretation begins.</p>
+</section>
+<section id="qc-questions" class="level2">
+<h2 class="anchored" data-anchor-id="qc-questions">QC Questions</h2>
+<p>This chapter asks practical questions:</p>
+<pre class="text"><code>Is the table readable?
+        ↓
+Are required columns present?
+        ↓
+Are key columns complete?
+        ↓
+Are numeric columns actually numeric?
+        ↓
+Are protein identifiers duplicated?
+        ↓
+Are comparison labels present?
+        ↓
+Is the table ready for filtering?</code></pre>
+<p>These checks help prevent downstream errors.</p>
+</section>
+<section id="expected-input" class="level2">
+<h2 class="anchored" data-anchor-id="expected-input">Expected Input</h2>
+<p>The expected example input is:</p>
+<pre class="text"><code>data/example/example-proteomics-results.csv</code></pre>
+<p>For real project data, the equivalent input is:</p>
+<pre class="text"><code>data/input/proteomics-results.csv</code></pre>
+</section>
+<section id="output-files" class="level2">
+<h2 class="anchored" data-anchor-id="output-files">Output Files</h2>
+<p>The QC script creates:</p>
+<pre class="text"><code>results/
+├── result-table-qc-summary.tsv
+├── result-table-column-qc.tsv
+├── result-table-duplicate-proteins.tsv
+├── result-table-problem-rows.tsv
+└── result-table-qc-report.txt</code></pre>
+<p>Each output serves a different purpose.</p>
+<pre class="text"><code>result-table-qc-summary.tsv</code></pre>
+<p>records high-level QC checks.</p>
+<pre class="text"><code>result-table-column-qc.tsv</code></pre>
+<p>summarizes missing values and data types by column.</p>
+<pre class="text"><code>result-table-duplicate-proteins.tsv</code></pre>
+<p>lists duplicated protein identifiers, if any.</p>
+<pre class="text"><code>result-table-problem-rows.tsv</code></pre>
+<p>captures rows with missing key values.</p>
+<pre class="text"><code>result-table-qc-report.txt</code></pre>
+<p>provides a human-readable QC report.</p>
+</section>
+<section id="qc-script" class="level2">
+<h2 class="anchored" data-anchor-id="qc-script">QC Script</h2>
+<p>The executable script is saved as:</p>
+<pre class="text"><code>scripts/R/04-qc-result-table.R</code></pre>
+<p>The script checks:</p>
+<ul>
+<li>whether required columns are present</li>
+<li>whether protein identifiers are missing</li>
+<li>whether protein identifiers are duplicated</li>
+<li>whether log2 fold-change values are numeric</li>
+<li>whether p-values are numeric</li>
+<li>whether adjusted p-values are numeric</li>
+<li>whether comparison labels are present</li>
+<li>how many missing values occur in each column</li>
+<li>whether the table appears ready for differential filtering</li>
+</ul>
+<p>The guide shows how to run the script. The full executable code is maintained in <code>scripts/R/</code>.</p>
+</section>
+<section id="running-the-script-on-the-example-input" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script-on-the-example-input">Running the Script on the Example Input</h2>
+<p>From the project root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/04-qc-result-table.R <span class="dt">\</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  data/example/example-proteomics-results.csv <span class="dt">\</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The expected outputs are:</p>
+<pre class="text"><code>results/
+├── result-table-qc-summary.tsv
+├── result-table-column-qc.tsv
+├── result-table-duplicate-proteins.tsv
+├── result-table-problem-rows.tsv
+└── result-table-qc-report.txt</code></pre>
+</section>
+<section id="running-the-script-on-a-real-project-input" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script-on-a-real-project-input">Running the Script on a Real Project Input</h2>
+<p>For a real project table, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/04-qc-result-table.R <span class="dt">\</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  data/input/proteomics-results.csv <span class="dt">\</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Only the input file changes.</p>
+</section>
+<section id="required-columns" class="level2">
+<h2 class="anchored" data-anchor-id="required-columns">Required Columns</h2>
+<p>For the current results-first workflow, the recommended required columns are:</p>
+<pre class="text"><code>protein_id
+log2fc
+p_value
+adjusted_p_value
+comparison</code></pre>
+<p>The following columns are strongly recommended:</p>
+<pre class="text"><code>gene_symbol
+protein_name</code></pre>
+<p>The script checks the required columns directly.</p>
+<p>If recommended columns are missing, the table may still be usable, but downstream interpretation will be weaker.</p>
+</section>
+<section id="column-level-qc" class="level2">
+<h2 class="anchored" data-anchor-id="column-level-qc">Column-Level QC</h2>
+<p>The column QC output is:</p>
+<pre class="text"><code>results/result-table-column-qc.tsv</code></pre>
+<p>This file reports:</p>
+<pre class="text"><code>column_name
+column_type
+missing_values
+missing_percent
+unique_values</code></pre>
+<p>This helps identify columns with high missingness or unexpected data types.</p>
+</section>
+<section id="duplicate-protein-identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="duplicate-protein-identifiers">Duplicate Protein Identifiers</h2>
+<p>Duplicated identifiers can occur for several reasons:</p>
+<ul>
+<li>the table contains protein groups</li>
+<li>the same accession appears in multiple comparisons</li>
+<li>the table includes multiple isoforms</li>
+<li>the upstream software exported repeated rows</li>
+<li>identifiers were not cleaned before export</li>
+</ul>
+<p>The duplicate output is:</p>
+<pre class="text"><code>results/result-table-duplicate-proteins.tsv</code></pre>
+<p>If the file has zero rows, no duplicated protein identifiers were detected.</p>
+<p>If duplicates are present, the analyst should check whether they are expected.</p>
+<p>For multiple comparisons, duplicates may be acceptable if each protein appears once per comparison. For a single comparison, duplicated protein identifiers may need review.</p>
+</section>
+<section id="problem-rows" class="level2">
+<h2 class="anchored" data-anchor-id="problem-rows">Problem Rows</h2>
+<p>The problem-row output is:</p>
+<pre class="text"><code>results/result-table-problem-rows.tsv</code></pre>
+<p>This table contains rows with missing or unusable key values.</p>
+<p>Examples include:</p>
+<pre class="text"><code>missing protein_id
+missing log2fc
+missing adjusted_p_value
+missing comparison</code></pre>
+<p>Rows with missing key values may need to be removed, repaired, or excluded before filtering.</p>
+</section>
+<section id="readiness-for-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="readiness-for-filtering">Readiness for Filtering</h2>
+<p>The QC summary includes an overall readiness flag.</p>
+<p>A table is considered ready for filtering when:</p>
+<pre class="text"><code>required columns are present
+        +
+key numeric fields are usable
+        +
+protein identifiers are present
+        +
+comparison labels are present</code></pre>
+<p>This does not mean the biological analysis is complete.</p>
+<p>It only means that the table is structurally ready for the next computational step.</p>
+</section>
+<section id="example-qc-interpretation" class="level2">
+<h2 class="anchored" data-anchor-id="example-qc-interpretation">Example QC Interpretation</h2>
+<p>For the small example table, the expected result is that the table passes basic QC.</p>
+<p>The output should confirm:</p>
+<pre class="text"><code>required columns present
+no missing protein identifiers
+log2fc is numeric
+p_value is numeric
+adjusted_p_value is numeric
+comparison labels are present</code></pre>
+<p>This allows the workflow to continue to differential protein abundance filtering.</p>
+</section>
+<section id="why-qc-comes-before-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="why-qc-comes-before-filtering">Why QC Comes Before Filtering</h2>
+<p>Filtering should not be applied blindly.</p>
+<p>For example:</p>
+<pre class="text"><code>adjusted_p_value &lt;= 0.05</code></pre>
+<p>only makes sense if <code>adjusted_p_value</code> is numeric, complete enough to use, and correctly identified.</p>
+<p>Similarly:</p>
+<pre class="text"><code>abs(log2fc) &gt;= 1</code></pre>
+<p>only makes sense if <code>log2fc</code> is numeric and the comparison direction is known.</p>
+<p>QC protects the analysis from avoidable errors.</p>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The next chapter performs differential protein abundance filtering.</p>
+<p>After QC, the table can be filtered using statistical and biological thresholds.</p>
+<pre class="text"><code>Result-table QC
+        ↓
+Differential protein abundance filtering
+        ↓
+Significant proteins
+        ↓
+Upregulated and downregulated protein sets</code></pre>
 
-
-<!-- -->
 
 </section>
 
@@ -356,13 +636,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -374,57 +655,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -442,6 +672,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -757,35 +989,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./03-sample-metadata-and-comparison-design.html" class="pagination-link" aria-label="Sample Metadata and Comparison Design">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Sample Metadata and Comparison Design</span></span>
+      <a href="./03-understanding-differential-abundance-results.html" class="pagination-link" aria-label="Differential Abundance Results">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Differential Abundance Results</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./05-differential-protein-abundance-results.html" class="pagination-link" aria-label="Differential Protein Abundance Results">
+      <a href="./05-filtering-differential-proteins.html" class="pagination-link" aria-label="Differential Protein Abundance Results">
         <span class="nav-page-text"><span class="chapter-title">Differential Protein Abundance Results</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Quality Control of Result Tables</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>This chapter checks whether the received result tables are suitable for interpretation.</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Table-Level Checks</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>Recommended checks include:</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>required columns are present</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>protein identifiers are not missing</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>log2FC values are numeric</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>p-values and adjusted p-values are numeric</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>duplicate protein IDs are handled</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>comparison labels are clear</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">## QC Principle</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>Before interpreting biology, confirm that the result table is internally consistent.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

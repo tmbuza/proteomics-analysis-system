@@ -1,0 +1,370 @@
+# Differential Protein Abundance Results
+
+After result-table quality control, the next step is to filter proteins based on differential abundance criteria.
+
+This chapter moves from understanding differential abundance columns to producing interpretable protein lists.
+
+The goal is to identify proteins that pass both:
+
+```text
+statistical evidence
+        +
+biological effect size
+```
+
+In this guide, the default filtering criteria are:
+
+```text
+adjusted_p_value <= 0.05
+absolute log2fc >= 1
+```
+
+These thresholds are practical defaults for the running example. Real projects may require different thresholds depending on the study design, sample size, platform, and biological question.
+
+## Starting Point
+
+This chapter uses the running example result table:
+
+```text
+data/example/example-proteomics-results.csv
+```
+
+Before running this chapter, the table should have passed the basic QC checks from Chapter 04.
+
+The Chapter 04 command was:
+
+```bash
+Rscript scripts/R/04-qc-result-table.R \
+  data/example/example-proteomics-results.csv \
+  results
+```
+
+The QC output should include:
+
+```text
+results/result-table-qc-summary.tsv
+```
+
+## Why Filtering Matters
+
+A proteomics result table may contain many proteins.
+
+Some proteins have strong statistical evidence. Some have large fold changes. Some have both.
+
+Filtering helps identify proteins that are most useful for downstream biological interpretation.
+
+The filtering logic in this chapter is:
+
+```text
+adjusted_p_value <= threshold
+        ↓
+statistically supported
+
+absolute log2fc >= threshold
+        ↓
+biologically meaningful change
+
+both criteria satisfied
+        ↓
+differentially abundant protein
+```
+
+## Direction of Change
+
+The direction of change depends on the comparison design.
+
+For the running example:
+
+```text
+treated_vs_control
+```
+
+means:
+
+```text
+numerator condition   = treated
+denominator condition = control
+```
+
+Therefore:
+
+```text
+positive log2fc → higher abundance in treated
+negative log2fc → lower abundance in treated
+```
+
+The script classifies proteins as:
+
+```text
+upregulated
+downregulated
+not_significant
+```
+
+In this results-first proteomics guide, **upregulated** means higher abundance in the numerator condition of the comparison. It does not necessarily imply transcriptional regulation.
+
+## Expected Input
+
+The expected input is:
+
+```text
+data/example/example-proteomics-results.csv
+```
+
+The table should contain:
+
+```text
+protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison
+```
+
+The script can also work with real project input:
+
+```text
+data/input/proteomics-results.csv
+```
+
+## Output Files
+
+The filtering script creates:
+
+```text
+results/
+├── differential-proteins.tsv
+├── significant-proteins.tsv
+├── upregulated-proteins.tsv
+├── downregulated-proteins.tsv
+└── differential-summary.tsv
+```
+
+## Filtering Script
+
+The executable script is saved as:
+
+```text
+scripts/R/05-filter-differential-proteins.R
+```
+
+The guide shows how to run the script. The full executable code is maintained in `scripts/R/`.
+
+## Running the Script on the Example Input
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/05-filter-differential-proteins.R \
+  data/example/example-proteomics-results.csv \
+  results \
+  1 \
+  0.05
+```
+
+The arguments are:
+
+```text
+1st argument → input table
+2nd argument → output directory
+3rd argument → absolute log2 fold-change threshold
+4th argument → adjusted p-value threshold
+```
+
+In this example:
+
+```text
+absolute log2fc threshold = 1
+adjusted p-value threshold = 0.05
+```
+
+## Running the Script on a Real Project Input
+
+For a real project table, run:
+
+```bash
+Rscript scripts/R/05-filter-differential-proteins.R \
+  data/input/proteomics-results.csv \
+  results \
+  1 \
+  0.05
+```
+
+Only the input file changes.
+
+## Output 1: Differential Proteins
+
+The full differential table is:
+
+```text
+results/differential-proteins.tsv
+```
+
+This file contains all proteins from the input table, plus filtering and interpretation columns.
+
+Added columns include:
+
+```text
+log2fc_numeric
+adjusted_p_value_numeric
+abs_log2fc
+passes_padj
+passes_log2fc
+is_significant
+regulation
+```
+
+This file is useful because it preserves the full result table while making the filtering decision explicit.
+
+## Output 2: Significant Proteins
+
+The significant protein table is:
+
+```text
+results/significant-proteins.tsv
+```
+
+This file contains only proteins that pass both filtering criteria:
+
+```text
+adjusted_p_value <= threshold
+absolute log2fc >= threshold
+```
+
+This is the main table for downstream interpretation, annotation, enrichment, and visualization.
+
+## Output 3: Upregulated Proteins
+
+The upregulated protein table is:
+
+```text
+results/upregulated-proteins.tsv
+```
+
+This file contains significant proteins with positive log2 fold change.
+
+For the running example:
+
+```text
+positive log2fc → higher abundance in treated
+```
+
+## Output 4: Downregulated Proteins
+
+The downregulated protein table is:
+
+```text
+results/downregulated-proteins.tsv
+```
+
+This file contains significant proteins with negative log2 fold change.
+
+For the running example:
+
+```text
+negative log2fc → lower abundance in treated
+```
+
+or equivalently:
+
+```text
+higher abundance in control
+```
+
+## Output 5: Differential Summary
+
+The differential summary file is:
+
+```text
+results/differential-summary.tsv
+```
+
+It summarizes:
+
+```text
+total proteins
+significant proteins
+upregulated proteins
+downregulated proteins
+not significant proteins
+thresholds used
+```
+
+This file provides a quick checkpoint for the analysis.
+
+## Expected Results from the Example Table
+
+Using the running example and the default thresholds:
+
+```text
+absolute log2fc >= 1
+adjusted_p_value <= 0.05
+```
+
+the example should produce a small set of significant proteins.
+
+This gives a simple confirmation that the workflow is working before larger real datasets are introduced.
+
+## Why Keep All Proteins?
+
+Even after filtering, it is useful to keep the full differential table.
+
+The complete table is needed for:
+
+- reviewing proteins near the threshold
+- changing thresholds later
+- ranking all proteins
+- creating volcano plots
+- preparing background sets for enrichment analysis
+- documenting the full decision process
+
+For that reason, this chapter saves both:
+
+```text
+all differential results
+filtered significant proteins
+```
+
+## Thresholds Are Analysis Decisions
+
+The thresholds used here are not fixed biological truths.
+
+They are analysis decisions.
+
+A stricter analysis might use:
+
+```text
+adjusted_p_value <= 0.01
+absolute log2fc >= 1.5
+```
+
+A more exploratory analysis might use:
+
+```text
+adjusted_p_value <= 0.10
+absolute log2fc >= 0.58
+```
+
+The important point is that the thresholds should be stated clearly and recorded in the output.
+
+## Looking Ahead
+
+The next chapter focuses on ranking and filtering differentially expressed or differentially abundant proteins.
+
+Filtering identifies proteins that pass thresholds.
+
+Ranking prioritizes proteins for interpretation.
+
+```text
+Differential protein abundance filtering
+        ↓
+Significant proteins
+        ↓
+Upregulated and downregulated proteins
+        ↓
+Ranked protein lists
+        ↓
+Biological interpretation
+```

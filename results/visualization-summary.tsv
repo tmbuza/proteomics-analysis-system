@@ -1,0 +1,10 @@
+metric	value
+input_file	results/differential-proteins.tsv
+input_rows	5
+plot_ready_rows	5
+top_n	10
+top_significant_proteins_plotted	4
+log2fc_column	log2fc_numeric
+adjusted_p_value_column	adjusted_p_value_numeric
+protein_label_column	gene_symbol
+regulation_column	regulation

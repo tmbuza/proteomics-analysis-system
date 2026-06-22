@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Raw Data Expansion Roadmap – CDI Proteomics Analysis System</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -19,41 +22,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,10 +41,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +75,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -118,7 +87,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-raw-data-expansion-roadmap.html"><span class="chapter-title">Raw Data Expansion Roadmap</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-raw-data-expansion-roadmap.html">Part V: Future Expansion</a></li><li class="breadcrumb-item"><a href="./13-raw-data-expansion-roadmap.html"><span class="chapter-title">Raw Data Expansion Roadmap</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">CDI Proteomics Analysis System</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,80 +122,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-proteomics-results-landscape.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Results Landscape</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-understanding-proteomics-output-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Understanding Proteomics Output Files</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-differential-protein-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
@@ -249,17 +273,34 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#future-expansion" id="toc-future-expansion" class="nav-link active" data-scroll-target="#future-expansion">Future Expansion</a></li>
-  <li><a href="#possible-future-topics" id="toc-possible-future-topics" class="nav-link" data-scroll-target="#possible-future-topics">Possible Future Topics</a></li>
+  <li><a href="#current-scope" id="toc-current-scope" class="nav-link active" data-scroll-target="#current-scope">Current Scope</a></li>
+  <li><a href="#future-scope" id="toc-future-scope" class="nav-link" data-scroll-target="#future-scope">Future Scope</a></li>
+  <li><a href="#raw-proteomics-data-types" id="toc-raw-proteomics-data-types" class="nav-link" data-scroll-target="#raw-proteomics-data-types">Raw Proteomics Data Types</a></li>
+  <li><a href="#common-processing-stages" id="toc-common-processing-stages" class="nav-link" data-scroll-target="#common-processing-stages">Common Processing Stages</a></li>
+  <li><a href="#possible-software-tools" id="toc-possible-software-tools" class="nav-link" data-scroll-target="#possible-software-tools">Possible Software Tools</a></li>
+  <li><a href="#data-independent-and-data-dependent-acquisition" id="toc-data-independent-and-data-dependent-acquisition" class="nav-link" data-scroll-target="#data-independent-and-data-dependent-acquisition">Data-Independent and Data-Dependent Acquisition</a></li>
+  <li><a href="#proposed-raw-data-module-structure" id="toc-proposed-raw-data-module-structure" class="nav-link" data-scroll-target="#proposed-raw-data-module-structure">Proposed Raw-Data Module Structure</a></li>
+  <li><a href="#handoff-table" id="toc-handoff-table" class="nav-link" data-scroll-target="#handoff-table">Handoff Table</a></li>
+  <li><a href="#raw-data-qc-expansion" id="toc-raw-data-qc-expansion" class="nav-link" data-scroll-target="#raw-data-qc-expansion">Raw-Data QC Expansion</a></li>
+  <li><a href="#reproducibility-requirements" id="toc-reproducibility-requirements" class="nav-link" data-scroll-target="#reproducibility-requirements">Reproducibility Requirements</a></li>
+  <li><a href="#containerization-and-environment-control" id="toc-containerization-and-environment-control" class="nav-link" data-scroll-target="#containerization-and-environment-control">Containerization and Environment Control</a></li>
+  <li><a href="#possible-workflow-managers" id="toc-possible-workflow-managers" class="nav-link" data-scroll-target="#possible-workflow-managers">Possible Workflow Managers</a></li>
+  <li><a href="#recommended-expansion-strategy" id="toc-recommended-expansion-strategy" class="nav-link" data-scroll-target="#recommended-expansion-strategy">Recommended Expansion Strategy</a></li>
+  <li><a href="#phase-1-results-first-edition" id="toc-phase-1-results-first-edition" class="nav-link" data-scroll-target="#phase-1-results-first-edition">Phase 1: Results-First Edition</a></li>
+  <li><a href="#phase-2-quantification-table-edition" id="toc-phase-2-quantification-table-edition" class="nav-link" data-scroll-target="#phase-2-quantification-table-edition">Phase 2: Quantification Table Edition</a></li>
+  <li><a href="#phase-3-raw-mass-spectrometry-edition" id="toc-phase-3-raw-mass-spectrometry-edition" class="nav-link" data-scroll-target="#phase-3-raw-mass-spectrometry-edition">Phase 3: Raw Mass Spectrometry Edition</a></li>
+  <li><a href="#relationship-to-cdi-systems" id="toc-relationship-to-cdi-systems" class="nav-link" data-scroll-target="#relationship-to-cdi-systems">Relationship to CDI Systems</a></li>
+  <li><a href="#final-workflow-summary" id="toc-final-workflow-summary" class="nav-link" data-scroll-target="#final-workflow-summary">Final Workflow Summary</a></li>
+  <li><a href="#final-note" id="toc-final-note" class="nav-link" data-scroll-target="#final-note">Final Note</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-raw-data-expansion-roadmap.html">Part V: Future Expansion</a></li><li class="breadcrumb-item"><a href="./13-raw-data-expansion-roadmap.html"><span class="chapter-title">Raw Data Expansion Roadmap</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Raw Data Expansion Roadmap</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-title">Raw Data Expansion Roadmap</span></h1>
 </div>
 
 
@@ -282,13 +323,95 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>This Results-First Edition begins from processed proteomics results.</p>
-<p>A future Raw Data Edition can expand backward into raw mass spectrometry processing.</p>
-<section id="future-expansion" class="level2">
-<h2 class="anchored" data-anchor-id="future-expansion">Future Expansion</h2>
-<pre class="text"><code>RAW files
+<p>This guide has focused on a results-first proteomics workflow.</p>
+<p>The starting point was a processed proteomics result table, not raw mass spectrometry files.</p>
+<p>This chapter explains how the system can be expanded in the future to support raw data processing, from mass spectrometry files to protein-level differential abundance results.</p>
+<section id="current-scope" class="level2">
+<h2 class="anchored" data-anchor-id="current-scope">Current Scope</h2>
+<p>The current edition starts here:</p>
+<pre class="text"><code>processed proteomics result table
         ↓
-spectral processing
+table inspection
+        ↓
+metadata and comparison design
+        ↓
+differential abundance understanding
+        ↓
+quality control
+        ↓
+filtering and ranking
+        ↓
+identifier cleaning
+        ↓
+functional enrichment preparation
+        ↓
+STRING preparation
+        ↓
+visualization
+        ↓
+biological interpretation
+        ↓
+reproducible report</code></pre>
+<p>This workflow is useful when the analyst receives result tables from:</p>
+<pre class="text"><code>proteomics core facility
+collaborator
+vendor
+published supplementary data
+previous internal analysis</code></pre>
+</section>
+<section id="future-scope" class="level2">
+<h2 class="anchored" data-anchor-id="future-scope">Future Scope</h2>
+<p>A raw-data edition would begin earlier.</p>
+<pre class="text"><code>raw mass spectrometry files
+        ↓
+raw-data organization
+        ↓
+metadata validation
+        ↓
+database search or DIA processing
+        ↓
+peptide-spectrum matching
+        ↓
+protein inference
+        ↓
+protein quantification
+        ↓
+normalization
+        ↓
+differential abundance analysis
+        ↓
+results-first workflow</code></pre>
+<p>The current system can become the downstream interpretation layer of a larger proteomics workflow.</p>
+</section>
+<section id="raw-proteomics-data-types" class="level2">
+<h2 class="anchored" data-anchor-id="raw-proteomics-data-types">Raw Proteomics Data Types</h2>
+<p>Raw proteomics workflows may include several file types.</p>
+<p>Examples include:</p>
+<pre class="text"><code>.raw
+.mzML
+.mzXML
+.mgf
+.tsv
+.txt
+.csv</code></pre>
+<p>Vendor-specific raw files may need conversion before open workflows can use them.</p>
+<p>For example:</p>
+<pre class="text"><code>Thermo .raw
+        ↓
+mzML
+        ↓
+search or quantification workflow</code></pre>
+</section>
+<section id="common-processing-stages" class="level2">
+<h2 class="anchored" data-anchor-id="common-processing-stages">Common Processing Stages</h2>
+<p>A raw-data proteomics system may include the following stages.</p>
+<pre class="text"><code>raw data inventory
+        ↓
+file conversion
+        ↓
+database preparation
+        ↓
+search engine execution
         ↓
 peptide identification
         ↓
@@ -296,25 +419,242 @@ protein inference
         ↓
 protein quantification
         ↓
+quality control
+        ↓
+statistical analysis
+        ↓
+differential protein abundance table</code></pre>
+<p>The final output from this upstream workflow would feed directly into the current Results-First Edition.</p>
+</section>
+<section id="possible-software-tools" class="level2">
+<h2 class="anchored" data-anchor-id="possible-software-tools">Possible Software Tools</h2>
+<p>A future raw-data expansion could support tools such as:</p>
+<pre class="text"><code>MaxQuant
+Proteome Discoverer
+FragPipe
+MSFragger
+DIA-NN
+OpenMS
+MSstats
+limma
+DEP
+Perseus-style tables</code></pre>
+<p>The system does not need to support all tools at once.</p>
+<p>A practical expansion should begin with one clear workflow and one example dataset.</p>
+</section>
+<section id="data-independent-and-data-dependent-acquisition" class="level2">
+<h2 class="anchored" data-anchor-id="data-independent-and-data-dependent-acquisition">Data-Independent and Data-Dependent Acquisition</h2>
+<p>Raw proteomics processing depends on the acquisition strategy.</p>
+<p>Common strategies include:</p>
+<pre class="text"><code>DDA
+DIA
+TMT or other labeling workflows
+label-free quantification
+spectral-library workflows
+library-free workflows</code></pre>
+<p>Each approach has different processing requirements.</p>
+<p>For that reason, raw-data expansion should be modular rather than one-size-fits-all.</p>
+</section>
+<section id="proposed-raw-data-module-structure" class="level2">
+<h2 class="anchored" data-anchor-id="proposed-raw-data-module-structure">Proposed Raw-Data Module Structure</h2>
+<p>A future raw-data module could use this structure:</p>
+<pre class="text"><code>raw-proteomics-processing/
+├── 01-raw-data-organization.qmd
+├── 02-mass-spec-metadata.qmd
+├── 03-file-conversion.qmd
+├── 04-database-and-search-setup.qmd
+├── 05-peptide-identification.qmd
+├── 06-protein-inference.qmd
+├── 07-protein-quantification.qmd
+├── 08-normalization-and-qc.qmd
+├── 09-differential-abundance-analysis.qmd
+└── 10-handoff-to-results-first-workflow.qmd</code></pre>
+<p>The handoff output would be a table compatible with this guide.</p>
+</section>
+<section id="handoff-table" class="level2">
+<h2 class="anchored" data-anchor-id="handoff-table">Handoff Table</h2>
+<p>The most important connection between raw processing and results-first interpretation is a standardized handoff table.</p>
+<p>A minimal handoff table should contain:</p>
+<pre class="text"><code>protein_id
+gene_symbol
+protein_name
+log2fc
+p_value
+adjusted_p_value
+comparison</code></pre>
+<p>Additional useful columns include:</p>
+<pre class="text"><code>sample intensities
+group means
+peptide counts
+unique peptide counts
+protein coverage
+missingness statistics
+contaminant flags
+protein group information
+normalization method
+statistical model</code></pre>
+<p>The goal is to make upstream processing and downstream interpretation communicate clearly.</p>
+</section>
+<section id="raw-data-qc-expansion" class="level2">
+<h2 class="anchored" data-anchor-id="raw-data-qc-expansion">Raw-Data QC Expansion</h2>
+<p>A raw-data edition should add QC before differential abundance analysis.</p>
+<p>Possible QC outputs include:</p>
+<pre class="text"><code>raw file inventory
+sample metadata validation
+MS run summary
+identification rate
+peptide counts
+protein counts
+missing value profile
+intensity distributions
+PCA or clustering
+batch effect checks
+contaminant review
+normalization diagnostics</code></pre>
+<p>These QC steps are upstream of the current result-table QC chapter.</p>
+</section>
+<section id="reproducibility-requirements" class="level2">
+<h2 class="anchored" data-anchor-id="reproducibility-requirements">Reproducibility Requirements</h2>
+<p>A raw-data workflow should record:</p>
+<pre class="text"><code>software versions
+database version
+FASTA file
+search parameters
+enzyme specificity
+missed cleavages
+fixed modifications
+variable modifications
+FDR thresholds
+quantification method
+normalization method
+statistical model
+contrast definitions</code></pre>
+<p>These details are essential for reproducibility.</p>
+</section>
+<section id="containerization-and-environment-control" class="level2">
+<h2 class="anchored" data-anchor-id="containerization-and-environment-control">Containerization and Environment Control</h2>
+<p>Raw proteomics processing is more software-sensitive than result-table interpretation.</p>
+<p>A future edition should consider:</p>
+<pre class="text"><code>conda environments
+Docker or Apptainer containers
+version-pinned tools
+workflow managers
+checksums
+locked reference databases</code></pre>
+<p>This would make the workflow easier to rerun later.</p>
+</section>
+<section id="possible-workflow-managers" class="level2">
+<h2 class="anchored" data-anchor-id="possible-workflow-managers">Possible Workflow Managers</h2>
+<p>For larger datasets, raw processing may benefit from a workflow manager.</p>
+<p>Possible options include:</p>
+<pre class="text"><code>Nextflow
+Snakemake
+WDL/Cromwell
+bash-based staged workflows</code></pre>
+<p>For CDI-style teaching systems, a staged bash workflow may be easiest at first.</p>
+<p>A scalable production workflow could later be implemented in Nextflow or Snakemake.</p>
+</section>
+<section id="recommended-expansion-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="recommended-expansion-strategy">Recommended Expansion Strategy</h2>
+<p>A practical expansion strategy is:</p>
+<pre class="text"><code>start with one raw-data type
+        ↓
+choose one processing tool
+        ↓
+use one small public dataset
+        ↓
+produce a standardized differential abundance table
+        ↓
+handoff to the current results-first workflow</code></pre>
+<p>This keeps the expansion manageable.</p>
+</section>
+<section id="phase-1-results-first-edition" class="level2">
+<h2 class="anchored" data-anchor-id="phase-1-results-first-edition">Phase 1: Results-First Edition</h2>
+<p>The current guide completes Phase 1.</p>
+<pre class="text"><code>processed tables
+        ↓
+interpretation-ready outputs
+        ↓
+reproducible report</code></pre>
+<p>This is valuable because many real projects begin with processed output tables.</p>
+</section>
+<section id="phase-2-quantification-table-edition" class="level2">
+<h2 class="anchored" data-anchor-id="phase-2-quantification-table-edition">Phase 2: Quantification Table Edition</h2>
+<p>The next expansion could start from a protein quantification matrix.</p>
+<pre class="text"><code>protein intensity matrix
+        ↓
+sample metadata
+        ↓
+normalization and QC
+        ↓
+statistical modeling
+        ↓
+differential abundance table
+        ↓
+results-first workflow</code></pre>
+<p>This would sit between raw processing and the current guide.</p>
+</section>
+<section id="phase-3-raw-mass-spectrometry-edition" class="level2">
+<h2 class="anchored" data-anchor-id="phase-3-raw-mass-spectrometry-edition">Phase 3: Raw Mass Spectrometry Edition</h2>
+<p>The full expansion would start from raw files.</p>
+<pre class="text"><code>raw mass spectrometry files
+        ↓
+identification and quantification
+        ↓
+protein abundance matrix
+        ↓
 differential abundance analysis
         ↓
-results-first interpretation workflow</code></pre>
+results-first workflow</code></pre>
+<p>This would make the proteomics system end-to-end.</p>
 </section>
-<section id="possible-future-topics" class="level2">
-<h2 class="anchored" data-anchor-id="possible-future-topics">Possible Future Topics</h2>
-<ul>
-<li>MaxQuant</li>
-<li>FragPipe</li>
-<li>DIA-NN</li>
-<li>Spectronaut-style outputs</li>
-<li>peptide-spectrum matches</li>
-<li>protein inference</li>
-<li>label-free quantification</li>
-<li>TMT/iTRAQ workflows</li>
-</ul>
+<section id="relationship-to-cdi-systems" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-cdi-systems">Relationship to CDI Systems</h2>
+<p>This roadmap follows the same CDI system logic:</p>
+<pre class="text"><code>clear inputs
+        ↓
+structured workflow
+        ↓
+reproducible outputs
+        ↓
+interpretation
+        ↓
+reporting</code></pre>
+<p>The Results-First Edition is the interpretation layer.</p>
+<p>The raw-data edition would add upstream processing.</p>
+</section>
+<section id="final-workflow-summary" class="level2">
+<h2 class="anchored" data-anchor-id="final-workflow-summary">Final Workflow Summary</h2>
+<p>The completed Results-First Edition can be summarized as:</p>
+<pre class="text"><code>Proteomics result tables
+        ↓
+Sample metadata and comparison design
+        ↓
+Differential abundance result understanding
+        ↓
+Result-table quality control
+        ↓
+Filtering and ranking
+        ↓
+Identifier cleaning and annotation preparation
+        ↓
+Functional enrichment preparation
+        ↓
+STRING network preparation
+        ↓
+Visualization
+        ↓
+Biological interpretation
+        ↓
+Reproducible report</code></pre>
+</section>
+<section id="final-note" class="level2">
+<h2 class="anchored" data-anchor-id="final-note">Final Note</h2>
+<p>This guide provides a practical foundation for proteomics interpretation when processed result tables are already available.</p>
+<p>That is a common real-world situation.</p>
+<p>The raw-data expansion can be added later without weakening the current system.</p>
+<p>Instead, the current system becomes the stable downstream layer that future raw-data workflows can hand off to.</p>
 
-
-<!-- -->
 
 </section>
 
@@ -370,13 +710,14 @@ results-first interpretation workflow</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -388,57 +729,6 @@ results-first interpretation workflow</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -456,6 +746,8 @@ results-first interpretation workflow</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -780,42 +1072,7 @@ results-first interpretation workflow</code></pre>
         <span class="nav-page-text"><span class="chapter-title">Appendix</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Raw Data Expansion Roadmap</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>This Results-First Edition begins from processed proteomics results.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>A future Raw Data Edition can expand backward into raw mass spectrometry processing.</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">## Future Expansion</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">RAW files</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">spectral processing</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">peptide identification</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">protein inference</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="in">protein quantification</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="in">differential abundance analysis</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="in">results-first interpretation workflow</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">## Possible Future Topics</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>MaxQuant</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>FragPipe</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>DIA-NN</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>Spectronaut-style outputs</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>peptide-spectrum matches</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>protein inference</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>label-free quantification</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>TMT/iTRAQ workflows</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

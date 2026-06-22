@@ -1,0 +1,270 @@
+# Protein Filtering and Ranking
+
+After identifying differentially abundant proteins, the next step is to rank proteins for interpretation.
+
+Filtering answers the question:
+
+```text
+Which proteins pass the selected thresholds?
+```
+
+Ranking answers a related but different question:
+
+```text
+Which proteins should be prioritized for biological interpretation?
+```
+
+A ranked list helps move from statistical output to biological reasoning. It supports later steps such as identifier cleaning, annotation, enrichment analysis, STRING network input preparation, and interpretation.
+
+## Starting Point
+
+This chapter builds on the output from Chapter 02:
+
+```text
+results/differential-proteins.tsv
+```
+
+This table contains the original proteomics result table plus additional columns such as:
+
+```text
+abs_log2fc
+passes_padj
+passes_log2fc
+is_significant
+regulation
+```
+
+These columns make it possible to rank proteins using both statistical and biological criteria.
+
+## Why Ranking Matters
+
+In proteomics, a significant protein list may still contain many proteins.
+
+Some proteins may have very strong fold changes but weaker statistical support. Others may have excellent adjusted p-values but modest fold changes.
+
+A ranking step helps organize the result table so the most interpretable proteins appear first.
+
+Ranking is useful for:
+
+- selecting proteins for manual review
+- preparing top protein tables for reports
+- identifying strong upregulated and downregulated proteins
+- preparing candidate lists for annotation
+- choosing proteins to discuss in biological interpretation
+- supporting figure generation in later chapters
+
+## Ranking Strategy
+
+This guide uses a simple ranking strategy:
+
+```text
+Significant proteins first
+        ↓
+Lowest adjusted p-value first
+        ↓
+Largest absolute log2 fold change first
+```
+
+This prioritizes proteins that are statistically supported and biologically stronger.
+
+The ranking logic can be summarized as:
+
+```text
+is_significant = TRUE
+        ↓
+smaller adjusted_p_value
+        ↓
+larger abs_log2fc
+```
+
+This is a practical default. Real projects may use different ranking strategies depending on the study question.
+
+## Expected Input
+
+The expected input is:
+
+```text
+results/differential-proteins.tsv
+```
+
+This file is produced by:
+
+```bash
+Rscript scripts/R/02-filter-differential-proteins.R \
+  data/example/example-proteomics-results.csv \
+  results \
+  1 \
+  0.05
+```
+
+## Output Files
+
+The ranking script creates:
+
+```text
+results/
+├── ranked-proteins.tsv
+├── ranked-significant-proteins.tsv
+├── top-upregulated-proteins.tsv
+├── top-downregulated-proteins.tsv
+└── ranking-summary.tsv
+```
+
+## Ranking Script
+
+The executable script is saved as:
+
+```text
+scripts/R/03-rank-proteins.R
+```
+
+The guide shows how to run the script. The full executable code is maintained in `scripts/R/`.
+
+## Running the Script
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/03-rank-proteins.R \
+  results/differential-proteins.tsv \
+  results \
+  10
+```
+
+The arguments are:
+
+```text
+1st argument → differential protein table
+2nd argument → output directory
+3rd argument → number of top proteins to export per direction
+```
+
+In this example, the script exports the top 10 upregulated and top 10 downregulated proteins.
+
+## Output 1: Ranked Proteins
+
+The full ranked protein table is:
+
+```text
+results/ranked-proteins.tsv
+```
+
+This file contains all proteins, sorted using the ranking strategy.
+
+The main ranking columns are:
+
+```text
+rank_overall
+abs_log2fc
+adjusted_p_value_numeric
+is_significant
+regulation
+```
+
+This table keeps all proteins because non-significant proteins may still be useful for review, visualization, or background sets.
+
+## Output 2: Ranked Significant Proteins
+
+The significant-only ranked table is:
+
+```text
+results/ranked-significant-proteins.tsv
+```
+
+This file contains only proteins where:
+
+```text
+is_significant = TRUE
+```
+
+This is the main list for interpretation and downstream annotation.
+
+## Output 3: Top Upregulated Proteins
+
+The top upregulated protein table is:
+
+```text
+results/top-upregulated-proteins.tsv
+```
+
+This file contains the strongest significant proteins with positive log2 fold change.
+
+These proteins are more abundant in the treatment, disease, target condition, or numerator group of the comparison.
+
+## Output 4: Top Downregulated Proteins
+
+The top downregulated protein table is:
+
+```text
+results/top-downregulated-proteins.tsv
+```
+
+This file contains the strongest significant proteins with negative log2 fold change.
+
+These proteins are less abundant in the treatment, disease, target condition, or numerator group of the comparison.
+
+## Output 5: Ranking Summary
+
+The ranking summary is:
+
+```text
+results/ranking-summary.tsv
+```
+
+This file records the number of proteins ranked, the number of significant proteins, and the number of top proteins exported.
+
+It provides a quick checkpoint before moving to annotation.
+
+## Interpreting Ranked Results
+
+A ranked protein list should not be interpreted only by position.
+
+High-ranking proteins are useful candidates for interpretation, but the biological meaning depends on context.
+
+Important questions include:
+
+- Is the protein confidently identified?
+- Does the protein have enough peptide evidence?
+- Is the fold change biologically meaningful?
+- Is the protein part of a known pathway?
+- Does the protein connect with other changed proteins?
+- Is the protein expected based on the experimental design?
+- Is the protein unexpected but biologically plausible?
+
+Ranking helps prioritize interpretation, but it does not replace biological reasoning.
+
+## Why Keep Upregulated and Downregulated Lists Separate?
+
+Separating upregulated and downregulated proteins is useful because these groups often represent different biological processes.
+
+For example:
+
+```text
+Upregulated proteins
+        ↓
+activated pathways, stress responses, increased metabolism, inflammation
+
+Downregulated proteins
+        ↓
+repressed pathways, reduced structural proteins, loss of function, inhibited processes
+```
+
+Later enrichment and network analysis can be run separately on upregulated and downregulated protein lists.
+
+This often gives clearer biological interpretation than combining all significant proteins into one list.
+
+## Looking Ahead
+
+The next chapter will focus on identifier cleaning and annotation.
+
+Before enrichment analysis or STRING network analysis, protein identifiers must be clean and suitable for mapping.
+
+```text
+Ranked protein lists
+        ↓
+Identifier cleaning
+        ↓
+Gene symbol and accession mapping
+        ↓
+Annotation-ready protein table
+```

@@ -1,0 +1,8 @@
+check	status	detail
+proteomics_results_file_exists	PASS	data/example/example-proteomics-results.csv
+sample_metadata_file_exists	PASS	data/example/example-sample-metadata.csv
+comparison_design_file_exists	PASS	data/example/example-comparison-design.csv
+required_sample_metadata_columns_present	PASS	sample_id, condition
+required_comparison_design_columns_present	PASS	comparison, numerator_condition, denominator_condition, positive_log2fc_interpretation
+comparison_conditions_found_in_metadata	PASS	Metadata conditions: control, treated
+comparison_labels_match_result_table	PASS	Result comparisons: treated_vs_control | Design comparisons: treated_vs_control

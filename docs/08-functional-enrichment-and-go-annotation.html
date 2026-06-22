@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Functional Enrichment and GO Annotation – CDI Proteomics Analysis System</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -118,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./08-functional-enrichment-and-go-annotation.html"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html">Part III: Protein Annotation and Functional Interpretation</a></li><li class="breadcrumb-item"><a href="./08-functional-enrichment-and-go-annotation.html"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">CDI Proteomics Analysis System</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,80 +157,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-proteomics-results-landscape.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Results Landscape</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-understanding-proteomics-output-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Understanding Proteomics Output Files</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-differential-protein-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
@@ -249,18 +308,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#go-domains" id="toc-go-domains" class="nav-link active" data-scroll-target="#go-domains">GO Domains</a></li>
-  <li><a href="#enrichment-workflow" id="toc-enrichment-workflow" class="nav-link" data-scroll-target="#enrichment-workflow">Enrichment Workflow</a></li>
-  <li><a href="#important-principle" id="toc-important-principle" class="nav-link" data-scroll-target="#important-principle">Important Principle</a></li>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting Point</a></li>
+  <li><a href="#why-functional-enrichment-matters" id="toc-why-functional-enrichment-matters" class="nav-link" data-scroll-target="#why-functional-enrichment-matters">Why Functional Enrichment Matters</a></li>
+  <li><a href="#main-enrichment-categories" id="toc-main-enrichment-categories" class="nav-link" data-scroll-target="#main-enrichment-categories">Main Enrichment Categories</a></li>
+  <li><a href="#enrichment-input-strategy" id="toc-enrichment-input-strategy" class="nav-link" data-scroll-target="#enrichment-input-strategy">Enrichment Input Strategy</a></li>
+  <li><a href="#expected-input-files" id="toc-expected-input-files" class="nav-link" data-scroll-target="#expected-input-files">Expected Input Files</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files">Output Files</a></li>
+  <li><a href="#enrichment-preparation-script" id="toc-enrichment-preparation-script" class="nav-link" data-scroll-target="#enrichment-preparation-script">Enrichment Preparation Script</a></li>
+  <li><a href="#running-the-script" id="toc-running-the-script" class="nav-link" data-scroll-target="#running-the-script">Running the Script</a></li>
+  <li><a href="#output-1-all-gene-inputs" id="toc-output-1-all-gene-inputs" class="nav-link" data-scroll-target="#output-1-all-gene-inputs">Output 1: All Gene Inputs</a></li>
+  <li><a href="#output-2-upregulated-gene-inputs" id="toc-output-2-upregulated-gene-inputs" class="nav-link" data-scroll-target="#output-2-upregulated-gene-inputs">Output 2: Upregulated Gene Inputs</a></li>
+  <li><a href="#output-3-downregulated-gene-inputs" id="toc-output-3-downregulated-gene-inputs" class="nav-link" data-scroll-target="#output-3-downregulated-gene-inputs">Output 3: Downregulated Gene Inputs</a></li>
+  <li><a href="#output-4-protein-identifier-inputs" id="toc-output-4-protein-identifier-inputs" class="nav-link" data-scroll-target="#output-4-protein-identifier-inputs">Output 4: Protein Identifier Inputs</a></li>
+  <li><a href="#output-5-enrichment-input-summary" id="toc-output-5-enrichment-input-summary" class="nav-link" data-scroll-target="#output-5-enrichment-input-summary">Output 5: Enrichment Input Summary</a></li>
+  <li><a href="#choosing-an-identifier-type" id="toc-choosing-an-identifier-type" class="nav-link" data-scroll-target="#choosing-an-identifier-type">Choosing an Identifier Type</a></li>
+  <li><a href="#organism-matters" id="toc-organism-matters" class="nav-link" data-scroll-target="#organism-matters">Organism Matters</a></li>
+  <li><a href="#background-set" id="toc-background-set" class="nav-link" data-scroll-target="#background-set">Background Set</a></li>
+  <li><a href="#go-enrichment-results" id="toc-go-enrichment-results" class="nav-link" data-scroll-target="#go-enrichment-results">GO Enrichment Results</a></li>
+  <li><a href="#example-interpretation-pattern" id="toc-example-interpretation-pattern" class="nav-link" data-scroll-target="#example-interpretation-pattern">Example Interpretation Pattern</a></li>
+  <li><a href="#relationship-to-string-analysis" id="toc-relationship-to-string-analysis" class="nav-link" data-scroll-target="#relationship-to-string-analysis">Relationship to STRING Analysis</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html">Part III: Protein Annotation and Functional Interpretation</a></li><li class="breadcrumb-item"><a href="./08-functional-enrichment-and-go-annotation.html"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Functional Enrichment and GO Annotation</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-title">Functional Enrichment and GO Annotation</span></h1>
 </div>
 
 
@@ -283,34 +359,233 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>GO functional annotation is a central part of proteomics interpretation.</p>
-<section id="go-domains" class="level2">
-<h2 class="anchored" data-anchor-id="go-domains">GO Domains</h2>
-<p>Gene Ontology includes:</p>
+<p>After protein identifiers have been cleaned and annotation-ready lists have been prepared, the next step is functional enrichment and Gene Ontology annotation.</p>
+<p>Functional enrichment helps move the analysis from individual proteins to biological processes, molecular functions, cellular components, and pathways.</p>
+<p>In this results-first proteomics workflow, enrichment begins from the ranked and filtered protein lists generated in earlier chapters.</p>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting Point</h2>
+<p>This chapter uses outputs from Chapter 07:</p>
+<pre class="text"><code>results/annotation-ready-gene-list.tsv
+results/annotation-ready-protein-list.tsv
+results/cleaned-protein-identifiers.tsv</code></pre>
+<p>These files were generated by:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/07-clean-protein-identifiers.R <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  results/ranked-significant-proteins.tsv <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The key input for GO enrichment is usually a clean gene or protein identifier list.</p>
+</section>
+<section id="why-functional-enrichment-matters" class="level2">
+<h2 class="anchored" data-anchor-id="why-functional-enrichment-matters">Why Functional Enrichment Matters</h2>
+<p>A list of differentially abundant proteins can be informative, but interpretation becomes stronger when proteins are summarized into biological functions.</p>
+<p>Functional enrichment asks:</p>
+<pre class="text"><code>Are some biological functions represented more than expected?
+        ↓
+Are multiple proteins pointing to the same pathway?
+        ↓
+Do upregulated and downregulated proteins suggest different biology?
+        ↓
+Are the results coherent with the study question?</code></pre>
+<p>This helps avoid interpreting proteins one by one without broader biological context.</p>
+</section>
+<section id="main-enrichment-categories" class="level2">
+<h2 class="anchored" data-anchor-id="main-enrichment-categories">Main Enrichment Categories</h2>
+<p>Gene Ontology commonly organizes annotations into three major domains:</p>
 <pre class="text"><code>Biological Process
 Molecular Function
 Cellular Component</code></pre>
+<p>These are often abbreviated as:</p>
+<pre class="text"><code>BP
+MF
+CC</code></pre>
+<p>For example:</p>
+<pre class="text"><code>Biological Process   → immune response, translation, glycolysis
+Molecular Function   → kinase activity, binding, transporter activity
+Cellular Component   → mitochondrion, ribosome, extracellular matrix</code></pre>
 </section>
-<section id="enrichment-workflow" class="level2">
-<h2 class="anchored" data-anchor-id="enrichment-workflow">Enrichment Workflow</h2>
-<pre class="text"><code>significant protein list
-        ↓
-identifier mapping
-        ↓
-background definition
-        ↓
-GO enrichment
-        ↓
-pathway enrichment
-        ↓
-biological interpretation</code></pre>
+<section id="enrichment-input-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="enrichment-input-strategy">Enrichment Input Strategy</h2>
+<p>This chapter prepares separate enrichment-ready inputs for:</p>
+<pre class="text"><code>all significant proteins
+upregulated proteins
+downregulated proteins</code></pre>
+<p>This separation is useful because proteins that increase and decrease may represent different biological patterns.</p>
+<p>For example:</p>
+<pre class="text"><code>upregulated proteins   → activated or enriched functions in numerator condition
+downregulated proteins → reduced functions in numerator condition</code></pre>
+<p>For the running example:</p>
+<pre class="text"><code>treated_vs_control</code></pre>
+<p>positive log2 fold change means higher abundance in treated.</p>
 </section>
-<section id="important-principle" class="level2">
-<h2 class="anchored" data-anchor-id="important-principle">Important Principle</h2>
-<p>Functional enrichment should be interpreted in relation to the original biological question, not as a standalone list of terms.</p>
+<section id="expected-input-files" class="level2">
+<h2 class="anchored" data-anchor-id="expected-input-files">Expected Input Files</h2>
+<p>The expected input files are:</p>
+<pre class="text"><code>results/cleaned-protein-identifiers.tsv
+results/annotation-ready-gene-list.tsv
+results/annotation-ready-protein-list.tsv</code></pre>
+<p>The most important table is:</p>
+<pre class="text"><code>results/cleaned-protein-identifiers.tsv</code></pre>
+<p>because it preserves regulation and ranking information.</p>
+</section>
+<section id="output-files" class="level2">
+<h2 class="anchored" data-anchor-id="output-files">Output Files</h2>
+<p>The enrichment-preparation script creates:</p>
+<pre class="text"><code>results/
+├── enrichment-input-all-genes.tsv
+├── enrichment-input-upregulated-genes.tsv
+├── enrichment-input-downregulated-genes.tsv
+├── enrichment-input-all-proteins.tsv
+├── enrichment-input-upregulated-proteins.tsv
+├── enrichment-input-downregulated-proteins.tsv
+└── enrichment-input-summary.tsv</code></pre>
+<p>These files are ready to be used in GO, pathway, or web-based enrichment tools.</p>
+</section>
+<section id="enrichment-preparation-script" class="level2">
+<h2 class="anchored" data-anchor-id="enrichment-preparation-script">Enrichment Preparation Script</h2>
+<p>The executable script is saved as:</p>
+<pre class="text"><code>scripts/R/08-prepare-functional-enrichment-inputs.R</code></pre>
+<p>The guide shows how to run the script. The full executable code is maintained in <code>scripts/R/</code>.</p>
+</section>
+<section id="running-the-script" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script">Running the Script</h2>
+<p>From the project root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/08-prepare-functional-enrichment-inputs.R <span class="dt">\</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  results/cleaned-protein-identifiers.tsv <span class="dt">\</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The arguments are:</p>
+<pre class="text"><code>1st argument → cleaned protein identifier table
+2nd argument → output directory</code></pre>
+</section>
+<section id="output-1-all-gene-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="output-1-all-gene-inputs">Output 1: All Gene Inputs</h2>
+<p>The all-gene enrichment input is:</p>
+<pre class="text"><code>results/enrichment-input-all-genes.tsv</code></pre>
+<p>This file contains all available cleaned gene symbols from the significant protein table.</p>
+<p>It is useful for enrichment tools that accept gene symbols.</p>
+</section>
+<section id="output-2-upregulated-gene-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="output-2-upregulated-gene-inputs">Output 2: Upregulated Gene Inputs</h2>
+<p>The upregulated gene input is:</p>
+<pre class="text"><code>results/enrichment-input-upregulated-genes.tsv</code></pre>
+<p>This file contains gene symbols for proteins classified as upregulated.</p>
+<p>For the running example:</p>
+<pre class="text"><code>upregulated → higher abundance in treated</code></pre>
+</section>
+<section id="output-3-downregulated-gene-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="output-3-downregulated-gene-inputs">Output 3: Downregulated Gene Inputs</h2>
+<p>The downregulated gene input is:</p>
+<pre class="text"><code>results/enrichment-input-downregulated-genes.tsv</code></pre>
+<p>This file contains gene symbols for proteins classified as downregulated.</p>
+<p>For the running example:</p>
+<pre class="text"><code>downregulated → lower abundance in treated</code></pre>
+</section>
+<section id="output-4-protein-identifier-inputs" class="level2">
+<h2 class="anchored" data-anchor-id="output-4-protein-identifier-inputs">Output 4: Protein Identifier Inputs</h2>
+<p>Some enrichment or pathway tools accept protein accessions instead of gene symbols.</p>
+<p>The protein-list outputs are:</p>
+<pre class="text"><code>results/enrichment-input-all-proteins.tsv
+results/enrichment-input-upregulated-proteins.tsv
+results/enrichment-input-downregulated-proteins.tsv</code></pre>
+<p>These files are useful when working with UniProt-centered tools or protein-network tools.</p>
+</section>
+<section id="output-5-enrichment-input-summary" class="level2">
+<h2 class="anchored" data-anchor-id="output-5-enrichment-input-summary">Output 5: Enrichment Input Summary</h2>
+<p>The summary file is:</p>
+<pre class="text"><code>results/enrichment-input-summary.tsv</code></pre>
+<p>It records:</p>
+<pre class="text"><code>total cleaned proteins
+gene symbols available
+protein identifiers available
+upregulated gene identifiers
+downregulated gene identifiers
+upregulated protein identifiers
+downregulated protein identifiers</code></pre>
+<p>This summary helps confirm whether enough identifiers are available for enrichment.</p>
+</section>
+<section id="choosing-an-identifier-type" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-an-identifier-type">Choosing an Identifier Type</h2>
+<p>The best identifier type depends on the enrichment method.</p>
+<p>Common choices include:</p>
+<pre class="text"><code>gene symbols
+Entrez IDs
+Ensembl IDs
+UniProt accessions
+STRING identifiers</code></pre>
+<p>For this results-first edition, the workflow prepares gene-symbol and protein-accession lists.</p>
+<p>Formal organism-specific conversion can be added later using annotation databases.</p>
+</section>
+<section id="organism-matters" class="level2">
+<h2 class="anchored" data-anchor-id="organism-matters">Organism Matters</h2>
+<p>GO enrichment is organism-specific.</p>
+<p>A gene symbol such as:</p>
+<pre class="text"><code>TP53</code></pre>
+<p>must be interpreted in the correct organism context.</p>
+<p>Before formal enrichment, document:</p>
+<pre class="text"><code>organism
+identifier type
+background set
+database version
+enrichment method
+multiple-testing correction</code></pre>
+<p>Without this information, enrichment results can be difficult to reproduce.</p>
+</section>
+<section id="background-set" class="level2">
+<h2 class="anchored" data-anchor-id="background-set">Background Set</h2>
+<p>The enrichment background is the set of proteins that could have been detected and tested.</p>
+<p>Possible backgrounds include:</p>
+<pre class="text"><code>all quantified proteins
+all proteins in the differential abundance table
+all proteins passing identification confidence filters
+all proteins detected in the experiment</code></pre>
+<p>Using only significant proteins as both input and background is not appropriate.</p>
+<p>For this results-first guide, the default practical background is:</p>
+<pre class="text"><code>all proteins in the differential abundance result table</code></pre>
+<p>When available, the full quantified protein table is better.</p>
+</section>
+<section id="go-enrichment-results" class="level2">
+<h2 class="anchored" data-anchor-id="go-enrichment-results">GO Enrichment Results</h2>
+<p>A typical GO enrichment result table may contain:</p>
+<pre class="text"><code>GO_ID
+term_name
+ontology
+gene_count
+background_count
+p_value
+adjusted_p_value
+genes</code></pre>
+<p>Later visualization and interpretation chapters can use these columns to summarize enriched terms.</p>
+</section>
+<section id="example-interpretation-pattern" class="level2">
+<h2 class="anchored" data-anchor-id="example-interpretation-pattern">Example Interpretation Pattern</h2>
+<p>A good enrichment interpretation should connect enrichment results back to the comparison.</p>
+<p>For example:</p>
+<pre class="text"><code>Proteins higher in treated were enriched for mitochondrial translation.</code></pre>
+<p>or:</p>
+<pre class="text"><code>Proteins lower in treated were enriched for extracellular matrix organization.</code></pre>
+<p>Avoid overinterpreting enrichment as proof of mechanism.</p>
+<p>Enrichment suggests biological themes that need to be interpreted with the experimental design.</p>
+</section>
+<section id="relationship-to-string-analysis" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-string-analysis">Relationship to STRING Analysis</h2>
+<p>Functional enrichment and STRING analysis are complementary.</p>
+<p>GO enrichment asks:</p>
+<pre class="text"><code>Which functions are overrepresented?</code></pre>
+<p>STRING analysis asks:</p>
+<pre class="text"><code>Do the proteins form known or predicted interaction networks?</code></pre>
+<p>Both analyses help move from a protein list to biological interpretation.</p>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The next chapter focuses on STRING network analysis.</p>
+<pre class="text"><code>Cleaned identifiers
+        ↓
+Functional enrichment inputs
+        ↓
+GO and pathway interpretation
+        ↓
+STRING network analysis
+        ↓
+Biological interpretation</code></pre>
 
-
-<!-- -->
 
 </section>
 
@@ -366,13 +641,14 @@ biological interpretation</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -384,57 +660,6 @@ biological interpretation</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -452,6 +677,8 @@ biological interpretation</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -776,41 +1003,7 @@ biological interpretation</code></pre>
         <span class="nav-page-text"><span class="chapter-title">STRING Network Analysis</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Functional Enrichment and GO Annotation</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>GO functional annotation is a central part of proteomics interpretation.</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## GO Domains</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>Gene Ontology includes:</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="in">Biological Process</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="in">Molecular Function</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="in">Cellular Component</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="fu">## Enrichment Workflow</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="in">significant protein list</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="in">identifier mapping</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="in">background definition</span></span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="in">GO enrichment</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="in">pathway enrichment</span></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="in">        ↓</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a><span class="in">biological interpretation</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a><span class="fu">## Important Principle</span></span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>Functional enrichment should be interpreted in relation to the original biological question, not as a standalone list of terms.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

@@ -64,3 +64,5 @@ Thumbs.db
 # This is required for GitHub Pages deployment
 /.quarto/
 
+
+**/*.quarto_ipynb

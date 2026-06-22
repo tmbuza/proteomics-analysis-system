@@ -1,0 +1,7 @@
+sample_id,condition,replicate_type,batch
+control_1,control,biological,batch_1
+control_2,control,biological,batch_1
+control_3,control,biological,batch_1
+treated_1,treated,biological,batch_1
+treated_2,treated,biological,batch_1
+treated_3,treated,biological,batch_1

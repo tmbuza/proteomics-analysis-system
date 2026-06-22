@@ -13,19 +13,34 @@ book:
   chapters:
     - index.qmd
     - 00-preface-and-overview.qmd
-    - 01-proteomics-results-landscape.qmd
-    - 02-understanding-proteomics-output-files.qmd
-    - 03-sample-metadata-and-comparison-design.qmd
-    - 04-quality-control-of-result-tables.qmd
-    - 05-differential-protein-abundance-results.qmd
-    - 06-ranking-and-filtering-dep.qmd
-    - 07-protein-identifier-cleaning-and-annotation.qmd
-    - 08-functional-enrichment-and-go-annotation.qmd
-    - 09-string-network-analysis.qmd
-    - 10-visualizing-proteomics-results.qmd
-    - 11-biological-interpretation-system.qmd
-    - 12-reproducible-proteomics-report.qmd
-    - 13-raw-data-expansion-roadmap.qmd
+
+    - part: "Part I: Proteomics Result Inputs"
+      chapters:
+        - 01-proteomics-result-tables.qmd
+        - 02-sample-metadata-and-comparison-design.qmd
+        - 03-understanding-differential-abundance-results.qmd
+        - 04-quality-control-of-result-tables.qmd
+
+    - part: "Part II: Differential Protein Abundance Analysis"
+      chapters:
+        - 05-filtering-differential-proteins.qmd
+        - 06-ranking-and-filtering-dep.qmd
+
+    - part: "Part III: Protein Annotation and Functional Interpretation"
+      chapters:
+        - 07-protein-identifier-cleaning-and-annotation.qmd
+        - 08-functional-enrichment-and-go-annotation.qmd
+        - 09-string-network-analysis.qmd
+
+    - part: "Part IV: Visualization, Interpretation, and Reporting"
+      chapters:
+        - 10-visualizing-proteomics-results.qmd
+        - 11-biological-interpretation-system.qmd
+        - 12-reproducible-proteomics-report.qmd
+
+    - part: "Part V: Future Expansion"
+      chapters:
+        - 13-raw-data-expansion-roadmap.qmd
 
   appendices:
     - 999-appendix.qmd
@@ -33,10 +48,21 @@ book:
 
 format:
   html:
-    theme: cosmo
     toc: true
     toc-depth: 3
     number-sections: false
+    number-depth: 2
     smooth-scroll: true
+    anchor-sections: true
+    link-external-icon: true
+    css: assets/css/cdi.css
     code-fold: true
-    code-tools: true
+    mermaid:
+      theme: forest
+
+execute:
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
+  working-dir: .

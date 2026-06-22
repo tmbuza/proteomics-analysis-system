@@ -1,0 +1,347 @@
+# Sample Metadata and Comparison Design
+
+After inspecting proteomics result tables and understanding differential abundance columns, the next step is to document the sample metadata and comparison design.
+
+A differential protein abundance table is only interpretable when the comparison is clear.
+
+For example, a column such as:
+
+```text
+comparison
+```
+
+may contain a value such as:
+
+```text
+treated_vs_control
+```
+
+This label is useful, but it is not enough by itself.
+
+The analyst should know:
+
+- what the control group represents
+- what the treated group represents
+- how many samples were included
+- whether samples are biological or technical replicates
+- whether the comparison is paired or unpaired
+- which condition is the numerator in the fold-change calculation
+- which condition is the reference group
+- whether positive log2 fold change means higher abundance in treatment or control
+
+This chapter defines a simple metadata and comparison-design structure for documenting that context.
+
+## Why Metadata Matters
+
+Proteomics result tables are often received after upstream processing has already been completed.
+
+The result table may contain protein identifiers, fold changes, and p-values, but the experimental design may be stored elsewhere, such as:
+
+- a facility report
+- a sample submission sheet
+- a collaborator email
+- a spreadsheet from the project team
+- a methods document
+- a vendor output folder
+
+Without sample metadata, downstream interpretation can become ambiguous.
+
+For example:
+
+```text
+log2fc = 2.31
+```
+
+is not meaningful until the analyst knows what the comparison means.
+
+If the comparison is:
+
+```text
+treated_vs_control
+```
+
+then positive log2 fold change usually means the protein is more abundant in the treated group than in the control group.
+
+But this must be confirmed.
+
+## Expected Metadata Files
+
+This guide uses two small metadata files for the running example:
+
+```text
+data/example/example-sample-metadata.csv
+data/example/example-comparison-design.csv
+```
+
+The proteomics result table remains:
+
+```text
+data/example/example-proteomics-results.csv
+```
+
+Together, these files describe the result table and its comparison context.
+
+## Example Sample Metadata
+
+The sample metadata file describes each sample.
+
+Example structure:
+
+```text
+sample_id,condition,replicate_type,batch
+control_1,control,biological,batch_1
+control_2,control,biological,batch_1
+control_3,control,biological,batch_1
+treated_1,treated,biological,batch_1
+treated_2,treated,biological,batch_1
+treated_3,treated,biological,batch_1
+```
+
+This table answers:
+
+```text
+Which samples exist?
+        ↓
+Which condition does each sample belong to?
+        ↓
+Are samples biological or technical replicates?
+        ↓
+Are there known batches?
+```
+
+## Example Comparison Design
+
+The comparison design file describes each differential abundance comparison.
+
+Example structure:
+
+```text
+comparison,numerator_condition,denominator_condition,positive_log2fc_interpretation,design_type
+treated_vs_control,treated,control,higher abundance in treated,unpaired
+```
+
+This table answers:
+
+```text
+What does the comparison label mean?
+        ↓
+Which group is the numerator?
+        ↓
+Which group is the denominator or reference?
+        ↓
+What does positive log2fc mean?
+        ↓
+Is the comparison paired or unpaired?
+```
+
+## Recommended Project Structure
+
+For this chapter, the recommended structure is:
+
+```text
+data/
+├── example/
+│   ├── example-proteomics-results.csv
+│   ├── example-sample-metadata.csv
+│   └── example-comparison-design.csv
+├── input/
+│   ├── proteomics-results.csv
+│   ├── sample-metadata.csv
+│   └── comparison-design.csv
+└── results/
+
+scripts/
+└── R/
+    └── 03-validate-sample-metadata-and-comparison-design.R
+```
+
+The example files are used for the guide.
+
+The input files are reserved for real project analysis.
+
+## Metadata Validation Script
+
+The executable script is saved as:
+
+```text
+scripts/R/03-validate-sample-metadata-and-comparison-design.R
+```
+
+The script checks that:
+
+- the sample metadata file exists
+- the comparison design file exists
+- required metadata columns are present
+- required comparison-design columns are present
+- each comparison has a numerator and denominator condition
+- numerator and denominator conditions exist in the sample metadata
+- the result table comparison labels are represented in the comparison design file
+- a validation summary is written to `results/`
+
+The guide shows how to run the script. The full executable code is maintained in `scripts/R/`.
+
+## Running the Script on the Example Files
+
+From the project root, run:
+
+```bash
+Rscript scripts/R/03-validate-sample-metadata-and-comparison-design.R \
+  data/example/example-proteomics-results.csv \
+  data/example/example-sample-metadata.csv \
+  data/example/example-comparison-design.csv \
+  results
+```
+
+The expected outputs are:
+
+```text
+results/
+├── metadata-validation-summary.tsv
+├── condition-sample-counts.tsv
+└── comparison-design-validated.tsv
+```
+
+## Output 1: Metadata Validation Summary
+
+The validation summary is:
+
+```text
+results/metadata-validation-summary.tsv
+```
+
+This file records whether key checks passed.
+
+Example checks include:
+
+```text
+sample_metadata_file_exists
+comparison_design_file_exists
+required_sample_metadata_columns_present
+required_comparison_design_columns_present
+comparison_labels_match_result_table
+comparison_conditions_found_in_metadata
+```
+
+This gives a quick checkpoint before downstream analysis.
+
+## Output 2: Condition Sample Counts
+
+The condition sample count table is:
+
+```text
+results/condition-sample-counts.tsv
+```
+
+This file summarizes how many samples are assigned to each condition.
+
+Example structure:
+
+```text
+condition    sample_count
+control      3
+treated      3
+```
+
+This helps confirm the comparison design is plausible.
+
+## Output 3: Validated Comparison Design
+
+The validated comparison design output is:
+
+```text
+results/comparison-design-validated.tsv
+```
+
+This file contains the comparison design table plus validation columns indicating whether the numerator and denominator conditions were found in the sample metadata.
+
+## Interpreting Comparison Direction
+
+The comparison direction is essential for interpreting fold changes.
+
+For this guide:
+
+```text
+treated_vs_control
+```
+
+means:
+
+```text
+numerator condition   = treated
+denominator condition = control
+```
+
+Therefore:
+
+```text
+positive log2fc → higher abundance in treated
+negative log2fc → lower abundance in treated
+```
+
+or equivalently:
+
+```text
+negative log2fc → higher abundance in control
+```
+
+This interpretation should be documented before filtering and ranking proteins.
+
+## Why This Comes Before Differential Filtering
+
+Differential protein filtering depends on knowing the meaning of the fold-change direction.
+
+Without comparison design, the analyst may correctly identify significant proteins but incorrectly interpret their biological direction.
+
+For example:
+
+```text
+log2fc > 0
+```
+
+should not automatically be described as “upregulated” unless the numerator condition is known.
+
+This chapter makes the comparison direction explicit before downstream filtering and interpretation.
+
+## Running the Script on Real Project Files
+
+For a real project, place metadata files in:
+
+```text
+data/input/
+```
+
+Example:
+
+```text
+data/input/proteomics-results.csv
+data/input/sample-metadata.csv
+data/input/comparison-design.csv
+```
+
+Then run:
+
+```bash
+Rscript scripts/R/03-validate-sample-metadata-and-comparison-design.R \
+  data/input/proteomics-results.csv \
+  data/input/sample-metadata.csv \
+  data/input/comparison-design.csv \
+  results
+```
+
+The workflow is the same. Only the input files change.
+
+## Looking Ahead
+
+The next chapter focuses on quality control of proteomics result tables.
+
+After the sample metadata and comparison design are documented, the analyst can check whether the result table is structurally ready for filtering and interpretation.
+
+```text
+Sample metadata
+        ↓
+Comparison design
+        ↓
+Result-table quality control
+        ↓
+Differential protein abundance analysis
+```

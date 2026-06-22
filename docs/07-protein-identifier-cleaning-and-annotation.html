@@ -2,13 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.32">
+<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
 <title>Protein Identifier Cleaning and Annotation – CDI Proteomics Analysis System</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -73,10 +76,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-485d01fc63b59abcd3ee1bf1e8e2748d.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-7d8ad657b878717df1156ab40fed854c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -107,6 +110,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <style>html{ scroll-behavior: smooth; }</style>
 
 
+<link rel="stylesheet" href="assets/css/cdi.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -118,7 +122,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html">Part III: Protein Annotation and Functional Interpretation</a></li><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -145,7 +149,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">CDI Proteomics Analysis System</span></a>
+  <a href="./index.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">index.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -153,80 +157,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <a href="./00-preface-and-overview.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Preface and Overview</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./01-proteomics-results-landscape.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Results Landscape</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./02-understanding-proteomics-output-files.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Understanding Proteomics Output Files</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./03-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./05-differential-protein-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Part I: Proteomics Result Inputs</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-proteomics-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Proteomics Result Tables</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-sample-metadata-and-comparison-design.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Sample Metadata and Comparison Design</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-understanding-differential-abundance-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-quality-control-of-result-tables.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Quality Control of Result Tables</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part II: Differential Protein Abundance Analysis</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-filtering-differential-proteins.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Differential Protein Abundance Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-ranking-and-filtering-dep.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Ranking and Filtering DEP</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part III: Protein Annotation and Functional Interpretation</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-protein-identifier-cleaning-and-annotation.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-functional-enrichment-and-go-annotation.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Functional Enrichment and GO Annotation</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-string-network-analysis.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">STRING Network Analysis</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part IV: Visualization, Interpretation, and Reporting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-visualizing-proteomics-results.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Visualizing Proteomics Results</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-biological-interpretation-system.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Biological Interpretation System</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./12-reproducible-proteomics-report.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Reproducible Proteomics Report</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Part V: Future Expansion</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./13-raw-data-expansion-roadmap.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Raw Data Expansion Roadmap</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./999-appendix.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Appendix</span></a>
@@ -249,17 +308,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#common-identifiers" id="toc-common-identifiers" class="nav-link active" data-scroll-target="#common-identifiers">Common Identifiers</a></li>
+  <li><a href="#starting-point" id="toc-starting-point" class="nav-link active" data-scroll-target="#starting-point">Starting Point</a></li>
   <li><a href="#why-identifier-cleaning-matters" id="toc-why-identifier-cleaning-matters" class="nav-link" data-scroll-target="#why-identifier-cleaning-matters">Why Identifier Cleaning Matters</a></li>
+  <li><a href="#common-proteomics-identifier-issues" id="toc-common-proteomics-identifier-issues" class="nav-link" data-scroll-target="#common-proteomics-identifier-issues">Common Proteomics Identifier Issues</a></li>
+  <li><a href="#identifier-cleaning-strategy" id="toc-identifier-cleaning-strategy" class="nav-link" data-scroll-target="#identifier-cleaning-strategy">Identifier Cleaning Strategy</a></li>
+  <li><a href="#expected-input" id="toc-expected-input" class="nav-link" data-scroll-target="#expected-input">Expected Input</a></li>
+  <li><a href="#output-files" id="toc-output-files" class="nav-link" data-scroll-target="#output-files">Output Files</a></li>
+  <li><a href="#cleaning-script" id="toc-cleaning-script" class="nav-link" data-scroll-target="#cleaning-script">Cleaning Script</a></li>
+  <li><a href="#running-the-script" id="toc-running-the-script" class="nav-link" data-scroll-target="#running-the-script">Running the Script</a></li>
+  <li><a href="#output-1-cleaned-protein-identifiers" id="toc-output-1-cleaned-protein-identifiers" class="nav-link" data-scroll-target="#output-1-cleaned-protein-identifiers">Output 1: Cleaned Protein Identifiers</a></li>
+  <li><a href="#output-2-annotation-ready-protein-list" id="toc-output-2-annotation-ready-protein-list" class="nav-link" data-scroll-target="#output-2-annotation-ready-protein-list">Output 2: Annotation-Ready Protein List</a></li>
+  <li><a href="#output-3-annotation-ready-gene-list" id="toc-output-3-annotation-ready-gene-list" class="nav-link" data-scroll-target="#output-3-annotation-ready-gene-list">Output 3: Annotation-Ready Gene List</a></li>
+  <li><a href="#output-4-string-network-input" id="toc-output-4-string-network-input" class="nav-link" data-scroll-target="#output-4-string-network-input">Output 4: STRING Network Input</a></li>
+  <li><a href="#output-5-identifier-cleaning-summary" id="toc-output-5-identifier-cleaning-summary" class="nav-link" data-scroll-target="#output-5-identifier-cleaning-summary">Output 5: Identifier Cleaning Summary</a></li>
+  <li><a href="#contaminants-and-reverse-entries" id="toc-contaminants-and-reverse-entries" class="nav-link" data-scroll-target="#contaminants-and-reverse-entries">Contaminants and Reverse Entries</a></li>
+  <li><a href="#multiple-protein-identifiers" id="toc-multiple-protein-identifiers" class="nav-link" data-scroll-target="#multiple-protein-identifiers">Multiple Protein Identifiers</a></li>
+  <li><a href="#gene-symbols-and-biological-meaning" id="toc-gene-symbols-and-biological-meaning" class="nav-link" data-scroll-target="#gene-symbols-and-biological-meaning">Gene Symbols and Biological Meaning</a></li>
+  <li><a href="#relationship-to-go-and-pathway-enrichment" id="toc-relationship-to-go-and-pathway-enrichment" class="nav-link" data-scroll-target="#relationship-to-go-and-pathway-enrichment">Relationship to GO and Pathway Enrichment</a></li>
+  <li><a href="#looking-ahead" id="toc-looking-ahead" class="nav-link" data-scroll-target="#looking-ahead">Looking Ahead</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html">Part III: Protein Annotation and Functional Interpretation</a></li><li class="breadcrumb-item"><a href="./07-protein-identifier-cleaning-and-annotation.html"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></a></li></ol></nav>
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<h1 class="title"><span class="chapter-title">Protein Identifier Cleaning and Annotation</span></h1>
 </div>
 
 
@@ -282,29 +357,227 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>Protein identifiers must be cleaned and mapped before enrichment or network analysis.</p>
-<section id="common-identifiers" class="level2">
-<h2 class="anchored" data-anchor-id="common-identifiers">Common Identifiers</h2>
-<p>Proteomics tables may contain:</p>
-<pre class="text"><code>UniProt accession
-UniProt protein name
-gene symbol
-Ensembl gene ID
-RefSeq accession
-protein description</code></pre>
+<p>After filtering and ranking differentially abundant proteins, the next step is to clean protein identifiers and prepare annotation-ready tables.</p>
+<p>Proteomics result tables often contain protein accessions, protein groups, gene symbols, or mixed identifiers exported from upstream software.</p>
+<p>Before functional enrichment or STRING network analysis, these identifiers need to be checked, cleaned, and organized.</p>
+<p>This chapter prepares clean protein, gene, and annotation input tables for downstream interpretation.</p>
+<section id="starting-point" class="level2">
+<h2 class="anchored" data-anchor-id="starting-point">Starting Point</h2>
+<p>This chapter uses the ranked significant protein table created in Chapter 06:</p>
+<pre class="text"><code>results/ranked-significant-proteins.tsv</code></pre>
+<p>This file was generated by:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/06-rank-and-filter-dep.R <span class="dt">\</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  results/differential-proteins.tsv <span class="dt">\</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  results <span class="dt">\</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  10</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The expected input contains columns such as:</p>
+<pre class="text"><code>protein_id
+gene_symbol
+protein_name
+log2fc
+adjusted_p_value
+comparison
+regulation
+rank</code></pre>
 </section>
 <section id="why-identifier-cleaning-matters" class="level2">
 <h2 class="anchored" data-anchor-id="why-identifier-cleaning-matters">Why Identifier Cleaning Matters</h2>
-<p>Incorrect or inconsistent identifiers can affect:</p>
+<p>Downstream tools depend on clean identifiers.</p>
+<p>For example:</p>
+<pre class="text"><code>GO enrichment       → often needs gene symbols or Entrez IDs
+KEGG/Reactome       → may need gene IDs or UniProt accessions
+STRING              → accepts protein identifiers, gene symbols, or UniProt IDs
+manual reporting    → benefits from gene symbols and protein names</code></pre>
+<p>If identifiers are inconsistent, enrichment and network analysis may fail or produce incomplete results.</p>
+</section>
+<section id="common-proteomics-identifier-issues" class="level2">
+<h2 class="anchored" data-anchor-id="common-proteomics-identifier-issues">Common Proteomics Identifier Issues</h2>
+<p>Proteomics result tables may contain:</p>
 <ul>
-<li>GO enrichment</li>
-<li>pathway enrichment</li>
-<li>STRING network mapping</li>
-<li>candidate protein prioritization</li>
+<li>UniProt accessions</li>
+<li>gene symbols</li>
+<li>protein group identifiers</li>
+<li>multiple accessions in one field</li>
+<li>isoform identifiers</li>
+<li>contaminant labels</li>
+<li>reverse-sequence labels</li>
+<li>missing gene symbols</li>
+<li>species-specific identifiers</li>
+<li>mixed identifier formats</li>
 </ul>
+<p>Examples include:</p>
+<pre class="text"><code>P12345
+Q67890;Q67891
+sp|P12345|PROT_HUMAN
+CON__P12345
+REV__Q67890</code></pre>
+<p>The goal of this chapter is not to fully solve every database-mapping problem.</p>
+<p>The goal is to create clean, reproducible identifier lists that can be reviewed and used in the next steps.</p>
+</section>
+<section id="identifier-cleaning-strategy" class="level2">
+<h2 class="anchored" data-anchor-id="identifier-cleaning-strategy">Identifier Cleaning Strategy</h2>
+<p>The cleaning strategy used here is intentionally conservative.</p>
+<pre class="text"><code>start with ranked significant proteins
+        ↓
+detect protein identifier column
+        ↓
+clean common accession formatting
+        ↓
+split multiple identifiers when needed
+        ↓
+flag contaminants and reverse entries
+        ↓
+prepare gene-symbol and protein-ID lists
+        ↓
+save annotation-ready outputs</code></pre>
+<p>This keeps the original information while creating cleaner downstream inputs.</p>
+</section>
+<section id="expected-input" class="level2">
+<h2 class="anchored" data-anchor-id="expected-input">Expected Input</h2>
+<p>The expected input is:</p>
+<pre class="text"><code>results/ranked-significant-proteins.tsv</code></pre>
+<p>For a real project, the same file is produced from the real filtered results.</p>
+</section>
+<section id="output-files" class="level2">
+<h2 class="anchored" data-anchor-id="output-files">Output Files</h2>
+<p>The identifier cleaning script creates:</p>
+<pre class="text"><code>results/
+├── cleaned-protein-identifiers.tsv
+├── annotation-ready-protein-list.tsv
+├── annotation-ready-gene-list.tsv
+├── string-network-input.tsv
+└── identifier-cleaning-summary.tsv</code></pre>
+</section>
+<section id="cleaning-script" class="level2">
+<h2 class="anchored" data-anchor-id="cleaning-script">Cleaning Script</h2>
+<p>The executable script is saved as:</p>
+<pre class="text"><code>scripts/R/07-clean-protein-identifiers.R</code></pre>
+<p>The guide shows how to run the script. The full executable code is maintained in <code>scripts/R/</code>.</p>
+</section>
+<section id="running-the-script" class="level2">
+<h2 class="anchored" data-anchor-id="running-the-script">Running the Script</h2>
+<p>From the project root, run:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> scripts/R/07-clean-protein-identifiers.R <span class="dt">\</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  results/ranked-significant-proteins.tsv <span class="dt">\</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  results</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The arguments are:</p>
+<pre class="text"><code>1st argument → ranked significant protein table
+2nd argument → output directory</code></pre>
+</section>
+<section id="output-1-cleaned-protein-identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="output-1-cleaned-protein-identifiers">Output 1: Cleaned Protein Identifiers</h2>
+<p>The main cleaned identifier table is:</p>
+<pre class="text"><code>results/cleaned-protein-identifiers.tsv</code></pre>
+<p>This file keeps the ranked protein information and adds cleaned identifier fields such as:</p>
+<pre class="text"><code>protein_id_original
+protein_id_clean
+primary_protein_id
+is_multi_identifier
+is_contaminant
+is_reverse
+identifier_status</code></pre>
+<p>This table is useful for review before enrichment or network analysis.</p>
+</section>
+<section id="output-2-annotation-ready-protein-list" class="level2">
+<h2 class="anchored" data-anchor-id="output-2-annotation-ready-protein-list">Output 2: Annotation-Ready Protein List</h2>
+<p>The protein-list output is:</p>
+<pre class="text"><code>results/annotation-ready-protein-list.tsv</code></pre>
+<p>This file contains a clean set of protein identifiers.</p>
+<p>It is useful for tools that accept UniProt accessions or protein accessions.</p>
+</section>
+<section id="output-3-annotation-ready-gene-list" class="level2">
+<h2 class="anchored" data-anchor-id="output-3-annotation-ready-gene-list">Output 3: Annotation-Ready Gene List</h2>
+<p>The gene-list output is:</p>
+<pre class="text"><code>results/annotation-ready-gene-list.tsv</code></pre>
+<p>This file contains gene symbols when available.</p>
+<p>It is useful for tools that expect gene symbols.</p>
+<p>If gene symbols are missing, this file may be incomplete. In that case, external identifier mapping may be needed.</p>
+</section>
+<section id="output-4-string-network-input" class="level2">
+<h2 class="anchored" data-anchor-id="output-4-string-network-input">Output 4: STRING Network Input</h2>
+<p>The STRING input file is:</p>
+<pre class="text"><code>results/string-network-input.tsv</code></pre>
+<p>This file contains a practical identifier set for STRING network analysis.</p>
+<p>The preferred identifier column is selected in this order:</p>
+<pre class="text"><code>gene_symbol
+        ↓
+primary_protein_id
+        ↓
+protein_id_clean</code></pre>
+<p>The file also preserves ranking and regulation information when available.</p>
+</section>
+<section id="output-5-identifier-cleaning-summary" class="level2">
+<h2 class="anchored" data-anchor-id="output-5-identifier-cleaning-summary">Output 5: Identifier Cleaning Summary</h2>
+<p>The summary file is:</p>
+<pre class="text"><code>results/identifier-cleaning-summary.tsv</code></pre>
+<p>It records:</p>
+<pre class="text"><code>input proteins
+unique cleaned protein identifiers
+gene symbols available
+multi-identifier rows
+contaminant-like rows
+reverse-like rows
+annotation-ready protein IDs
+annotation-ready gene symbols</code></pre>
+<p>This summary is a checkpoint before functional enrichment.</p>
+</section>
+<section id="contaminants-and-reverse-entries" class="level2">
+<h2 class="anchored" data-anchor-id="contaminants-and-reverse-entries">Contaminants and Reverse Entries</h2>
+<p>Some proteomics tables include contaminants or reverse-sequence hits.</p>
+<p>Common patterns include:</p>
+<pre class="text"><code>CON__
+REV__
+Reverse
+contaminant</code></pre>
+<p>These entries should usually not be used for biological interpretation.</p>
+<p>The script flags likely contaminant and reverse entries but does not automatically delete the original rows from the cleaned identifier table.</p>
+<p>Instead, annotation-ready outputs exclude flagged entries by default.</p>
+</section>
+<section id="multiple-protein-identifiers" class="level2">
+<h2 class="anchored" data-anchor-id="multiple-protein-identifiers">Multiple Protein Identifiers</h2>
+<p>Some rows may contain multiple protein identifiers.</p>
+<p>Example:</p>
+<pre class="text"><code>Q67890;Q67891</code></pre>
+<p>This may represent a protein group.</p>
+<p>The script creates:</p>
+<pre class="text"><code>primary_protein_id</code></pre>
+<p>using the first identifier after splitting on common separators.</p>
+<p>This is a practical default, but protein groups should be reviewed carefully in real projects.</p>
+</section>
+<section id="gene-symbols-and-biological-meaning" class="level2">
+<h2 class="anchored" data-anchor-id="gene-symbols-and-biological-meaning">Gene Symbols and Biological Meaning</h2>
+<p>Gene symbols are useful for readability, but they should be treated carefully.</p>
+<p>Potential issues include:</p>
+<ul>
+<li>missing symbols</li>
+<li>outdated symbols</li>
+<li>ambiguous symbols</li>
+<li>species-specific naming differences</li>
+<li>symbols that do not map cleanly to enrichment databases</li>
+</ul>
+<p>For formal enrichment, the organism and identifier type should be documented.</p>
+</section>
+<section id="relationship-to-go-and-pathway-enrichment" class="level2">
+<h2 class="anchored" data-anchor-id="relationship-to-go-and-pathway-enrichment">Relationship to GO and Pathway Enrichment</h2>
+<p>The next chapter uses the cleaned identifiers to prepare functional enrichment analysis.</p>
+<p>The key outputs from this chapter are:</p>
+<pre class="text"><code>annotation-ready-gene-list.tsv
+annotation-ready-protein-list.tsv</code></pre>
+<p>These files are the bridge between statistical protein results and biological function.</p>
+</section>
+<section id="looking-ahead" class="level2">
+<h2 class="anchored" data-anchor-id="looking-ahead">Looking Ahead</h2>
+<p>The next chapter focuses on functional enrichment and GO annotation.</p>
+<pre class="text"><code>Ranked significant proteins
+        ↓
+Cleaned identifiers
+        ↓
+Annotation-ready gene/protein lists
+        ↓
+GO enrichment
+        ↓
+Pathway interpretation</code></pre>
 
-
-<!-- -->
 
 </section>
 
@@ -360,13 +633,14 @@ protein description</code></pre>
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -378,57 +652,6 @@ protein description</code></pre>
         container: window.document.getElementById('quarto-embedded-source-code-modal')
       });
       clipboardModal.on('success', onCopySuccess);
-    }
-    const viewSource = window.document.getElementById('quarto-view-source') ||
-                       window.document.getElementById('quarto-code-tools-source');
-    if (viewSource) {
-      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
-      viewSource.addEventListener("click", function(e) {
-        if (sourceUrl) {
-          // rstudio viewer pane
-          if (/\bcapabilities=\b/.test(window.location)) {
-            window.open(sourceUrl);
-          } else {
-            window.location.href = sourceUrl;
-          }
-        } else {
-          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
-          modal.show();
-        }
-        return false;
-      });
-    }
-    function toggleCodeHandler(show) {
-      return function(e) {
-        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
-        for (let i=0; i<detailsSrc.length; i++) {
-          const details = detailsSrc[i].parentElement;
-          if (show) {
-            details.open = true;
-          } else {
-            details.removeAttribute("open");
-          }
-        }
-        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
-        const fromCls = show ? "hidden" : "unhidden";
-        const toCls = show ? "unhidden" : "hidden";
-        for (let i=0; i<cellCodeDivs.length; i++) {
-          const codeDiv = cellCodeDivs[i];
-          if (codeDiv.classList.contains(fromCls)) {
-            codeDiv.classList.remove(fromCls);
-            codeDiv.classList.add(toCls);
-          } 
-        }
-        return false;
-      }
-    }
-    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
-    if (hideAllCode) {
-      hideAllCode.addEventListener("click", toggleCodeHandler(false));
-    }
-    const showAllCode = window.document.getElementById("quarto-show-all-code");
-    if (showAllCode) {
-      showAllCode.addEventListener("click", toggleCodeHandler(true));
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
@@ -446,6 +669,8 @@ protein description</code></pre>
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // default icon
+            link.classList.add("external");
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -761,8 +986,8 @@ protein description</code></pre>
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./06-ranking-and-filtering-dep.html" class="pagination-link" aria-label="Ranking and Filtering Differentially Abundant Proteins">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Ranking and Filtering Differentially Abundant Proteins</span></span>
+      <a href="./06-ranking-and-filtering-dep.html" class="pagination-link" aria-label="Ranking and Filtering DEP">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Ranking and Filtering DEP</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -770,33 +995,7 @@ protein description</code></pre>
         <span class="nav-page-text"><span class="chapter-title">Functional Enrichment and GO Annotation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
-</nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu"># Protein Identifier Cleaning and Annotation</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>Protein identifiers must be cleaned and mapped before enrichment or network analysis.</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">## Common Identifiers</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>Proteomics tables may contain:</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="in">```text</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="in">UniProt accession</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="in">UniProt protein name</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="in">gene symbol</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="in">Ensembl gene ID</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="in">RefSeq accession</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="in">protein description</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">## Why Identifier Cleaning Matters</span></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>Incorrect or inconsistent identifiers can affect:</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>GO enrichment</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>pathway enrichment</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>STRING network mapping</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>candidate protein prioritization</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></pre></div>
-</div></div></div></div></div>
+</nav>
 </div> <!-- /content -->
 
 

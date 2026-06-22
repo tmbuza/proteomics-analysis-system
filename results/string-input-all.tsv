@@ -1,0 +1,5 @@
+rank	string_identifier	primary_protein_id	gene_symbol_clean	protein_id_original	protein_id_clean	identifier_status	regulation	string_identifier_clean
+1	GENE1	P12345	GENE1	P12345	P12345	clean_identifier	upregulated	GENE1
+2	GENE2	Q67890	GENE2	Q67890	Q67890	clean_identifier	downregulated	GENE2
+3	GENE4	B22222	GENE4	B22222	B22222	clean_identifier	downregulated	GENE4
+4	GENE5	C33333	GENE5	C33333	C33333	clean_identifier	upregulated	GENE5
